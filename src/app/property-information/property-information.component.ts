@@ -11,6 +11,9 @@ export class PropertyInformationComponent implements OnInit {
   constructor() {}
 
   setCurrentView(newView: number) {
+    if (newView < 0 || newView > 2) {
+      throw new Error('New view should be between 0 and 2');
+    }
     this.currentView = newView;
     // set current view
   }

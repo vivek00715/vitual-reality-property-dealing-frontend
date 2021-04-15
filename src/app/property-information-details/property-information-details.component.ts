@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-interface PropertyData {
+export interface PropertyData {
   street: string;
   city: string;
   state: string;

@@ -1,8 +1,9 @@
-<div class="mt-4">
+<!-- DON'T REMOVE data-angular from html, it is for testing -->
+<div class="mt-4" data-angular="address">
   <b>{{ data.street }}</b> {{ data.city }}, {{ data.state }}
   {{ data.pincode }}
 </div>
-<div class="row mt-2">
+<div class="row mt-2" data-angular="property-details">
   <div class="col d-flex flex-column">
     <b class="big-text">{{ data.price | currency }}</b>
     <div>Price</div>
@@ -23,7 +24,7 @@
 <hr />
 <p class="my-4">{{ data.description }}</p>
 <hr />
-<div class="row">
+<div class="row" data-angular="home-facts">
   <div class="col-3 col-lg-1 pr-0">
     <img
       src="https://ssl.cdn-redfin.com/system_files/images/13580/150x150/gen120x120/1_49.jpg"

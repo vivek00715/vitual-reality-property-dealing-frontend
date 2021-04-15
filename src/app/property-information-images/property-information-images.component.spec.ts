@@ -5,12 +5,11 @@ import { PropertyInformationImagesComponent } from './property-information-image
 describe('PropertyInformationImagesComponent', () => {
   let component: PropertyInformationImagesComponent;
   let fixture: ComponentFixture<PropertyInformationImagesComponent>;
-
+  let compiled: HTMLElement;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PropertyInformationImagesComponent ]
-    })
-    .compileComponents();
+      declarations: [PropertyInformationImagesComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,12 @@ describe('PropertyInformationImagesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render 3 images', () => {
+    fixture = TestBed.createComponent(PropertyInformationImagesComponent);
+    compiled = fixture.nativeElement;
+    fixture.detectChanges();
+    expect(compiled.querySelectorAll('img').length).toEqual(3);
   });
 });
