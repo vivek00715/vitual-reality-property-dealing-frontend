@@ -1,0 +1,25 @@
+$primary-color: #f37820;
+
+.top-bar {
+  display: flex;
+  align-items: center;
+
+  .active {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: $primary-color;
+
+    img {
+      filter: invert(74%) sepia(59%) saturate(6031%) hue-rotate(349deg)
+        brightness(100%) contrast(91%);
+    }
+  }
+
+  div {
+    display: flex;
+    cursor: pointer;
+    img {
+      margin-right: 5px;
+    }
+  }
+}
