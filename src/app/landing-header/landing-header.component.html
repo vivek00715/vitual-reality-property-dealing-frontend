@@ -1,0 +1,91 @@
+
+<!-- nav start from here  -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <!-- brand name and logo  -->
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/images/Logo.png"  class="d-inline-block align-top landing-logo-size" alt="">
+      <span class="landing-logo-name">Hash Homes</span>
+    </a>
+
+    <!-- button to toggle when in mobile screen view  -->
+    <button class="toggle-button" (click)="headerOpen = !headerOpen" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <span><img src="../../assets/icons/hamburger.svg" class="toggle-button-hamburger"></span>
+    </button>
+
+    <!-- menu items -->
+    <div class="collapse navbar-collapse" id="navbarText" [ngClass] = "{show:headerOpen}">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Help</a>
+        </li>
+      </ul>
+      <!-- login button  -->
+      <button type="button" class="login-button btn btn-danger mr-2">Log in</button>
+      <!-- sign up button  -->
+      <button type="button" class="signup-button btn btn-outline-danger">Sign up</button>
+
+    </div>
+  </nav>
+  <!-- nav bar ends here  -->
+
+
+
+<!-- header start from here containing search bar  -->
+<header [ngStyle]="{'background-image': 'url('+ getImage() + ')'}">
+
+  <!-- search bar container  -->
+  <div class="searchbar-container row m-0">
+    <!-- search bar  -->
+    <div class="searchbar col-12 col-lg-8 offset-lg-2">
+
+      <!-- form to handle form operations  -->
+      <form class="row">
+
+        <!-- text field for city name  -->
+        <div class="col-10 col-md-4">
+          <input type="text" class="city-input" placeholder="Enter City Name ...">
+        </div>
+
+        <!-- select box for property type  -->
+        <div class="col-6 d-none d-md-block col-md-3">
+          <select  class="city-input property-input">
+            <option value="" disabled selected>Property type</option>
+            <option value="1">Flat</option>
+            <option value="2">House/Villa</option>
+          </select>
+        </div>
+
+        <!-- select box for budget type  -->
+        <div class="col-6 d-none d-md-block col-md-3">
+          <select  class="city-input budget-input">
+            <option value="" disabled selected>Budget</option>
+            <option value="1">10000 - 100000</option>
+            <option value="2">100000 - 1000000</option>
+            <option value="3">1000000 - 10000000</option>
+          </select>
+        </div>
+
+        <!-- search button  -->
+        <div class="col-2 col-md-2 p-0 pr-1">
+          <button type="button" class="search-button btn btn-danger">
+            <span>
+              <img src= "../../assets/icons/search-icon.svg">
+            </span>
+            <span class="d-none d-md-inline">Search</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+    <!-- search bar ends -->
+
+  </div>
+  <!-- search bar container ends -->
+</header>
+
