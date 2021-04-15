@@ -1,0 +1,53 @@
+
+.header-body{
+  background-color:white;
+  border-style:solid;
+  border-radius: 5px;
+  border-color: white;
+  border-bottom-color:whitesmoke ;
+}
+
+form{
+  margin-left: 3%;
+  width: 80%;
+  border-style: solid;
+  border-radius: 15px;
+  border-color:#F8F9FA;
+  background-color: white;
+  padding: 5px;
+  input{
+    background-image: url(../../assets/icons/place_black_24dp.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    text-indent: 4%;
+    border: 0;
+  }
+  .property-type{
+    background-image: url(../../assets/icons/apartment_black_24dp.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    text-indent: 6%;
+    color: grey;
+    border: 0;
+  }
+  .property-budget{
+    background-image: url(../../assets/icons/account_balance_wallet_black_24dp.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    text-indent: 6%;
+    color: grey;
+    border: 0;
+  }
+  button{
+    border: 0;
+    background-color: white;
+    border-style: solid;
+    border-color: white;
+    width: 100%;
+    color: grey;
+    background-image: url(../../assets/icons/search_black_24dp.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    text-indent: 25%;
+  }
+}
