@@ -13,6 +13,7 @@ import { PropertyInformationVirtualViewComponent } from './property-information-
 import { PropertyInformationStreetViewComponent } from './property-information-street-view/property-information-street-view.component';
 import { PropertyInformationDetailsComponent } from './property-information-details/property-information-details.component';
 import { PropertyInformationNearbyCardsComponent } from './property-information-nearby-cards/property-information-nearby-cards.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PropertyInformationNearbyCardsComponent } from './property-information-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
