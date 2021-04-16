@@ -31,9 +31,20 @@
           </select>
           <button class="col-1 btn-light ml-3">Search</button>
         </form>
+        <ng-container *ngIf="!authService.loggedIn">
+          <a routerLink="/auth" style="margin-left: 5%; color: grey;">Login</a>
+          <a routerLink="/auth" style="margin-left: 2%; color: grey;">Sign up</a>
+        </ng-container>
 
-        <a href="#" style="margin-left: 5%; color: grey;">Login</a>
-        <a href="#" style="margin-left: 2%; color: grey;">Sign up</a>
+        <button
+          class="btn btn-link"
+          style="margin-left: 5%; color: grey;"
+          *ngIf="authService.loggedIn"
+          (click)="authService.logout()"
+          >
+          Logout
+        </button>
+
   </div>
 </nav>
 </div>
