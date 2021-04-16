@@ -23,7 +23,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
     // check if user information exists in local storage
     const user: User = JSON.parse(localStorage.getItem('user') || 'null');
-    if(user){
+    if (user) {
       // user is present, do login
       this.setUser(user);
     }
@@ -67,6 +67,7 @@ export class AuthService {
   private setUser = (user: User): void => {
     // helper method to set user
     this.user = user;
+
     if (!this.user.profileImage) {
       // use a placeholder image if the user has not set profile image
       this.user.profileImage = '/assets/images/user.png';
@@ -75,5 +76,5 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(this.user)); // persist the user
     this.loggedIn = true;
     this.authStateChanged.next(); // notify everyone that auth has changed
-  }
+  };
 }
