@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PropertySearchHeaderComponent } from './property-search-header/property-search-header.component';
+import { PropertySearchComponent } from './property-search/property-search.component';
+import { SafePipe } from './safe.pipe';
 import { LandingHeaderComponent } from './landing-header/landing-header.component';
 import { LandingInfoCardComponent } from './landing-info-card/landing-info-card.component';
 import { LandingFooterComponent } from './landing-footer/landing-footer.component';
@@ -18,6 +20,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    PropertySearchComponent,
+    PropertySearchHeaderComponent,
+    SafePipe,
     LandingHeaderComponent,
     LandingInfoCardComponent,
     LandingFooterComponent,
