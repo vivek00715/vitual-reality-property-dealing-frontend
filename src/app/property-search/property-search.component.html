@@ -9,7 +9,7 @@
 
     <!-- Map Column , Using safe Pipe to overcome maps api error -->
     <div class="col-lg-8 col-md-12 col-sm-12">
-      <iframe [src]="src | safe"
+      <iframe [src]="mapSrc | safe"
               width="100%" height="430" style="border: 0;" allowfullscreen="" loading="lazy">
       </iframe>
     </div>
@@ -19,11 +19,11 @@
       <div class="card" style="border-radius: 0; border: 0; ">
         <img class="card-img-top" src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title" data-angular="address">{{data.street}},{{data.city}}, {{data.state}}</h5>
-          <p class="card-subtitle mb-2">Price Range: 5Lac to 2Crore</p>
-          <p class="card-subtitle mb-2 " data-angular="totalAvailability">Toatal Availability : {{list.length}}</p>
-          <p class="card-subtitle mb-2 " data-angular="propertyType">Property Type : {{data.propertyType}}</p>
-          <p class="card-text" data-angular="description">{{data.description}}</p>
+          <h5 class="card-title" data-angular="address">{{street}},{{city}}, {{state}}</h5>
+          <p class="card-subtitle mb-2"><b>Price Range :</b> 5Lac to 2Crore</p>
+          <p class="card-subtitle mb-2 " data-angular="totalAvailability"><b>Toatal Availability :</b> {{list.length}}</p>
+          <p class="card-subtitle mb-2 " data-angular="propertyType"><b>Property Type :</b> {{propertyType}}</p>
+          <p class="card-text" data-angular="description">{{cityDescription}}</p>
         </div>
       </div>
     </div>
@@ -32,17 +32,20 @@
    <div class="row">
 
     <!-- Using ngfor to display list of properties present -->
-    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let users of list; let i=index">
-      <a class="card3" href="#">
+    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let property of list; let i=index">
+
+      <h3 *ngIf="property.propertyId==0" class="card3">No Property is currently available in this area</h3>
+
+      <a *ngIf="property.propertyId!=0" class="card3" (click)="showProperty(i)">
         <img class="card-img-top" src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Card image cap">
-        <h5>Price: {{list[0].price | currency:'INR'}}</h5>
-        <p class="card-subtitle mb-2 ">{{list[0].street}}, {{list[0].city}}</p>
-        <p class="card-subtitle mb-2 ">{{list[0].year}}</p>
-        <p class="card-subtitle mb-2 ">{{list[0].owner}}</p>
+        <h5>Price: {{property.price | currency:'INR'}}</h5>
+        <p class="card-subtitle mb-2 ">{{property.address}}</p>
+        <p class="card-subtitle mb-2 ">{{property.built_year}}</p>
+        <p class="card-subtitle mb-2 ">{{property.ownerEmail}}</p>
         <div class="icon">
-          <span style="background-image: url(../../assets/icons/bed_black_24dp.svg);">{{list[0].bedroooms}}</span>
-          <span style="background-image: url(../../assets/icons/bathtub_black_24dp.svg) ;">{{list[0].bathrooms}}</span>
-          <span style="background-image: url(../../assets/icons/square_foot_black_24dp.svg) ;">{{list[0].area}}</span>
+          <span style="background-image: url(../../assets/icons/bed_black_24dp.svg);">{{property.bedrooms}}</span>
+          <span style="background-image: url(../../assets/icons/bathtub_black_24dp.svg) ;">{{property.bathrooms}}</span>
+          <span style="background-image: url(../../assets/icons/square_foot_black_24dp.svg) ;">{{property.area}}</span>
         </div>
         <div class="dimmer"></div>
         <div class="go-corner" href="#">

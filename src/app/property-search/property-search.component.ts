@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {Pipe, PipeTransform} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CityDetailService } from '../city-detail.service';
+import { PropertySearchService } from '../property-search.service';
 
 @Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
@@ -10,15 +13,6 @@ export class SafePipe implements PipeTransform {
     }
 }
 
-export interface CityData {
-  street:string;
-  city: string;
-  state:string;
-  description: string;
-  propertyType:string;
-
-}
-
 @Component({
   selector: 'app-property-search',
   templateUrl: './property-search.component.html',
@@ -26,25 +20,81 @@ export interface CityData {
 })
 export class PropertySearchComponent implements OnInit {
 
-  @Input() data: CityData = {
-    street:'35 BN PAC',
-    city: 'Lucknow',
-    state: 'UP',
-    description:"Welcome to Lucknow , City of Nawabs. Muskuraaiye Aap Lucknow me hai",
-    propertyType: 'Residentials, Office'
-  };
+  propertyService:PropertySearchService;
+  cityService:CityDetailService;
 
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2TLiALPifHWu9QDw25D1cLsSYTYrOaUk&q="+this.data.street+this.data.city+this.data.state;
+  mapSrc="";
+  Api="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2TLiALPifHWu9QDw25D1cLsSYTYrOaUk&q=";
+  city="";
+  street="";
+  state="";
+  propertyType="";
+  cityDescription="No description Available";
+  propertyId=0;
 
-  list=[{'street':this.data.street,'owner':'Mr David','bedroooms':'3','city':this.data.city
-         ,'bathrooms':'2','area':'2750','year':'2004','price':'560000'},
-        {},{},{},{}]
+  list=[{"propertyId":0,
+  "address":"",
+  "city":"",
+  "state":"",
+  "pinCode":"",
+  "area":0,
+  "bathrooms":"",
+  "bedrooms":"",
+  "bhk":0,
+  "floors":0,
+  "ownerEmail":"",
+  "price":0,
+  "type":"",
+  "purpose":"",
+  "built_year":0,
+  "description":""}]
 
-  constructor() {
+  constructor(propertyService:PropertySearchService, cityService:CityDetailService, private activatedRoute:ActivatedRoute, private router:Router) {
+
+    this.propertyService=propertyService;
+    this.cityService=cityService;
+
+    this.activatedRoute.queryParamMap.subscribe((query:any)=>{
+      console.log(query.params.city);
+      this.street=query.params.street;
+      this.city=query.params.city;
+      this.state=query.params.state;
+      this.propertyType=query.params.type;
+    })
+
+
+
+    if(this.street!=null)
+    this.mapSrc=this.Api+this.street+this.city+this.state;
+    else if(this.city!=null)
+    this.mapSrc=this.Api+this.city+this.state;
+    else
+    this.mapSrc=this.Api+this.state;
+
+    this.propertyService.getPropertyByAddress(this.street,this.city,this.state).subscribe((response:any)=>{
+      this.list=response;
+      console.log(this.list)
+    })
+
+    const detail:string=(this.city==null)?this.state:this.city;
+
+    this.cityService.getCityDetail(detail).subscribe((respo:any)=>{
+      console.log(detail);
+      console.log(respo);
+      this.cityDescription=respo.description;
+    })
 
   }
 
   ngOnInit(): void {
+
   }
+
+  showProperty(index:number)
+  {
+    this.propertyId=this.list[index]['propertyId'];
+    this.router.navigate(['/property/',this.propertyId],{ queryParams: {id:this.propertyId}});
+  }
+
 
 }

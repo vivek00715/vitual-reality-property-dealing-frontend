@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PropertySearchService } from '../property-search.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,9 +12,45 @@ import { AuthService } from '../auth.service';
 
 export class PropertySearchHeaderComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  hamburger=false;
+  propertyService:PropertySearchService;
+  searchProperty=new FormGroup({
 
-  ngOnInit(): void {
+  });
+
+  constructor(propertyService:PropertySearchService, private router:Router, private activatedRoute:ActivatedRoute, public authService: AuthService){
+     this.propertyService=propertyService;
+
+     this.activatedRoute.queryParamMap.subscribe((query:any)=>{
+        console.log(query);
+     })
+
   }
 
+  currentUrl=this.router.url;
+
+  ngOnInit(): void {
+
+    this.searchProperty=new FormGroup({
+      'street':new FormControl(null),
+      'city':new FormControl(null),
+      'state':new FormControl(null,Validators.required),
+      'type':new FormControl(null),
+      'budget':new FormControl(null)
+    })
+
+  }
+
+  SearchProperty()
+  {
+     const data=this.searchProperty.value;
+     console.log(data.city);
+     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+     this.router.onSameUrlNavigation = 'reload';
+     this.router.navigate([this.currentUrl]);
+     this.router.navigate(['/property/search/',data.state],{ queryParams: {street:data.street, city:data.city, state:data.state, type:data.type, budget:data.budget}});
+ }
+
 }
+
+

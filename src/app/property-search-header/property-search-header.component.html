@@ -1,35 +1,37 @@
 
 <div class="header-body">
-<nav class=" navbar navbar-expand-lg navbar-light ">
+<nav class="navbar navbar-expand-lg navbar-light">
 
  <!-- Company logo and Name -->
   <a class="navbar-brand" href="#">
-    <img src="../../assets/images/pexels-areous-ahmad-3175975.jpg" style="width: 30px; height: 30px;">
+    <img src="../../assets/images/Logo.png" style="width: 30px; height: 30px;">
     Hash Homes
   </a>
 
   <!-- Hamburgar button for responsiveness -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" (click)="hamburger=!hamburger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <!-- Search bar along with dropdown containing type of property and budget -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="row">
-          <input class="col-4 " type="text" placeholder="Location">
-          <select class=" property-type col-3 dropdown ml-2">
-            <option style="color: grey;">Property Type</option>
-            <option>Apartment</option>
-            <option>Office</option>
+  <div [ngClass]="{show:hamburger}" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form [formGroup]="searchProperty"  (ngSubmit)="SearchProperty()" class="row">
+          <input formControlName="street" class="col-lg-2 col-md-12 col-sm-12" type="text" placeholder="Street">
+          <input formControlName="city" class="col-lg-2 col-md-12 col-sm-12" type="text" placeholder="City">
+          <input formControlName="state" class="col-lg-2 col-md-12 col-sm-12" type="text" placeholder="State">
+          <select formControlName="type" class=" property-type col-lg-2 col-md-12 col-sm-12 dropdown">
+            <option style="color: grey;" disabled selected>Type</option>
+            <option style="color: black;">Apartment</option>
+            <option style="color: black;">Office</option>
           </select>
 
-          <select class=" property-budget col-3 dropdown ml-2" >
-            <option style="color: grey;">Budget</option>
-            <option>Below 10 Lac</option>
-            <option>10 to 50 Lac</option>
-            <option>Above 50 Lac</option>
+          <select formControlName="budget" class=" property-budget col-lg-3 col-md-12 col-sm-12 dropdown" >
+            <option style="color: grey;" disabled selected >Budget</option>
+            <option style="color: black;">Below 10 Lac</option>
+            <option style="color: black;">10 to 50 Lac</option>
+            <option style="color: black;">Above 50 Lac</option>
           </select>
-          <button class="col-1 btn-light ml-3">Search</button>
+          <button type="submit" class="col-lg-1 col-md-2 col-sm-12 btn" [disabled]="searchProperty.invalid"></button>
         </form>
         <ng-container *ngIf="!authService.loggedIn">
           <a routerLink="/auth" style="margin-left: 5%; color: grey;">Login</a>

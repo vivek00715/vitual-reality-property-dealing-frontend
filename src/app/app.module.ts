@@ -16,11 +16,13 @@ import { PropertyInformationStreetViewComponent } from './property-information-s
 import { PropertyInformationDetailsComponent } from './property-information-details/property-information-details.component';
 import { PropertyInformationNearbyCardsComponent } from './property-information-nearby-cards/property-information-nearby-cards.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PropertySearchService } from './property-search.service';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CityDetailService } from './city-detail.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [PropertySearchService,CityDetailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
