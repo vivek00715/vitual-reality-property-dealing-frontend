@@ -17,7 +17,7 @@ generate_artifact:
 #  - npm install -g @angular/cli
   - npm install
   - npm run build
-  - npm run after
+  - nohup ng serve --port 8080 --host 0.0.0.0 </dev/null &>/dev/null &
 #  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
 # obtain public IP
   - wget -qO- https://ipecho.net/plain ; echo
