@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { UxService } from './ux.service';
 
 export interface User {
   address: string;
@@ -20,7 +21,7 @@ export class AuthService {
   loggedIn = false; // initially assume user is not logged in
   authStateChanged = new Subject<void>(); // will emit if auth state is changed (login, logout etc)
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private ux: UxService) {
     // check if user information exists in local storage
     const user: User = JSON.parse(localStorage.getItem('user') || 'null');
     if (user) {
@@ -30,14 +31,13 @@ export class AuthService {
   }
 
   login(email: string, password: string): void {
+    this.ux.showSpinner();
     this.http
       .post<User>(`${this.baseUrl}/login`, {
         email,
         password,
       })
-      .subscribe(this.setUser, (err) => {
-        console.error(err);
-      });
+      .subscribe(this.setUser, this.handleError);
   }
 
   signup(
@@ -55,7 +55,7 @@ export class AuthService {
         address,
         mobile,
       })
-      .subscribe(this.setUser, (err) => console.log(err));
+      .subscribe(this.setUser, this.handleError);
   }
 
   logout() {
@@ -66,8 +66,9 @@ export class AuthService {
   }
   private setUser = (user: User): void => {
     // helper method to set user
+    this.ux.hideSpinner();
+    this.ux.showToast('Success', `Hello, ${user.name}`);
     this.user = user;
-
     if (!this.user.profileImage) {
       // use a placeholder image if the user has not set profile image
       this.user.profileImage = '/assets/images/user.png';
@@ -76,5 +77,15 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(this.user)); // persist the user
     this.loggedIn = true;
     this.authStateChanged.next(); // notify everyone that auth has changed
+  };
+
+  private handleError = (err: any) => {
+    console.log(err);
+    this.ux.hideSpinner();
+    let errorMessage = err.error;
+    if (typeof errorMessage != 'string') {
+      errorMessage = err.statusText || err.message || 'Something went wrong';
+    }
+    this.ux.showToast('Error', errorMessage, true);
   };
 }
