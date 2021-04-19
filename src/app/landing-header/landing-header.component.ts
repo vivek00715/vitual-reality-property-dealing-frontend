@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,10 +12,13 @@ export class LandingHeaderComponent implements OnInit {
 
   headerOpen = false;
 
+  searchForm = new FormGroup({});
   images: string[] = ["/assets/images/header-background4.jpg" , "/assets/images/header-background2.jpg", "/assets/images/header-background3.jpg", "/assets/images/header-background7.jpg", "/assets/images/header-background5.jpg", "/assets/images/header-background6.jpg"];
   changeBackgroundCounter = 0;
   storedInterval: any;
-  constructor(public authService: AuthService) {
+
+
+  constructor(private router : Router, public authService: AuthService) {
     this.storedInterval = setInterval(() => {
       this.changeBackgroundCounter = this.changeBackgroundCounter + 1;
       if (this.changeBackgroundCounter > this.images.length - 1) {
@@ -22,15 +27,29 @@ export class LandingHeaderComponent implements OnInit {
     }, 5000);
   }
 
-  getImage() {
 
+  getImage() {
     return this.images[this.changeBackgroundCounter];
   }
-  ngOnInit() {
+
+  ngOnInit() :void{
+    this.searchForm = new FormGroup({
+      'city' : new FormControl(null),
+      'state' : new FormControl(null),
+      'propertytype' : new FormControl(null),
+      'budget' : new FormControl(null),
+    });
   }
 
   ngOnDestroy(){
     clearInterval(this.storedInterval);
   }
+
+  onSubmit(){
+    //console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
+    let cityname = this.searchForm.value.city;
+   //redirecting to issues page after submitting the form
+    this.router.navigate(['/property/search/',cityname],{ queryParams: {city: cityname,state: this.searchForm.value.state,propertytype: this.searchForm.value.propertytype, budget: this.searchForm.value.budget}});
+ }
 
 }

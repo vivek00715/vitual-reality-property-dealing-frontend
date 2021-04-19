@@ -18,11 +18,9 @@ import { PropertyInformationNearbyCardsComponent } from './property-information-
 import { HttpClientModule } from '@angular/common/http';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 @NgModule({
   declarations: [

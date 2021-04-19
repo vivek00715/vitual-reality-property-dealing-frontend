@@ -47,6 +47,7 @@ export class AuthService {
     address: string,
     mobile: string
   ): void {
+    this.ux.showSpinner();
     this.http
       .post<User>(`${this.baseUrl}/signup`, {
         email,
