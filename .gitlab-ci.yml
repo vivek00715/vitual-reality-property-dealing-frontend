@@ -1,0 +1,23 @@
+image: node:alpine
+
+stages:
+  - build
+
+react_build:
+  stage: build
+  before_script:
+    - echo "Installing NPM Dependencies and building React app"
+  script:
+    - pwd
+    - npm install
+    - npm run build
+    - npm start 
+  after_script:
+    - echo "Installation and build successful"
+  cache:
+    key: install-cache
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - build/
