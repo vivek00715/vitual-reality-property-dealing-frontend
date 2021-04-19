@@ -16,8 +16,9 @@ generate_artifact:
  script:
 #  - npm install -g @angular/cli
   - npm install
+  - npm install --global http-server
   - npm run build
-  - nohup ng serve --port 8080 --host 0.0.0.0 </dev/null &>/dev/null &
+  - nohup http-server ./dist/VirtualReality --port 8080 -a 0.0.0.0 </dev/null &>/dev/null &
 #  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
 # obtain public IP
   - wget -qO- https://ipecho.net/plain ; echo
