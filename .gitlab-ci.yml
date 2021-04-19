@@ -17,7 +17,8 @@ generate_artifact:
 #  - npm install -g @angular/cli
   - whoami
   - npm install
-  - npm install --global http-server
+  - npm install http-server
+  - npm link http-server
   - npm run build
   - nohup http-server ./dist/VirtualReality --port 8080 -a 0.0.0.0 </dev/null &>/dev/null &
 #  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
