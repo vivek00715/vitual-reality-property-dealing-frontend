@@ -15,6 +15,9 @@ import { PropertyInformationVirtualViewComponent } from './property-information-
 import { PropertyInformationStreetViewComponent } from './property-information-street-view/property-information-street-view.component';
 import { PropertyInformationDetailsComponent } from './property-information-details/property-information-details.component';
 import { PropertyInformationNearbyCardsComponent } from './property-information-nearby-cards/property-information-nearby-cards.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PropertySearchService } from './property-search.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,9 +38,11 @@ import { PropertyInformationNearbyCardsComponent } from './property-information-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PropertySearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

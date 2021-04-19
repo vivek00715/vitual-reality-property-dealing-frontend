@@ -12,42 +12,56 @@ form{
   width: 80%;
   border-style: solid;
   border-radius: 15px;
-  border-color:#F8F9FA;
+  border-color:#FBD0B1;
   background-color: white;
   padding: 5px;
+  input:focus, textarea:focus, select:focus{
+    outline: none;
+  }
   input{
     background-image: url(../../assets/icons/place_black_24dp.svg);
     background-repeat: no-repeat;
     background-position-y: center;
-    text-indent: 4%;
-    border: 0;
+    text-indent: 8%;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-style: solid;
+    border-color: white;
+    // border-right-color:#FBD0B1 ;
   }
   .property-type{
     background-image: url(../../assets/icons/apartment_black_24dp.svg);
     background-repeat: no-repeat;
     background-position-y: center;
-    text-indent: 6%;
+    text-indent: 8%;
     color: grey;
-    border: 0;
+    border-style: solid;
+    border-width:0.15rem;
+    border-color: white;
+    // border-right-color:#FBD0B1 ;
   }
   .property-budget{
     background-image: url(../../assets/icons/account_balance_wallet_black_24dp.svg);
     background-repeat: no-repeat;
     background-position-y: center;
-    text-indent: 6%;
+    text-indent: 8%;
     color: grey;
-    border: 0;
+    border-style: solid;
+    border-width:0.15rem;
+    border-color: white;
   }
   button{
-    border: 0;
-    background-color: white;
     border-style: solid;
     border-color: white;
+    background-color: #FBD0B1;
+    border-radius: 15px;
     width: 100%;
     color: grey;
     background-image: url(../../assets/icons/search_black_24dp.svg);
     background-repeat: no-repeat;
-    background-position-y: center;
-    text-indent: 25%;
+    background-position: center;
+    text-indent: 20%;
   }
+
 }
+
