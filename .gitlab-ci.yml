@@ -19,7 +19,7 @@ generate_artifact:
   - npm install
   - sudo npm install -g http-server
   - npm run build
-  - nohup http-server ./dist/VirtualReality --port 8080 -a 0.0.0.0 </dev/null &>/dev/null &
+  - nohup http-server ./dist/VirtualReality --port 3000 -a 0.0.0.0 </dev/null &>/dev/null &
 #  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
 # obtain public IP
   - wget -qO- https://ipecho.net/plain ; echo
