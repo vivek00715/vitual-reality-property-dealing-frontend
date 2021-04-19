@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-header',
@@ -15,7 +16,7 @@ export class LandingHeaderComponent implements OnInit {
   storedInterval: any;
 
 
-  constructor() {
+  constructor(private router : Router) {
     this.storedInterval = setInterval(() => {
       this.changeBackgroundCounter = this.changeBackgroundCounter + 1;
       if (this.changeBackgroundCounter > this.images.length - 1) {
@@ -44,9 +45,9 @@ export class LandingHeaderComponent implements OnInit {
   onSubmit(){
 
     console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
-
+    let cityname = this.searchForm.value.city;
    //redirecting to issues page after submitting the form
-  //  this.router.navigate(['/issues']);
+    this.router.navigate(['/property/search/',cityname],{ queryParams: {propertytype: this.searchForm.value.propertytype, budget: this.searchForm.value.budget}});
  }
 
 }
