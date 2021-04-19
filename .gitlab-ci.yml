@@ -15,6 +15,7 @@ generate_artifact:
  - master
  script:
 #  - npm install -g @angular/cli
+  - whoami
   - npm install
   - npm install --global http-server
   - npm run build
