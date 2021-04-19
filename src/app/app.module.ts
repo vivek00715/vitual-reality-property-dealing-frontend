@@ -19,6 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +46,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
