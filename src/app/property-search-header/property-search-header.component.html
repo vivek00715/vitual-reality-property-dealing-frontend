@@ -33,9 +33,20 @@
           </select>
           <button type="submit" class="col-lg-1 col-md-2 col-sm-12 btn" [disabled]="searchProperty.invalid"></button>
         </form>
+        <ng-container *ngIf="!authService.loggedIn">
+          <a routerLink="/auth" style="margin-left: 5%; color: grey;">Login</a>
+          <a routerLink="/auth" style="margin-left: 2%; color: grey;">Sign up</a>
+        </ng-container>
 
-        <a href="#" style="margin-left: 5%; color: grey;">Login</a>
-        <a href="#" style="margin-left: 2%; color: grey;">Sign up</a>
+        <button
+          class="btn btn-link"
+          style="margin-left: 5%; color: grey;"
+          *ngIf="authService.loggedIn"
+          (click)="authService.logout()"
+          >
+          Logout
+        </button>
+
   </div>
 </nav>
 </div>

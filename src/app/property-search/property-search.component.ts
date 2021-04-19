@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {Pipe, PipeTransform} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CityDetailService } from '../city-detail.service';
 import { PropertySearchService } from '../property-search.service';
 
 @Pipe({name: 'safe'})
@@ -20,6 +21,7 @@ export class SafePipe implements PipeTransform {
 export class PropertySearchComponent implements OnInit {
 
   propertyService:PropertySearchService;
+  cityService:CityDetailService;
 
   mapSrc="";
   Api="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2TLiALPifHWu9QDw25D1cLsSYTYrOaUk&q=";
@@ -27,7 +29,7 @@ export class PropertySearchComponent implements OnInit {
   street="";
   state="";
   propertyType="";
-  cityDescription="";
+  cityDescription="No description Available";
   propertyId=0;
 
   list=[{"propertyId":0,
@@ -47,15 +49,18 @@ export class PropertySearchComponent implements OnInit {
   "built_year":0,
   "description":""}]
 
-  constructor(propertyService:PropertySearchService, private activatedRoute:ActivatedRoute, private router:Router) {
+  constructor(propertyService:PropertySearchService, cityService:CityDetailService, private activatedRoute:ActivatedRoute, private router:Router) {
+
     this.propertyService=propertyService;
+    this.cityService=cityService;
 
     this.activatedRoute.queryParamMap.subscribe((query:any)=>{
       console.log(query.params.city);
       this.street=query.params.street;
       this.city=query.params.city;
       this.state=query.params.state;
-   })
+      this.propertyType=query.params.type;
+    })
 
 
 
@@ -69,6 +74,14 @@ export class PropertySearchComponent implements OnInit {
     this.propertyService.getPropertyByAddress(this.street,this.city,this.state).subscribe((response:any)=>{
       this.list=response;
       console.log(this.list)
+    })
+
+    const detail:string=(this.city==null)?this.state:this.city;
+
+    this.cityService.getCityDetail(detail).subscribe((respo:any)=>{
+      console.log(detail);
+      console.log(respo);
+      this.cityDescription=respo.description;
     })
 
   }

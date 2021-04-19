@@ -21,6 +21,8 @@
     "@angular/router": "~11.2.7",
     "@types/googlemaps": "^3.43.3",
     "bootstrap": "^4.6.0",
+    "ngx-spinner": "^11.0.1",
+    "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

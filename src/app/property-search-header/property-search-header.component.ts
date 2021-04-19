@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertySearchService } from '../property-search.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-property-search-header',
@@ -17,7 +18,7 @@ export class PropertySearchHeaderComponent implements OnInit {
 
   });
 
-  constructor(propertyService:PropertySearchService, private router:Router, private activatedRoute:ActivatedRoute){
+  constructor(propertyService:PropertySearchService, private router:Router, private activatedRoute:ActivatedRoute, public authService: AuthService){
      this.propertyService=propertyService;
 
      this.activatedRoute.queryParamMap.subscribe((query:any)=>{

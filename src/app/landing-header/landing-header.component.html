@@ -25,10 +25,11 @@
         </li>
       </ul>
       <!-- login button  -->
-      <button type="button" class="login-button btn btn-danger mr-2">Log in</button>
+      <button type="button" class="login-button btn btn-danger mr-2" routerLink="/auth" *ngIf="!authService.loggedIn">Log in</button>
       <!-- sign up button  -->
-      <button type="button" class="signup-button btn btn-outline-danger">Sign up</button>
-
+      <button type="button" class="signup-button btn btn-outline-danger" routerLink="/auth"  *ngIf="!authService.loggedIn">Sign up</button>
+      <!-- logout button-->
+      <button type="button" class="login-button btn btn-danger mr-2" *ngIf="authService.loggedIn" (click)="authService.logout()">Log out</button>
     </div>
   </nav>
   <!-- nav bar ends here  -->
@@ -44,16 +45,20 @@
     <div class="searchbar col-12 col-lg-8 offset-lg-2">
 
       <!-- form to handle form operations  -->
-      <form class="row">
+      <form class="row" [formGroup] = "searchForm" (ngSubmit) = "onSubmit()">
 
         <!-- text field for city name  -->
-        <div class="col-10 col-md-4">
-          <input type="text" class="city-input" placeholder="Enter City Name ...">
+        <div class="col-5 col-md-3">
+          <input type="text" class="city-input" placeholder="City" formControlName = "city">
+        </div>
+
+        <div class="col-5 col-md-3">
+          <input type="text" class="city-input" placeholder="State" formControlName = "state">
         </div>
 
         <!-- select box for property type  -->
-        <div class="col-6 d-none d-md-block col-md-3">
-          <select  class="city-input property-input">
+        <div class="col-6 d-none d-md-block col-md-2">
+          <select  class="city-input property-input" formControlName = "propertytype">
             <option value="" disabled selected>Property type</option>
             <option value="1">Flat</option>
             <option value="2">House/Villa</option>
@@ -61,8 +66,8 @@
         </div>
 
         <!-- select box for budget type  -->
-        <div class="col-6 d-none d-md-block col-md-3">
-          <select  class="city-input budget-input">
+        <div class="col-6 d-none d-md-block col-md-2">
+          <select  class="city-input budget-input" formControlName = "budget">
             <option value="" disabled selected>Budget</option>
             <option value="1">10000 - 100000</option>
             <option value="2">100000 - 1000000</option>
@@ -72,7 +77,7 @@
 
         <!-- search button  -->
         <div class="col-2 col-md-2 p-0 pr-1">
-          <button type="button" class="search-button btn btn-danger">
+          <button type="submit" class="search-button btn btn-danger">
             <span>
               <img src= "../../assets/icons/search-icon.svg">
             </span>
