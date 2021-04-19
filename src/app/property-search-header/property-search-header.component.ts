@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-property-search-header',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class PropertySearchHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
