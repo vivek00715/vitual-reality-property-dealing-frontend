@@ -1,23 +1,27 @@
-image: node:alpine
-
 stages:
-  - build
+  - build_angular
 
-react_build:
-  stage: build
-  before_script:
-    - echo "Installing NPM Dependencies and building React app"
-  script:
-    - pwd
-    - npm install
-    - npm run build
-    - npm start 
-  after_script:
-    - echo "Installation and build successful"
-  cache:
-    key: install-cache
+
+cache:
     paths:
-      - node_modules/
-  artifacts:
-    paths:
-      - build/
+    - ./node_modules
+
+generate_artifact:
+ image: node:12-alpine
+ stage: build_angular
+ before_script: 
+        - echo "Installing NPM Dependencies and running angular application"
+ only:
+ - master
+ script:
+#  - npm install -g @angular/cli --silent
+  - npm install
+  - ng build --prod --output-hashing none
+  - nohup ng serve --port 8080 --host 0.0.0.0 </dev/null &>/dev/null &
+#  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
+# obtain public IP
+  - wget -qO- https://ipecho.net/plain ; echo
+ artifacts:
+  paths:
+    - dist/
+
