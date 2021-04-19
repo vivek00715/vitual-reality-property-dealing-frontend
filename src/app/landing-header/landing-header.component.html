@@ -25,10 +25,11 @@
         </li>
       </ul>
       <!-- login button  -->
-      <button type="button" class="login-button btn btn-danger mr-2">Log in</button>
+      <button type="button" class="login-button btn btn-danger mr-2" routerLink="/auth" *ngIf="!authService.loggedIn">Log in</button>
       <!-- sign up button  -->
-      <button type="button" class="signup-button btn btn-outline-danger">Sign up</button>
-
+      <button type="button" class="signup-button btn btn-outline-danger" routerLink="/auth"  *ngIf="!authService.loggedIn">Sign up</button>
+      <!-- logout button-->
+      <button type="button" class="login-button btn btn-danger mr-2" *ngIf="authService.loggedIn" (click)="authService.logout()">Log out</button>
     </div>
   </nav>
   <!-- nav bar ends here  -->
