@@ -49,11 +49,21 @@
 
         <!-- text field for city name  -->
         <div class="col-5 col-md-3">
-          <input type="text" class="city-input" placeholder="City" formControlName = "city">
+          <!-- <input type="text" class="city-input" placeholder="City" formControlName = "city"> -->
+          <select formControlName="state"class="city-input">
+            <option value="" disabled>State</option>
+            <option *ngFor="let state of getStates()" [value]="state">
+              {{state}}
+            </option>
+          </select>
         </div>
 
         <div class="col-5 col-md-3">
-          <input type="text" class="city-input" placeholder="State" formControlName = "state">
+          <!-- <input type="text" class="city-input" placeholder="State" formControlName = "state"> -->
+          <select formControlName="city" class="city-input">
+            <option value="" disabled>City</option>
+            <option *ngFor="let city of getCities()" [value]="city">{{city}}</option>
+          </select>
         </div>
 
         <!-- select box for property type  -->
@@ -77,7 +87,7 @@
 
         <!-- search button  -->
         <div class="col-2 col-md-2 p-0 pr-1">
-          <button type="submit" class="search-button btn btn-danger">
+          <button type="submit" class="search-button btn btn-danger" [disabled]="!searchForm.valid">
             <span>
               <img src= "../../assets/icons/search-icon.svg">
             </span>
