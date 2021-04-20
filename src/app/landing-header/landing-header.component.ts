@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { StateCityService } from '../state-city.service';
 
 @Component({
   selector: 'app-landing-header',
@@ -18,13 +19,25 @@ export class LandingHeaderComponent implements OnInit {
   storedInterval: any;
 
 
-  constructor(private router : Router, public authService: AuthService) {
+  constructor(private router : Router, public authService: AuthService, private cityStateService:StateCityService) {
     this.storedInterval = setInterval(() => {
       this.changeBackgroundCounter = this.changeBackgroundCounter + 1;
       if (this.changeBackgroundCounter > this.images.length - 1) {
         this.changeBackgroundCounter = 0;
       }
     }, 5000);
+  }
+
+  getStates() {
+    return this.cityStateService.getStates();
+  }
+
+  getCities() {
+    const {state} = this.searchForm.value;
+    if(state){
+      return this.cityStateService.getCities(state);
+    }
+    return [];
   }
 
 
@@ -34,8 +47,8 @@ export class LandingHeaderComponent implements OnInit {
 
   ngOnInit() :void{
     this.searchForm = new FormGroup({
-      'city' : new FormControl(null),
-      'state' : new FormControl(null),
+      'city' : new FormControl('', Validators.required),
+      'state' : new FormControl('', Validators.required),
       'propertytype' : new FormControl(null),
       'budget' : new FormControl(null),
     });
