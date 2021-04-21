@@ -23,6 +23,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CityDetailService } from './city-detail.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CityDetailService } from './city-detail.service';
     PropertyInformationStreetViewComponent,
     PropertyInformationDetailsComponent,
     PropertyInformationNearbyCardsComponent,
-    AuthPageComponent
+    AuthPageComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
