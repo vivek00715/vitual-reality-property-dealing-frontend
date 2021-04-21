@@ -55,9 +55,9 @@ export class LandingHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      city: new FormControl('', Validators.required),
+      city: new FormControl(''),
       state: new FormControl('', Validators.required),
-      propertytype: new FormControl(''),
+      type: new FormControl(''),
       budget: new FormControl(''),
     });
   }
@@ -68,13 +68,13 @@ export class LandingHeaderComponent implements OnInit {
 
   onSubmit() {
     //console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
-    let cityname = this.searchForm.value.city;
+    let statename = this.searchForm.value.state;
     //redirecting to issues page after submitting the form
-    this.router.navigate(['/property/search/', cityname], {
+    this.router.navigate(['/property/', statename], {
       queryParams: {
-        city: cityname,
+        city: this.searchForm.value.city,
         state: this.searchForm.value.state,
-        propertytype: this.searchForm.value.propertytype,
+        type: this.searchForm.value.type,
         budget: this.searchForm.value.budget,
       },
     });
