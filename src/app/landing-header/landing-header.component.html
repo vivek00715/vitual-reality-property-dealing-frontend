@@ -1,7 +1,7 @@
 <!-- nav start from here  -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!-- brand name and logo  -->
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" routerLink="/">
     <img
       src="../../assets/images/Logo.png"
       class="d-inline-block align-top landing-logo-size"
@@ -110,11 +110,12 @@
           <img src="../../assets/icons/home-icon.svg" />
           <select
             class="city-input property-input round"
-            formControlName="propertytype"
+            formControlName="type"
           >
             <option value="" disabled selected>Type</option>
-            <option value="1">Flat</option>
-            <option value="2">House/Villa</option>
+            <option>Home</option>
+            <option>Flat</option>
+            <option>Office</option>
           </select>
         </div>
 
