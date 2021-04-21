@@ -1,0 +1,306 @@
+<!-- nav start from here  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- brand name and logo  -->
+  <a class="navbar-brand" href="#">
+    <img
+      src="../../assets/images/Logo.png"
+      class="d-inline-block align-top landing-logo-size"
+      alt=""
+    />
+    <span class="landing-logo-name">Hash Homes</span>
+  </a>
+
+  <!-- button to toggle when in mobile screen view  -->
+  <button
+    class="toggle-button"
+    (click)="headerOpen = !headerOpen"
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <!-- <span class="navbar-toggler-icon"></span> -->
+    <span
+      ><img
+        src="../../assets/icons/hamburger.svg"
+        class="toggle-button-hamburger"
+    /></span>
+  </button>
+
+  <!-- menu items -->
+  <div
+    class="collapse navbar-collapse"
+    id="navbarText"
+    [ngClass]="{ show: headerOpen }"
+  >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Help</a>
+      </li>
+    </ul>
+    <!-- logout button-->
+    <button
+      type="button"
+      class="login-button btn btn-danger mr-2"
+      *ngIf="authService.loggedIn"
+      (click)="authService.logout()"
+    >
+      Log out
+    </button>
+  </div>
+</nav>
+<!-- nav bar ends here  -->
+
+<br />
+<div class="create-property-heading-div">
+  <span class="create-property-heading">Want to Sell or Rent Property ? </span>
+</div>
+<br />
+<form class="container" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Enter Address of Property:</label><br />
+    <textarea class="form-control" formControlName="address"></textarea>
+    <span
+      *ngIf="
+        !createForm.get('address')?.valid && createForm.get('address')?.touched
+      "
+      class="help-block"
+      style="color: red"
+      >Mandatory *</span
+    >
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <label>Enter Area in sq meter:</label><br />
+      <input type="number" formControlName="area" class="form-control" />
+      <span
+        *ngIf="
+          !createForm.get('area')?.valid && createForm.get('area')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter number of bathrooms:</label><br />
+      <input type="number" formControlName="bathrooms" class="form-control" />
+      <span
+        *ngIf="
+          !createForm.get('bathrooms')?.valid &&
+          createForm.get('bathrooms')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter number of bedrooms:</label><br />
+      <input type="number" formControlName="bedrooms" class="form-control" />
+      <span
+        *ngIf="
+          !createForm.get('bedrooms')?.valid &&
+          createForm.get('bedrooms')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <label>Enter Number of BHK:</label><br />
+      <!-- <input type="number" formControlName = "bhk" class="form-control"> -->
+      <select formControlName="bhk" class="form-control">
+        <option *ngFor="let y of bhk">{{ y }}</option>
+      </select>
+      <span
+        *ngIf="!createForm.get('bhk')?.valid && createForm.get('bhk')?.touched"
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter Build year:</label><br />
+      <select formControlName="builtYear" class="form-control">
+        <option *ngFor="let y of year">{{ y }}</option>
+      </select>
+      <span
+        *ngIf="
+          !createForm.get('builtYear')?.valid &&
+          createForm.get('builtYear')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter number of Floor:</label><br />
+      <select formControlName="floors" class="form-control">
+        <option *ngFor="let y of floor">{{ y }}</option>
+      </select>
+      <span
+        *ngIf="
+          !createForm.get('floors')?.valid && createForm.get('floors')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <label>Enter State:</label><br />
+      <!-- <input type="text" formControlName = "state" class="form-control"> -->
+      <select formControlName="state" class="form-control">
+        <option value="" disabled>State</option>
+        <option *ngFor="let state of getStates()" [value]="state">
+          {{ state }}
+        </option>
+      </select>
+      <span
+        *ngIf="
+          !createForm.get('state')?.valid && createForm.get('state')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter City:</label><br />
+      <select formControlName="city" class="form-control">
+        <option value="" disabled>City</option>
+        <option *ngFor="let city of getCities()" [value]="city">
+          {{ city }}
+        </option>
+      </select>
+      <span
+        *ngIf="
+          !createForm.get('city')?.valid && createForm.get('city')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter PinCode:</label><br />
+      <input
+        type="text"
+        formControlName="pinCode"
+        class="form-control"
+        pattern="[1-9][0-9]{5}"
+      />
+      <span
+        *ngIf="
+          !createForm.get('pinCode')?.valid &&
+          createForm.get('pinCode')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Enter 6 digit pin code</span
+      >
+      <!-- <span *ngIf = "!createForm.get('pincode')?.valid" class="help-block" style="color: red;">Enter 6 digit pin code</span> -->
+    </div>
+  </div>
+
+  <br />
+  <div>
+    <label>Enter Description:</label><br />
+    <!-- <input type="text" class="form-control" formControlName = "description"> -->
+    <textarea class="form-control" formControlName="description"></textarea>
+    <span
+      *ngIf="
+        !createForm.get('description')?.valid &&
+        createForm.get('description')?.touched
+      "
+      class="help-block"
+      style="color: red"
+      >Mandatory *</span
+    >
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <label>Enter Price:</label><br />
+      <input type="number" formControlName="price" class="form-control" />
+      <span
+        *ngIf="
+          !createForm.get('price')?.valid && createForm.get('price')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter Purpose:</label><br />
+      <select formControlName="purpose" class="form-control">
+        <option>Rent</option>
+        <option>Sell</option>
+      </select>
+      <span
+        *ngIf="
+          !createForm.get('purpose')?.valid &&
+          createForm.get('purpose')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+
+    <div class="col-md-4 col-12">
+      <label>Enter Type:</label><br />
+      <select formControlName="type" class="form-control">
+        <option>Flat</option>
+        <option>House</option>
+        <option>Banglow</option>
+      </select>
+      <span
+        *ngIf="
+          !createForm.get('type')?.valid && createForm.get('type')?.touched
+        "
+        class="help-block"
+        style="color: red"
+        >Mandatory *</span
+      >
+    </div>
+  </div>
+
+  <br />
+  <div class="form-button-div">
+    <button
+      type="submit"
+      class="btn btn-primary form-button"
+      [disabled]="createForm.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

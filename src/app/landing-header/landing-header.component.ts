@@ -7,19 +7,28 @@ import { StateCityService } from '../state-city.service';
 @Component({
   selector: 'app-landing-header',
   templateUrl: './landing-header.component.html',
-  styleUrls: ['./landing-header.component.scss']
+  styleUrls: ['./landing-header.component.scss'],
 })
 export class LandingHeaderComponent implements OnInit {
-
   headerOpen = false;
 
   searchForm = new FormGroup({});
-  images: string[] = ["/assets/images/header-background4.jpg" , "/assets/images/header-background2.jpg", "/assets/images/header-background3.jpg", "/assets/images/header-background7.jpg", "/assets/images/header-background5.jpg", "/assets/images/header-background6.jpg"];
+  images: string[] = [
+    '/assets/images/header-background4.jpg',
+    '/assets/images/header-background2.jpg',
+    '/assets/images/header-background3.jpg',
+    '/assets/images/header-background7.jpg',
+    '/assets/images/header-background5.jpg',
+    '/assets/images/header-background6.jpg',
+  ];
   changeBackgroundCounter = 0;
   storedInterval: any;
 
-
-  constructor(private router : Router, public authService: AuthService, private cityStateService:StateCityService) {
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private cityStateService: StateCityService
+  ) {
     this.storedInterval = setInterval(() => {
       this.changeBackgroundCounter = this.changeBackgroundCounter + 1;
       if (this.changeBackgroundCounter > this.images.length - 1) {
@@ -33,36 +42,41 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   getCities() {
-    const {state} = this.searchForm.value;
-    if(state){
+    const { state } = this.searchForm.value;
+    if (state) {
       return this.cityStateService.getCities(state);
     }
     return [];
   }
 
-
   getImage() {
     return this.images[this.changeBackgroundCounter];
   }
 
-  ngOnInit() :void{
+  ngOnInit(): void {
     this.searchForm = new FormGroup({
-      'city' : new FormControl('', Validators.required),
-      'state' : new FormControl('', Validators.required),
-      'propertytype' : new FormControl(null),
-      'budget' : new FormControl(null),
+      city: new FormControl('', Validators.required),
+      state: new FormControl('', Validators.required),
+      propertytype: new FormControl(''),
+      budget: new FormControl(''),
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     clearInterval(this.storedInterval);
   }
 
-  onSubmit(){
+  onSubmit() {
     //console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
     let cityname = this.searchForm.value.city;
-   //redirecting to issues page after submitting the form
-    this.router.navigate(['/property/',cityname],{ queryParams: {city: cityname,state: this.searchForm.value.state,propertytype: this.searchForm.value.propertytype, budget: this.searchForm.value.budget}});
- }
-
+    //redirecting to issues page after submitting the form
+    this.router.navigate(['/property/search/', cityname], {
+      queryParams: {
+        city: cityname,
+        state: this.searchForm.value.state,
+        propertytype: this.searchForm.value.propertytype,
+        budget: this.searchForm.value.budget,
+      },
+    });
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-landing-info-card',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-info-card.component.scss']
 })
 export class LandingInfoCardComponent implements OnInit {
+  constructor(public authService : AuthService) {
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
   }

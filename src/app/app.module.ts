@@ -19,10 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { PropertySearchService } from './property-search.service';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CityDetailService } from './city-detail.service';
+import { CreatePropertyComponent } from './create-property/create-property.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     PropertyInformationDetailsComponent,
     PropertyInformationNearbyCardsComponent,
     AuthPageComponent,
-    ErrorPageComponent
+    CreatePropertyComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +53,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     ReactiveFormsModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
-  providers: [PropertySearchService,CityDetailService],
-  bootstrap: [AppComponent]
+  providers: [PropertySearchService, CityDetailService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
