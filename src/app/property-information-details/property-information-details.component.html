@@ -1,19 +1,19 @@
 <!-- DON'T REMOVE data-angular from html, it is for testing -->
 <div class="mt-4" data-angular="address">
-  <b>{{ data.street }}</b> {{ data.city }}, {{ data.state }}
-  {{ data.pincode }}
+  <b>{{ data.address }}</b> {{ data.city }}, {{ data.state }}
+  {{ data.pinCode }}
 </div>
 <div class="row mt-2" data-angular="property-details">
   <div class="col d-flex flex-column">
-    <b class="big-text">{{ data.price | currency }}</b>
+    <b class="big-text">{{ data.price | currency:"INR" }}</b>
     <div>Price</div>
   </div>
   <div class="col d-flex flex-column">
-    <b class="big-text">{{ data.beds }}</b>
+    <b class="big-text">{{ data.bedrooms }}</b>
     <div>Beds</div>
   </div>
   <div class="col d-flex flex-column">
-    <b class="big-text">{{ data.baths }}</b>
+    <b class="big-text">{{ data.bathrooms }}</b>
     <div>Baths</div>
   </div>
   <div class="col d-flex flex-column">
@@ -33,46 +33,38 @@
     />
   </div>
   <div class="col-8 col-lg-11 d-flex flex-column justify-content-center">
-    Listed by {{ data.listedBy }}
+    Listed by {{ data.ownerEmail }}
   </div>
   <div class="col-12 my-3 text-center text-lg-left">
     <b>Price Insights</b>
   </div>
   <div class="col-12 col-lg-6 row font-large">
     <div class="col-6">List Price:</div>
-    <div class="col-6 text-right p-0">{{ data.price | currency }}</div>
+    <div class="col-6 text-right p-0">{{ data.price | currency:"INR" }}</div>
   </div>
   <div class="col-12 col-lg-6 row font-large">
     <div class="col-6">Price/Sq.Ft:</div>
     <div class="col-6 text-right p-0">
-      {{ data.price / data.area | currency }}
+      {{ data.price / data.area | currency:"INR" }}
     </div>
   </div>
   <div class="col-12 my-3 text-center text-lg-left">
     <b>Home Facts</b>
   </div>
   <div class="col-12 col-lg-6 row font-large">
-    <div class="col-4">Status:</div>
-    <div class="col-8 text-right p-0">{{ data.status }}</div>
+    <div class="col-4">Purpose:</div>
+    <div class="col-8 text-right p-0">{{ data.purpose }}</div>
   </div>
   <div class="col-12 col-lg-6 row font-large">
     <div class="col-4">Type:</div>
-    <div class="col-8 text-right p-0">{{ data.propertyType }}</div>
+    <div class="col-8 text-right p-0">{{ data.type }}</div>
   </div>
   <div class="col-12 col-lg-6 row font-large">
     <div class="col-6">Year Built:</div>
-    <div class="col-6 text-right p-0">{{ data.yearBuilt }}</div>
+    <div class="col-6 text-right p-0">{{ data.builtYear }}</div>
   </div>
   <div class="col-12 col-lg-6 row font-large">
-    <div class="col-4">Community:</div>
-    <div class="col-8 text-right p-0">{{ data.community }}</div>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-4">Style:</div>
-    <div class="col-8 text-right p-0">{{ data.style }}</div>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-6">Lot Size:</div>
-    <div class="col-6 text-right p-0">{{ data.lotSize }}</div>
+    <div class="col-6">Floors:</div>
+    <div class="col-6 text-right p-0">{{ data.floors }}</div>
   </div>
 </div>
