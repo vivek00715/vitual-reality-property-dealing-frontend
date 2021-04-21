@@ -9,7 +9,7 @@ cache:
 generate_artifact:
  image: node:12-alpine
  stage: build_angular
- before_script: 
+ before_script:
         - echo "Installing NPM Dependencies and running angular application"
  only:
  - master
@@ -17,9 +17,15 @@ generate_artifact:
 #  - npm install -g @angular/cli
   - whoami
   - npm install
-  - sudo npm install -g http-server
+# http-server to serve files, gzipper to compress them after build
+  - sudo npm install -g http-server gzipper
   - npm run build
-  - nohup http-server ./dist/VirtualReality --port 3000 -a 0.0.0.0 </dev/null &>/dev/null &
+# make 404 html for SPA
+  - cp ./dist/VirtualReality/index.html ./dist/VirtualReality/404.html
+# compressing files to decrease load time on client, brotli and gzip compression
+  - gzipper compress --brotli --exclude jpeg,png,ico ./dist
+  - gzipper compress --exclude jpeg,png,ico ./dist
+  - nohup http-server ./dist/VirtualReality --gzip --brotli --port 3000 -a 0.0.0.0 </dev/null &>/dev/null &
 #  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
 # obtain public IP
   - wget -qO- https://ipecho.net/plain ; echo
