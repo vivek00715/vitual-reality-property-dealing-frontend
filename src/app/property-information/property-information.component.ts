@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Property, PropertySearchService } from '../property-search.service';
 import { UxService } from '../ux.service';
 
@@ -16,18 +16,22 @@ export class PropertyInformationComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private propertySearchService: PropertySearchService,
-    private uxService: UxService
+    private uxService: UxService,
+    private router: Router
   ) {
     this.route.params.subscribe((params) => {
       const { id } = params;
       this.uxService.showSpinner();
-      this.propertySearchService.getPropertyById(id).subscribe((property) => {
-        this.uxService.hideSpinner();
-        this.property = property;
-      }, err => {
-        uxService.handleError(err);
-        this.error = true;
-      });
+      this.propertySearchService.getPropertyById(id).subscribe(
+        (property) => {
+          this.uxService.hideSpinner();
+          this.property = property;
+        },
+        (err) => {
+          uxService.handleError(err);
+          this.error = true;
+        }
+      );
     });
   }
 
@@ -40,4 +44,16 @@ export class PropertyInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onBack() {
+    this.router.navigate(['/property/', this.property?.state], {
+      queryParams: {
+        city: this.property?.city,
+        state: this.property?.state,
+        // type: this.searchForm.value.type,
+        minPrice: 0,
+        maxPrice: 100000000,
+      },
+    });
+  }
 }
