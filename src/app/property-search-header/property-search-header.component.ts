@@ -1,9 +1,11 @@
-import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {PropertySearchService} from '../property-search.service';
-import {AuthService} from '../auth.service';
-import {StateCityService} from '../state-city.service';
+
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PropertySearchService } from '../property-search.service';
+import { AuthService } from '../auth.service';
+import { StateCityService } from '../state-city.service';
+import { Options, LabelType } from "@angular-slider/ngx-slider";
 
 @Component({
   selector: 'app-property-search-header',
@@ -17,18 +19,35 @@ export class PropertySearchHeaderComponent implements OnInit {
   hamburger = false;
   propertyService: PropertySearchService;
   searchProperty!: FormGroup;
+  activeSlider=false;
 
-  constructor(public cityStateService: StateCityService, propertyService: PropertySearchService, private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {
-    this.propertyService = propertyService;
-
-    this.activatedRoute.queryParamMap.subscribe((query: any) => {
-      console.log(query);
-      this.searchProperty.patchValue(query.params);
-    });
+  constructor(public cityStateService:StateCityService,propertyService:PropertySearchService, private router:Router, private activatedRoute:ActivatedRoute, public authService: AuthService){
+     this.propertyService=propertyService;
+     this.activatedRoute.queryParamMap.subscribe((query:any)=>{
+        console.log(query);
+        this.searchProperty.patchValue(query.params);
+     })
 
   }
 
-  currentUrl = this.router.url;
+  currentUrl=this.router.url;
+  minPrice:number=0;
+  maxPrice: number = 100000000;
+  options: Options = {
+    floor: 0,
+    ceil: 100000000,
+    translate: (value: number , label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return "<b>Min price:</b> ₹" + value;
+        case LabelType.High:
+          return "<b>Max price:</b> ₹" + value;
+        default:
+          return "₹" + value;
+      }
+    }
+  };
+
 
   ngOnInit(): void {
     this.searchProperty = new FormGroup({
@@ -49,23 +68,30 @@ export class PropertySearchHeaderComponent implements OnInit {
     }
   }
 
+ toggleSlider()
+ {
+   console.log(this.activeSlider);
+   this.activeSlider=this.activeSlider==false?this.activeSlider=true:this.activeSlider=false;
+ }
+
   handleSearchProperty() {
     const data = this.searchProperty.value;
     console.log(data.city);
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     const {street, city, type, budget, state} = data;
-    const queryParams: { [e: string]: string } = {street, city, state};
+    const queryParams: { [e: string]: any } = {street, city, state,minPrice:this.minPrice,maxPrice:this.maxPrice};
     if (type) {
       queryParams.type = type;
     }
-    if (budget) {
-      queryParams.budget = budget;
-    }
+
     this.router.navigate(['/property/', data.state], {
       queryParams
     });
+
+    //  this.router.navigate([this.currentUrl]);
   }
+
 
   getStates() {
     return this.cityStateService.getStates();

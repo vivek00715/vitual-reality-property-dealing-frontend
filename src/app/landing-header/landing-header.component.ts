@@ -23,6 +23,8 @@ export class LandingHeaderComponent implements OnInit {
   ];
   changeBackgroundCounter = 0;
   storedInterval: any;
+  minPrice=0;
+  maxPrice=100000000;
 
   constructor(
     private router: Router,
@@ -75,7 +77,8 @@ export class LandingHeaderComponent implements OnInit {
         city: this.searchForm.value.city,
         state: this.searchForm.value.state,
         type: this.searchForm.value.type,
-        budget: this.searchForm.value.budget,
+        minPrice: this.minPrice,
+        maxPrice:this.maxPrice
       },
     });
   }
