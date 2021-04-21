@@ -1,19 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import {BaseUrlService} from './base-url.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PropertyService {
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  private baseUrl = '';
+  constructor(private authService: AuthService, private http: HttpClient, private baseUrlService: BaseUrlService) {
+    this.baseUrl = baseUrlService.getBaseUrl();
+  }
 
   createProperty(createForm: any) {
     if (!this.authService.user?.token) {
       return;
     }
     this.http
-      .post('http://localhost:8080/property', createForm, {
+      .post(`${this.baseUrl}/property`, createForm, {
         headers: {
           Authorization: this.authService.user?.token,
         },
