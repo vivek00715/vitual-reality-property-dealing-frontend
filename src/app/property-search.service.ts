@@ -11,13 +11,16 @@ export class PropertySearchService {
   }
 
 
-  public getPropertyByAddress(street:string,city:string,state:string)
+  public getPropertyByAddress(street:string,city:string,state:string,type:string)
   {
-    if(street!=null)
-      return this.http.get(this.url+'/property/address/'+street+"/"+city+"/"+state);
-    else if(city!=null)
-      return this.http.get(this.url+'/property/city/'+city);
-    return this.http.get(this.url+'/property/state/'+state);
+    return this.http.get(this.url+'/property', {
+      params: {
+        street:street ,
+        city:city,
+        state:state,
+        type:type,
+        purpose:""
+      }})
   }
 
 }
