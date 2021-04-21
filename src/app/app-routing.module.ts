@@ -4,6 +4,7 @@ import { PropertySearchComponent } from './property-search/property-search.compo
 import { PropertyInformationComponent } from './property-information/property-information.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
+import { CreatePropertyComponent } from './create-property/create-property.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'property/id/:id', component: PropertyInformationComponent },
   { path: 'auth', component: AuthPageComponent },
-  { path: '**', component: ErrorPageComponent}
+  { path: 'create', component: CreatePropertyComponent },
+  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({

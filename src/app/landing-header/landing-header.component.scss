@@ -1,83 +1,116 @@
 header {
-  width:100%;
+  width: 100%;
   height: 35rem;
   background-size: cover;
   background-repeat: no-repeat;
-
 }
 
-
-.city-input{
+.city-input {
   width: 100%;
-  height: 3rem;
+  height: 2.5rem;
   border: none;
-  border-right: 1px solid grey;
+  border-right: 1px solid #f37820;
+  margin-top: 0.1rem;
   background-image: url(../../assets/icons/location-icon.svg);
   background-repeat: no-repeat;
-  text-indent: 2rem;
+  text-indent: 5px;
   background-position-y: center;
 }
 
-.property-input{
+.property-input {
   background-image: url(../../assets/icons/home-icon.svg);
   background-repeat: no-repeat;
 }
 
-.budget-input{
+.budget-input {
   background-image: url(../../assets/icons/budget-icon.svg);
   background-repeat: no-repeat;
 }
 
-input:focus, select:focus{
+input:focus,
+select:focus {
   outline: none;
 }
 
-.landing-logo-size{
+.landing-logo-size {
   width: 2rem;
   height: 2rem;
 }
 
-.landing-logo-name{
+.landing-logo-name {
   color: #f37820;
 }
 
-.toggle-button{
+.toggle-button {
   border: none;
 }
 
-.toggle-button-hamburger{
+.toggle-button-hamburger {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.login-button{
+.login-button {
   background: #f37820;
 }
 
-.signup-button{
+.signup-button {
   border: 1px solid #f37820;
   color: #f37820;
 }
 
-.signup-button:hover{
+.signup-button:hover {
   background: #f37820;
   color: white;
 }
 
-.searchbar-container{
+.searchbar-container {
   padding-top: 40vh;
 }
 
-.searchbar{
+.searchbar {
+  // width: 1500px;
   background: white;
   border-radius: 6rem;
-
+  border: 2px solid #f37820;
 }
 
-.search-button{
+.search-button {
   background: #f37820;
   border: none;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
   border-radius: 7rem;
   width: 100%;
+  height: 2rem;
+}
+
+select {
+  -webkit-appearance: none;
+}
+
+select.round {
+  background-image: linear-gradient(45deg, transparent 50%, #f37820 50%),
+    linear-gradient(135deg, #f37820 50%, transparent 50%),
+    radial-gradient(#fb7 70%, transparent 72%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
+  background-repeat: no-repeat;
+}
+
+select.round:focus {
+  background-image: linear-gradient(45deg, white 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, white 50%),
+    radial-gradient(#fb7 70%, transparent 72%);
+  background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em,
+    calc(100% - 0.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
+  background-repeat: no-repeat;
+  border-color: green;
+  outline: 0;
+}
+
+.form-input-holder {
+  padding-right: 0;
+  display: flex !important;
 }
