@@ -22,7 +22,14 @@ export class PropertySearchHeaderComponent implements OnInit {
   activeSlider=false;
 
   constructor(public cityStateService:StateCityService,propertyService:PropertySearchService, private router:Router, private activatedRoute:ActivatedRoute, public authService: AuthService){
-     this.propertyService=propertyService;
+     this.propertyService = propertyService;
+     this.searchProperty = new FormGroup({
+      'street': new FormControl(null),
+      'city': new FormControl(this.city),
+      'state': new FormControl(this.state, Validators.required),
+      'type': new FormControl(''),
+      'budget': new FormControl('')
+    });
      this.activatedRoute.queryParamMap.subscribe((query:any)=>{
         console.log(query);
         this.searchProperty.patchValue(query.params);
@@ -30,7 +37,6 @@ export class PropertySearchHeaderComponent implements OnInit {
 
   }
 
-  currentUrl=this.router.url;
   minPrice:number=0;
   maxPrice: number = 100000000;
   options: Options = {
@@ -49,15 +55,7 @@ export class PropertySearchHeaderComponent implements OnInit {
   };
 
 
-  ngOnInit(): void {
-    this.searchProperty = new FormGroup({
-      'street': new FormControl(null),
-      'city': new FormControl(this.city),
-      'state': new FormControl(this.state, Validators.required),
-      'type': new FormControl(''),
-      'budget': new FormControl('')
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnChanges() {
     if(this.state && !this.searchProperty.value.state){
@@ -70,7 +68,6 @@ export class PropertySearchHeaderComponent implements OnInit {
 
  toggleSlider()
  {
-   console.log(this.activeSlider);
    this.activeSlider=this.activeSlider==false?this.activeSlider=true:this.activeSlider=false;
  }
 

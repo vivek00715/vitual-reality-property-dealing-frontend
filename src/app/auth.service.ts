@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { UxService } from './ux.service';
 import { Router } from '@angular/router';
+import {BaseUrlService} from './base-url.service';
 
 export interface User {
   address: string;
@@ -22,13 +23,14 @@ export class AuthService {
   loggedIn = false; // initially assume user is not logged in
   authStateChanged = new Subject<void>(); // will emit if auth state is changed (login, logout etc)
 
-  constructor(private http: HttpClient, private ux: UxService , private router:Router) {
+  constructor(private http: HttpClient, private ux: UxService , private router: Router, private baseUrlService: BaseUrlService) {
     // check if user information exists in local storage
     const user: User = JSON.parse(localStorage.getItem('user') || 'null');
     if (user) {
       // user is present, do login
       this.setUser(user);
     }
+    this.baseUrl = this.baseUrlService.getBaseUrl();
   }
 
   login(email: string, password: string): void {

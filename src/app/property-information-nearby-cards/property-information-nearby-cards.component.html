@@ -6,7 +6,7 @@
   />
   <div class="card-body">
     <h5 class="card-title">{{ price | currency:"INR" }}</h5>
-    <p class="card-text m-0">{{beds}} beds {{baths}} Baths {{area}} Sq. Ft</p>
+    <p class="card-text m-0">{{beds}} beds {{baths}} Baths {{area.toFixed(2)}} Sq. Ft</p>
     <p class="card-text m-0">{{address}}</p>
   </div>
 </div>
