@@ -31,6 +31,8 @@ export class PropertySearchComponent implements OnInit {
   propertyType="";
   cityDescription="No description Available";
   propertyId=0;
+  minPrice=0;
+  maxPrice=2147483647;
 
   list=[{"propertyId":0,
   "address":"",
@@ -59,6 +61,9 @@ export class PropertySearchComponent implements OnInit {
       this.city=query.params.city==null?"":query.params.city;
       this.state=query.params.state==null?"":query.params.state;
       this.propertyType=query.params.type==null?"":query.params.type;
+      this.minPrice=query.params.minPrice==0?0:query.params.minPrice;
+      this.maxPrice=query.params.maxPrice==2147483647?2147483647:query.params.maxPrice;
+
     })
 
 
@@ -69,7 +74,7 @@ export class PropertySearchComponent implements OnInit {
     this.mapSrc=this.Api+this.city+this.state;
     else
     this.mapSrc=this.Api+this.state;
-    this.propertyService.getPropertyByAddress(this.street,this.city,this.state,this.propertyType).subscribe((response:any)=>{
+    this.propertyService.getPropertyByAddress(this.street,this.city,this.state,this.propertyType,this.minPrice,this.maxPrice).subscribe((response:any)=>{
       this.list=response;
       console.log(this.list)
     })

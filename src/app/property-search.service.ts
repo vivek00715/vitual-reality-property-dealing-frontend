@@ -26,11 +26,15 @@ export class PropertySearchService {
 
   constructor(private http: HttpClient, private uxService: UxService) {}
 
+
   public getPropertyByAddress(
     street: string,
     city: string,
     state: string,
-    type: string
+    type: string,
+    minPrice:any,
+    maxPrice:any
+
   ) {
     return this.http.get(this.url + '/property', {
       params: {
@@ -38,6 +42,8 @@ export class PropertySearchService {
         city: city,
         state: state,
         type: type,
+        minPrice:minPrice,
+        maxPrice:maxPrice,
         purpose: '',
       },
     });

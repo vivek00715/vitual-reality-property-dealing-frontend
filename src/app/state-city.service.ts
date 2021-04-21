@@ -7,6 +7,7 @@ import * as cityDataJson from './citydata.json';
 export class StateCityService {
   data: {[e: string]: string[]} = (<any>cityDataJson).default;
   getStates(): string[] {
+    // console.log(this.data);
     return Object.keys(this.data);
   }
 

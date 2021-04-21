@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CityDetailService } from './city-detail.service';
 import { CreatePropertyComponent } from './create-property/create-property.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     ReactiveFormsModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    NgxSliderModule,
+    ToastrModule.forRoot()
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],

@@ -39,10 +39,20 @@ form {
     border-color: white;
     // border-right-color:#FBD0B1 ;
   }
+
   select {
     padding-top: 0;
     padding-bottom: 0;
     border-style: solid;
+    border-color: white;
+  }
+  .state,.city{
+    background-image: url(../../assets/icons/place_black_24dp.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    text-indent: 8%;
+    border-style: solid;
+    border-width:0.15rem;
     border-color: white;
   }
   .property-type {
@@ -79,3 +89,20 @@ form {
     text-indent: 20%;
   }
 }
+
+@media only screen and (max-width:850px)
+{
+  .property-budget{
+    display: none;
+  }
+  ngx-slider{
+    display: none;
+  }
+  form{
+    button{
+       padding-top: 5%;
+      height: 15%;
+    }
+  }
+}
+
