@@ -25,6 +25,8 @@ generate_artifact:
 # compressing files to decrease load time on client, brotli and gzip compression
   - gzipper compress --brotli --exclude jpeg,png,ico ./dist
   - gzipper compress --exclude jpeg,png,ico ./dist
+# view files
+  - ls -lsah ./dist/VirtualReality
   - nohup http-server ./dist/VirtualReality --gzip --brotli --port 3000 -a 0.0.0.0 </dev/null &>/dev/null &
 #  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
 # obtain public IP
