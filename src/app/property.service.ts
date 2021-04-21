@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import {BaseUrlService} from './base-url.service';
+import {Observable} from 'rxjs';
+import {Property} from './property-search.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,16 +14,12 @@ export class PropertyService {
     this.baseUrl = baseUrlService.getBaseUrl();
   }
 
-  createProperty(createForm: any) {
-    if (!this.authService.user?.token) {
-      return;
-    }
-    this.http
-      .post(`${this.baseUrl}/property`, createForm, {
+  createProperty(createForm: any): Observable<Property> {
+    return this.http
+      .post<Property>(`${this.baseUrl}/property`, createForm, {
         headers: {
-          Authorization: this.authService.user?.token,
+          Authorization: this.authService.user?.token || '',
         },
-      })
-      .subscribe(console.log);
+      });
   }
 }

@@ -84,7 +84,7 @@
       <!-- form to handle form operations  -->
       <form class="row" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <!-- text field for city name  -->
-        <div class="col-5 col-md-3 form-input-holder">
+        <div class="col-5 col-md-4 form-input-holder">
           <img src="../../assets/icons/location-icon.svg" />
           <select formControlName="state" class="city-input round">
             <option value="" disabled>State</option>
@@ -94,7 +94,7 @@
           </select>
         </div>
 
-        <div class="col-5 col-md-2 form-input-holder">
+        <div class="col-5 col-md-3 form-input-holder">
           <!-- <input type="text" class="city-input" placeholder="State" formControlName = "state"> -->
           <img src="../../assets/icons/location-icon.svg" />
           <select formControlName="city" class="city-input round">
@@ -106,7 +106,7 @@
         </div>
 
         <!-- select box for property type  -->
-        <div class="col-6 d-none d-md-block col-md-2 form-input-holder">
+        <div class="col-6 d-none d-md-block col-md-3 form-input-holder">
           <img src="../../assets/icons/home-icon.svg" />
           <select
             class="city-input property-input round"
@@ -119,20 +119,6 @@
           </select>
         </div>
 
-        <!-- select box for budget type  -->
-        <div class="col-6 d-none d-md-block col-md-3 form-input-holder">
-          <img src="../../assets/icons/budget-icon.svg" />
-          <select
-            class="city-input budget-input round"
-            formControlName="budget"
-            style="border-right: none"
-          >
-            <option value="" disabled selected>Budget</option>
-            <option value="1">10000 - 100000</option>
-            <option value="2">100000 - 1000000</option>
-            <option value="3">1000000 - 10000000</option>
-          </select>
-        </div>
 
         <!-- search button  -->
         <div class="col-2 col-md-2 p-0 pr-1">

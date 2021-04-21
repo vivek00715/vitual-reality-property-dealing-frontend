@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
-import { PropertyService } from '../property.service';
-import { StateCityService } from '../state-city.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../auth.service';
+import {PropertyService} from '../property.service';
+import {StateCityService} from '../state-city.service';
+import {UxService} from '../ux.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-property',
@@ -19,8 +21,11 @@ export class CreatePropertyComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private propertyService: PropertyService,
-    private cityStateService: StateCityService
-  ) {}
+    private cityStateService: StateCityService,
+    private uxService: UxService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
     for (let year = 1990; year <= 2021; year++) {
@@ -70,7 +75,7 @@ export class CreatePropertyComponent implements OnInit {
   }
 
   getCities() {
-    const { state } = this.createForm.value;
+    const {state} = this.createForm.value;
     if (state) {
       return this.cityStateService.getCities(state);
     }
@@ -81,8 +86,17 @@ export class CreatePropertyComponent implements OnInit {
     if (!this.createForm.valid) {
       return;
     }
+    this.uxService.showSpinner();
     // console.log(this.createForm.value.pincode);
     // this.createForm.value.owneremail = this.authService.user?.email;
-    this.propertyService.createProperty(this.createForm.value);
+    this.propertyService.createProperty(this.createForm.value).subscribe(res => {
+      this.uxService.hideSpinner();
+      this.uxService.showToast('Success', 'Property created successfully');
+      this.router.navigate(['/']);
+    }, (err) => {
+      console.error(err);
+      this.uxService.hideSpinner();
+      this.uxService.handleError(err);
+    });
   }
 }
