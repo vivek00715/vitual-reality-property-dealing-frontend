@@ -4,12 +4,14 @@ import { PropertySearchComponent } from './property-search/property-search.compo
 import { PropertyInformationComponent } from './property-information/property-information.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
-  { path: 'property/search/:address_id', component: PropertySearchComponent },
+  { path: 'property/:address', component: PropertySearchComponent },
   { path: '', component: LandingPageComponent },
-  { path: 'property/:id', component: PropertyInformationComponent },
+  { path: 'property/id/:id', component: PropertyInformationComponent },
   { path: 'auth', component: AuthPageComponent },
+  { path: '**', component: ErrorPageComponent}
 ];
 
 @NgModule({

@@ -55,11 +55,10 @@ export class PropertySearchComponent implements OnInit {
     this.cityService=cityService;
 
     this.activatedRoute.queryParamMap.subscribe((query:any)=>{
-      console.log(query.params.city);
-      this.street=query.params.street;
-      this.city=query.params.city;
-      this.state=query.params.state;
-      this.propertyType=query.params.type;
+      this.street=query.params.street==null?"":query.params.street;
+      this.city=query.params.city==null?"":query.params.city;
+      this.state=query.params.state==null?"":query.params.state;
+      this.propertyType=query.params.type==null?"":query.params.type;
     })
 
 
@@ -70,8 +69,7 @@ export class PropertySearchComponent implements OnInit {
     this.mapSrc=this.Api+this.city+this.state;
     else
     this.mapSrc=this.Api+this.state;
-
-    this.propertyService.getPropertyByAddress(this.street,this.city,this.state).subscribe((response:any)=>{
+    this.propertyService.getPropertyByAddress(this.street,this.city,this.state,this.propertyType).subscribe((response:any)=>{
       this.list=response;
       console.log(this.list)
     })
@@ -93,7 +91,7 @@ export class PropertySearchComponent implements OnInit {
   showProperty(index:number)
   {
     this.propertyId=this.list[index]['propertyId'];
-    this.router.navigate(['/property/',this.propertyId],{ queryParams: {id:this.propertyId}});
+    this.router.navigate(['/property/id',this.propertyId],{ queryParams: {id:this.propertyId}});
   }
 
 

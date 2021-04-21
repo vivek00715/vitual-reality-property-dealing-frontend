@@ -19,9 +19,9 @@
       <div class="card" style="border-radius: 0; border: 0; ">
         <img class="card-img-top" src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title" data-angular="address">{{street}},{{city}}, {{state}}</h5>
+          <h5 class="card-title" data-angular="address">{{street}} <b>{{city}}, {{state}}</b></h5>
           <p class="card-subtitle mb-2"><b>Price Range :</b> 5Lac to 2Crore</p>
-          <p class="card-subtitle mb-2 " data-angular="totalAvailability"><b>Toatal Availability :</b> {{list.length}}</p>
+          <p class="card-subtitle mb-2 " data-angular="totalAvailability"><b>Total Availability :</b> {{list.length==1 && list[0].propertyId==0?0:list.length}}</p>
           <p class="card-subtitle mb-2 " data-angular="propertyType"><b>Property Type :</b> {{propertyType}}</p>
           <p class="card-text" data-angular="description">{{cityDescription}}</p>
         </div>

@@ -62,7 +62,7 @@ export class LandingHeaderComponent implements OnInit {
     //console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
     let cityname = this.searchForm.value.city;
    //redirecting to issues page after submitting the form
-    this.router.navigate(['/property/search/',cityname],{ queryParams: {city: cityname,state: this.searchForm.value.state,propertytype: this.searchForm.value.propertytype, budget: this.searchForm.value.budget}});
+    this.router.navigate(['/property/',cityname],{ queryParams: {city: cityname,state: this.searchForm.value.state,propertytype: this.searchForm.value.propertytype, budget: this.searchForm.value.budget}});
  }
 
 }

@@ -29,6 +29,12 @@ form{
     border-color: white;
     // border-right-color:#FBD0B1 ;
   }
+  select{
+    padding-top: 0;
+    padding-bottom: 0;
+    border-style: solid;
+    border-color: white;
+  }
   .property-type{
     background-image: url(../../assets/icons/apartment_black_24dp.svg);
     background-repeat: no-repeat;
