@@ -16,17 +16,26 @@
   <!-- Search bar along with dropdown containing type of property and budget -->
   <div [ngClass]="{show:hamburger}" class="collapse navbar-collapse" id="navbarSupportedContent">
         <form [formGroup]="searchProperty"  (ngSubmit)="SearchProperty()" class="row">
+          <select formControlName="state" class="col-lg-2 col-md-12 col-sm-12">
+            <option value="" disabled>State</option>
+            <option *ngFor="let state of getStates()" [value]="state">
+              {{state}}
+            </option>
+          </select>
+          <select formControlName="city" class="col-lg-2 col-md-12 col-sm-12">
+            <option value="" disabled>City</option>
+            <option *ngFor="let city of getCities()" [value]="city">{{city}}</option>
+          </select>
           <input formControlName="street" class="col-lg-2 col-md-12 col-sm-12" type="text" placeholder="Street">
-          <input formControlName="city" class="col-lg-2 col-md-12 col-sm-12" type="text" placeholder="City">
-          <input formControlName="state" class="col-lg-2 col-md-12 col-sm-12" type="text" placeholder="State">
-          <select formControlName="type" class=" property-type col-lg-2 col-md-12 col-sm-12 dropdown">
-            <option style="color: grey;" disabled selected>Type</option>
+          <select formControlName="type" class=" property-type col-lg-2 col-md-12 col-sm-12 dropdown" >
+            <option value="" disabled style="color: grey;" disabled selected>Type</option>
+            <option style="color: black;">Home</option>
             <option style="color: black;">Apartment</option>
             <option style="color: black;">Office</option>
           </select>
 
-          <select formControlName="budget" class=" property-budget col-lg-3 col-md-12 col-sm-12 dropdown" >
-            <option style="color: grey;" disabled selected >Budget</option>
+          <select formControlName="budget" class=" property-budget col-lg-3 col-md-12 col-sm-12 dropdown"  >
+            <option value="" disabled style="color: grey;" disabled selected >Budget</option>
             <option style="color: black;">Below 10 Lac</option>
             <option style="color: black;">10 to 50 Lac</option>
             <option style="color: black;">Above 50 Lac</option>
