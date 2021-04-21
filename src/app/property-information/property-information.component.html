@@ -1,28 +1,37 @@
-<app-property-search-header></app-property-search-header>
+<app-property-search-header [state]="property?.state || ''" [city]="property?.city || ''"></app-property-search-header>
 
-<div class="container my-3">
+<div class="container text-center mt-3" *ngIf="error">
+  <div class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+      <img src="/assets/images/house_not_found.svg" class="img-fluid">
+    </div>
+  </div>
+
+  <h3>Cannot fetch property details</h3>
+</div>
+<div class="container my-3" *ngIf="!error && property !== null">
   <nav class="top-bar">
-    <div class="mr-4"><img src="/assets/icons/arrow-back.svg" /> Search</div>
+    <div class="mr-4"><img src="/assets/icons/arrow-back.svg"/> Search</div>
     <div
       class="mr-4"
       [ngClass]="{ active: currentView === 0 }"
       (click)="setCurrentView(0)"
     >
-      <img src="/assets/icons/image.svg" />Images
+      <img src="/assets/icons/image.svg"/>Images
     </div>
     <div
       class="mr-4"
       [ngClass]="{ active: currentView === 1 }"
       (click)="setCurrentView(1)"
     >
-      <img src="/assets/icons/3d.svg" /> 3D View
+      <img src="/assets/icons/3d.svg"/> 3D View
     </div>
     <div
       class="mr-4"
       [ngClass]="{ active: currentView === 2 }"
       (click)="setCurrentView(2)"
     >
-      <img src="/assets/icons/streetview.svg" />Street View
+      <img src="/assets/icons/streetview.svg"/>Street View
     </div>
   </nav>
 
@@ -40,12 +49,23 @@
 
   <div class="row">
     <div class="col-12 col-lg-8">
-      <app-property-information-details></app-property-information-details>
+      <app-property-information-details [data]="property"></app-property-information-details>
     </div>
     <div class="col-12 col-lg-4 mt-2">
       <div class="text-center h3"><b>Nearby Similar Homes</b></div>
-      <app-property-information-nearby-cards></app-property-information-nearby-cards>
-      <app-property-information-nearby-cards></app-property-information-nearby-cards>
+      <app-property-information-nearby-cards
+        [address]="property.address"
+        [area]="0.95 * property.area"
+        [price]="0.9 * property.price"
+        [baths]="property.bathrooms - 1"
+        [beds]="property.bedrooms-1"
+      ></app-property-information-nearby-cards><app-property-information-nearby-cards
+        [address]="property.address"
+        [area]="1.02 * property.area"
+        [price]="1.2 * property.price"
+        [baths]="property.bathrooms + 1"
+        [beds]="property.bedrooms + 2"
+      ></app-property-information-nearby-cards>
     </div>
   </div>
 </div>

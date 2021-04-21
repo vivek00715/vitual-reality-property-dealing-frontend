@@ -27,4 +27,17 @@ export class UxService {
   hideSpinner() {
     this.spinner.hide();
   }
+
+  handleError = (err: any) => {
+    console.log(err);
+    this.hideSpinner();
+    let errorMessage = err.error;
+    if (typeof errorMessage != 'string') {
+      errorMessage = err.statusText;
+      if (errorMessage === 'OK'){
+        errorMessage = err.message || 'Something went wrong';
+      }
+    }
+    this.showToast('Error', errorMessage, true);
+  };
 }
