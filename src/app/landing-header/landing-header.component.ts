@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { StateCityService } from '../state-city.service';
+import {UxService} from '../ux.service';
 
 @Component({
   selector: 'app-landing-header',
@@ -13,6 +14,8 @@ export class LandingHeaderComponent implements OnInit {
   headerOpen = false;
 
   searchForm = new FormGroup({});
+  stateResult: string[] = [];
+  cityResult: string[] = [];
   images: string[] = [
     '/assets/images/header-background4.jpg',
     '/assets/images/header-background2.jpg',
@@ -29,8 +32,10 @@ export class LandingHeaderComponent implements OnInit {
   constructor(
     private router: Router,
     public authService: AuthService,
-    private cityStateService: StateCityService
+    private cityStateService: StateCityService,
+    public uxService: UxService
   ) {
+    this.stateResult = this.cityStateService.getStates();
     this.storedInterval = setInterval(() => {
       this.changeBackgroundCounter = this.changeBackgroundCounter + 1;
       if (this.changeBackgroundCounter > this.images.length - 1) {
@@ -69,17 +74,35 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
+    // console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
     let statename = this.searchForm.value.state;
-    //redirecting to issues page after submitting the form
-    this.router.navigate(['/property/', statename], {
-      queryParams: {
-        city: this.searchForm.value.city,
-        state: this.searchForm.value.state,
-        type: this.searchForm.value.type,
-        minPrice: this.minPrice,
-        maxPrice: this.maxPrice,
-      },
-    });
+    if(this.cityStateService.getStates().includes(statename)){
+      // redirecting to issues page after submitting the form
+      this.router.navigate(['/property/', statename], {
+        queryParams: {
+          city: this.searchForm.value.city,
+          state: this.searchForm.value.state,
+          type: this.searchForm.value.type,
+          minPrice: this.minPrice,
+          maxPrice: this.maxPrice,
+        },
+      });
+    } else {
+      this.uxService.showToast('Error', 'State name is invalid', true);
+    }
+
+  }
+
+  searchState(event: any): void {
+    this.stateResult = this.cityStateService
+        .getStates()
+        .filter(state => state.toLowerCase().includes(event.target.value.toLowerCase()));
+    this.searchCity('');
+  }
+
+  searchCity(event: any): void {
+    this.cityResult = this.cityStateService
+      .getCities(this.searchForm.value.state)
+      .filter(city => city.toLowerCase().includes(event.target.value.toLowerCase()))
   }
 }

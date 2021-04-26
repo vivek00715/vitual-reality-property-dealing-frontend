@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,5 +59,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],
+  // for aframe custom html tags
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
