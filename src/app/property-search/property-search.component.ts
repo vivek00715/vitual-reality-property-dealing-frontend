@@ -23,6 +23,8 @@ export class PropertySearchComponent implements OnInit {
   propertyService:PropertySearchService;
   cityService:CityDetailService;
 
+  myChoice='all';
+
   mapSrc="";
   Api="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2TLiALPifHWu9QDw25D1cLsSYTYrOaUk&q=";
   city="";
@@ -51,6 +53,25 @@ export class PropertySearchComponent implements OnInit {
   "built_year":0,
   "description":""}]
 
+  list_dummy=[{"propertyId":0,
+  "address":"",
+  "city":"",
+  "state":"",
+  "pinCode":"",
+  "area":0,
+  "bathrooms":"",
+  "bedrooms":"",
+  "bhk":0,
+  "floors":0,
+  "ownerEmail":"",
+  "price":0,
+  "type":"",
+  "purpose":"",
+  "built_year":0,
+  "description":""}]
+
+  list_copy=this.list;
+
   constructor(propertyService:PropertySearchService, cityService:CityDetailService, private activatedRoute:ActivatedRoute, private router:Router) {
 
     this.propertyService=propertyService;
@@ -76,6 +97,7 @@ export class PropertySearchComponent implements OnInit {
     this.mapSrc=this.Api+this.state;
     this.propertyService.getPropertyByAddress(this.street,this.city,this.state,this.propertyType,this.minPrice,this.maxPrice).subscribe((response:any)=>{
       this.list=response;
+      this.list_copy=this.list;
       console.log(this.list)
     })
 
@@ -97,6 +119,51 @@ export class PropertySearchComponent implements OnInit {
   {
     this.propertyId=this.list[index]['propertyId'];
     this.router.navigate(['/property/id',this.propertyId],{ queryParams: {id:this.propertyId}});
+  }
+
+  showAll()
+  {
+     this.deleteAll(this.list_dummy);
+     this.list=this.list_copy;
+     this.myChoice="all";
+     console.log(this.list);
+     console.log(this.myChoice);
+  }
+
+  showBuy()
+  {
+    this.myChoice="sell";
+    this.deleteAll(this.list_dummy);
+    for(let i=0;i<this.list_copy.length;i++)
+    {
+      if(this.list_copy[i].purpose=="Sell")
+      {
+          this.list_dummy.push(this.list_copy[i])
+      }
+    }
+    this.list=this.list_dummy;
+    console.log(this.list);
+    console.log(this.myChoice);
+  }
+
+  showRent()
+  {
+    this.myChoice="rent";
+    this.deleteAll(this.list_dummy);
+    for(let i=0;i<this.list_copy.length;i++)
+    {
+      if(this.list_copy[i].purpose=="Rent")
+      {
+          this.list_dummy.push(this.list_copy[i])
+      }
+    }
+    this.list=this.list_dummy;
+    console.log(this.list);
+  }
+
+  deleteAll(list:any)
+  {
+    list.length=0;
   }
 
 

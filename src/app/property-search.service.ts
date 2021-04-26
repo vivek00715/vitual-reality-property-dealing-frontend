@@ -31,6 +31,7 @@ export class PropertySearchService {
     this.url = this.baseUrlService.getBaseUrl();
   }
 
+
   public getPropertyByAddress(
     street: string,
     city: string,
