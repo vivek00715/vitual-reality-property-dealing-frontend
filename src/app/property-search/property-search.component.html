@@ -2,6 +2,20 @@
   <app-property-search-header></app-property-search-header>
 
   <div class="container" style="margin-top: 3%">
+
+    <ul class="nav nav-tabs" style="margin-bottom:2%;">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="myChoice=='all'" (click)="showAll()" style="cursor: pointer;">ALL</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="myChoice=='sell'" (click)="showBuy()" style="cursor: pointer;">BUY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="myChoice=='rent'" (click)="showRent()" style="cursor: pointer;">RENT</a>
+      </li>
+    </ul>
+
+
     <div class="row">
       <!-- Map Column , Using safe Pipe to overcome maps api error -->
       <div class="col-lg-8 col-md-12 col-sm-12">
@@ -16,6 +30,7 @@
         </iframe>
       </div>
 
+
       <!-- Card to display city detail -->
       <div class="col-lg-4 col-md-12 col-sm-12">
         <div class="card" style="border-radius: 0; border: 0">
@@ -26,11 +41,11 @@
           />
           <div class="card-body">
             <h5 class="card-title" data-angular="address">
-              {{ street }} <b>{{ city }} {{ state }}</b>
+              {{ street }}
             </h5>
-            <p class="card-subtitle mb-2">
-              <b>Price Range :</b> 5Lac to 2Crore
-            </p>
+            <h5 class="card-title" data-angular="address">
+              <b>{{ city }} {{ state }}</b>
+            </h5>
             <p class="card-subtitle mb-2" data-angular="totalAvailability">
               <b>Total Availability :</b>
               {{
@@ -50,6 +65,12 @@
 
     <div class="row">
       <!-- Using ngfor to display list of properties present -->
+      <div  *ngIf="list.length==0" class="col-lg-3 col-md-4 col-sm-6">
+        <h3 class="card3">
+          No Property is currently available in this area
+        </h3>
+      </div>
+
       <div
         class="col-lg-3 col-md-4 col-sm-6"
         *ngFor="let property of list; let i = index"
