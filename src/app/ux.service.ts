@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class UxService {
-
+  public darkMode = false;
   constructor(private toast: ToastrService, private spinner: NgxSpinnerService) { }
 
   showToast(title: string, content: string, errorToast=false){
@@ -40,4 +40,9 @@ export class UxService {
     }
     this.showToast('Error', errorMessage, true);
   };
+
+  toggleDarkMode() {
+    document.body.classList.toggle('dark');
+    this.darkMode = !this.darkMode;
+  }
 }

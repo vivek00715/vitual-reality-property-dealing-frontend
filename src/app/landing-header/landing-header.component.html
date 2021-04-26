@@ -71,6 +71,14 @@
     >
       Log out
     </button>
+
+    <button
+      type="button"
+      class="btn btn-link mr-2"
+      (click)="uxService.toggleDarkMode()"
+    >
+      {{uxService.darkMode? 'Light' : 'Dark'}}
+    </button>
   </div>
 </nav>
 <!-- nav bar ends here  -->
@@ -78,7 +86,7 @@
 <!-- header start from here containing search bar  -->
 <header [ngStyle]="{ 'background-image': 'url(' + getImage() + ')' }">
   <!-- search bar container  -->
-  <div class="searchbar-container row m-0">
+  <div class="searchbar-container row m-0" >
     <!-- search bar  -->
     <div class="searchbar col-12 col-lg-10 offset-lg-1">
       <!-- form to handle form operations  -->
@@ -86,23 +94,31 @@
         <!-- text field for city name  -->
         <div class="col-5 col-md-4 form-input-holder">
           <img src="../../assets/icons/location-icon.svg" />
-          <select formControlName="state" class="city-input round">
-            <option value="" disabled>State</option>
-            <option *ngFor="let state of getStates()" [value]="state">
-              {{ state }}
-            </option>
-          </select>
+          <input
+            type="text"
+            list="states"
+            formControlName="state"
+            (input)="searchState($event)"
+            class="city-input round"
+            placeholder="States">
+          <datalist id="states">
+            <option *ngFor="let state of stateResult" [value]="state">
+          </datalist>
         </div>
 
         <div class="col-5 col-md-3 form-input-holder">
           <!-- <input type="text" class="city-input" placeholder="State" formControlName = "state"> -->
           <img src="../../assets/icons/location-icon.svg" />
-          <select formControlName="city" class="city-input round">
-            <option value="" disabled>City</option>
-            <option *ngFor="let city of getCities()" [value]="city">
-              {{ city }}
-            </option>
-          </select>
+          <input
+            type="text"
+            list="cities"
+            formControlName="city"
+            (input)="searchCity($event)"
+            class="city-input round"
+            placeholder="City">
+          <datalist id="cities">
+            <option *ngFor="let city of cityResult" [value]="city">
+          </datalist>
         </div>
 
         <!-- select box for property type  -->
