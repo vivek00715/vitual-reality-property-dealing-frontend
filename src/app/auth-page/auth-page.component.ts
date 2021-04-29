@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { UxService } from '../ux.service';
 
 @Component({
   selector: 'app-auth-page',
@@ -10,14 +11,21 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./auth-page.component.scss'],
 })
 export class AuthPageComponent implements OnInit {
+  headerOpen = false;
   showLoginPage = true; // if true, shows login page, else signup page
   authForm: FormGroup;
   private authChangeSubscription: Subscription;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    public uxService: UxService
+  ) {
     // listen to changes for auth state change, check for redirect if state changes
-    this.authChangeSubscription = this.authService.authStateChanged.subscribe(() => {
-      this.redirectIfLoggedIn();
-    });
+    this.authChangeSubscription = this.authService.authStateChanged.subscribe(
+      () => {
+        this.redirectIfLoggedIn();
+      }
+    );
 
     this.authForm = new FormGroup({
       email: new FormControl(null, [Validators.email, Validators.required]),
@@ -48,7 +56,7 @@ export class AuthPageComponent implements OnInit {
 
   private redirectIfLoggedIn(): void {
     // automatically redirect to / if user is logged in
-    if(this.authService.loggedIn){
+    if (this.authService.loggedIn) {
       this.router.navigate(['/']);
     }
   }

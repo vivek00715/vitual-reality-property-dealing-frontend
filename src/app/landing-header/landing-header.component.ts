@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { StateCityService } from '../state-city.service';
-import {UxService} from '../ux.service';
+import { UxService } from '../ux.service';
 
 @Component({
   selector: 'app-landing-header',
@@ -76,7 +76,7 @@ export class LandingHeaderComponent implements OnInit {
   onSubmit() {
     // console.log(this.searchForm.value.city , this.searchForm.value.propertytype , this.searchForm.value.budget);
     let statename = this.searchForm.value.state;
-    if(this.cityStateService.getStates().includes(statename)){
+    if (this.cityStateService.getStates().includes(statename)) {
       // redirecting to issues page after submitting the form
       this.router.navigate(['/property/', statename], {
         queryParams: {
@@ -90,19 +90,28 @@ export class LandingHeaderComponent implements OnInit {
     } else {
       this.uxService.showToast('Error', 'State name is invalid', true);
     }
-
   }
 
   searchState(event: any): void {
     this.stateResult = this.cityStateService
-        .getStates()
-        .filter(state => state.toLowerCase().includes(event.target.value.toLowerCase()));
+      .getStates()
+      .filter((state) =>
+        state.toLowerCase().includes(event.target.value.toLowerCase())
+      );
     this.searchCity('');
   }
 
   searchCity(event: any): void {
     this.cityResult = this.cityStateService
       .getCities(this.searchForm.value.state)
-      .filter(city => city.toLowerCase().includes(event.target.value.toLowerCase()))
+      .filter((city) =>
+        city.toLowerCase().includes(event.target.value.toLowerCase())
+      );
+  }
+
+  getSrc() {
+    if (this.uxService.darkMode)
+      return '../../assets/icons/light_mode_black_24dp.svg';
+    else return '../../assets/icons/dark_mode_black_24dp.svg';
   }
 }

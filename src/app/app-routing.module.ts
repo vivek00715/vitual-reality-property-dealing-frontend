@@ -6,6 +6,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { CreatePropertyComponent } from './create-property/create-property.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { MyPropertyComponent } from './my-property/my-property.component';
 
 const routes: Routes = [
   { path: 'property/:address', component: PropertySearchComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'property/id/:id', component: PropertyInformationComponent },
   { path: 'auth', component: AuthPageComponent },
   { path: 'create', component: CreatePropertyComponent },
+  { path: 'my-profile', component: MyPropertyComponent },
   { path: '**', component: ErrorPageComponent },
 ];
 
