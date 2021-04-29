@@ -1,24 +1,30 @@
-.container-heading{
+.container-heading {
   text-align: center;
 }
 
-.container-heading-text{
+.container-heading-text {
   font-size: 1.5rem;
   font-family: sans-serif;
   color: #f37820;
-
 }
 
-.card-style{
+.card-style {
   width: 100%;
   text-align: center;
 }
 
-.card-button{
-  background:#f37820;
-  border:none;
+.card-button {
+  background: #f37820;
+  border: none;
+  width: 10rem;
 }
 
-.card-img-top-size{
+.card-img-top-size {
   height: 10rem;
+}
+
+.card-style:hover,
+.card-button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 1000ms ease-out;
 }

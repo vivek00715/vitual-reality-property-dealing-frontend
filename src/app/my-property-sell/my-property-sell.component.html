@@ -1,0 +1,58 @@
+<div class="container property-rent-div">
+  <p class="property-rent-heading">Properties on Sell</p>
+  <hr />
+
+  <div class="row">
+    <!-- Using ngfor to display list of properties present -->
+    <!-- <div *ngIf="list.length == 0" class="col-lg-3 col-md-4 col-sm-6">
+      <h3 class="card3">No Property is currently available in this area</h3>
+    </div> -->
+
+    <div
+      class="col-lg-3 col-md-4 col-sm-6"
+      *ngFor="let property of list; let i = index"
+    >
+      <h3 *ngIf="property.propertyId == 0" class="card3">
+        No Property is currently available in this area
+      </h3>
+
+      <a
+        *ngIf="property.propertyId != 0"
+        class="card3"
+        (click)="showProperty(i)"
+      >
+        <img
+          class="card-img-top"
+          src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+          alt="Card image cap"
+        />
+        <h5>Price: {{ property.price | currency: "INR" }}</h5>
+        <p class="card-subtitle mb-2">{{ property.address }}</p>
+        <p class="card-subtitle mb-2">{{ property.built_year }}</p>
+        <p class="card-subtitle mb-2">{{ property.ownerEmail }}</p>
+        <div class="icon">
+          <span
+            style="background-image: url(../../assets/icons/bed_black_24dp.svg)"
+            >{{ property.bedrooms }}</span
+          >
+          <span
+            style="
+              background-image: url(../../assets/icons/bathtub_black_24dp.svg);
+            "
+            >{{ property.bathrooms }}</span
+          >
+          <span
+            style="
+              background-image: url(../../assets/icons/square_foot_black_24dp.svg);
+            "
+            >{{ property.area }}</span
+          >
+        </div>
+        <div class="dimmer"></div>
+        <div class="go-corner" href="#">
+          <div class="go-arrow">→</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -65,20 +65,20 @@
     <!-- logout button-->
     <button
       type="button"
-      class="login-button btn btn-danger mr-2"
+      class="logout-button btn btn-danger mr-2"
       *ngIf="authService.loggedIn"
       (click)="authService.logout()"
     >
       Log out
     </button>
 
-    <button
+    <!-- <button
       type="button"
       class="btn btn-link mr-2"
       (click)="uxService.toggleDarkMode()"
-    >
-      {{uxService.darkMode? 'Light' : 'Dark'}}
-    </button>
+      style="b
+    > -->
+    <img [src]="getSrc()" (click)="uxService.toggleDarkMode()" class="ml-2" />
   </div>
 </nav>
 <!-- nav bar ends here  -->
@@ -86,9 +86,15 @@
 <!-- header start from here containing search bar  -->
 <header [ngStyle]="{ 'background-image': 'url(' + getImage() + ')' }">
   <!-- search bar container  -->
-  <div class="searchbar-container row m-0" >
+  <div class="searchbar-container row m-0">
     <!-- search bar  -->
-    <div class="searchbar col-12 col-lg-10 offset-lg-1">
+    <div
+      class="searchbar col-12 col-lg-10 offset-lg-1"
+      style="
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+          0 12px 40px 0 rgba(0, 0, 0, 0.19);
+      "
+    >
       <!-- form to handle form operations  -->
       <form class="row" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <!-- text field for city name  -->
@@ -100,9 +106,10 @@
             formControlName="state"
             (input)="searchState($event)"
             class="city-input round"
-            placeholder="States">
+            placeholder="States"
+          />
           <datalist id="states">
-            <option *ngFor="let state of stateResult" [value]="state">
+            <option *ngFor="let state of stateResult" [value]="state"></option>
           </datalist>
         </div>
 
@@ -115,9 +122,10 @@
             formControlName="city"
             (input)="searchCity($event)"
             class="city-input round"
-            placeholder="City">
+            placeholder="City"
+          />
           <datalist id="cities">
-            <option *ngFor="let city of cityResult" [value]="city">
+            <option *ngFor="let city of cityResult" [value]="city"></option>
           </datalist>
         </div>
 
@@ -134,7 +142,6 @@
             <option>Office</option>
           </select>
         </div>
-
 
         <!-- search button  -->
         <div class="col-2 col-md-2 p-0 pr-1">

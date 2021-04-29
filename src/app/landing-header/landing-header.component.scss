@@ -52,11 +52,18 @@ select:focus {
 
 .login-button {
   background: #f37820;
+  width: 5rem;
+}
+
+.logout-button {
+  background: #f37820;
+  width: 7rem;
 }
 
 .signup-button {
   border: 1px solid #f37820;
   color: #f37820;
+  width: 5rem;
 }
 
 .signup-button:hover {
@@ -80,15 +87,17 @@ select:focus {
   border: none;
   margin-top: 0.3rem;
   border-radius: 7rem;
-  width: 100%;
+  width: 95%;
   height: 2rem;
+  margin-left: 0.5rem;
 }
 
 select {
   -webkit-appearance: none;
 }
 
-select.round, input.round {
+select.round,
+input.round {
   background-image: linear-gradient(45deg, transparent 50%, #f37820 50%),
     linear-gradient(135deg, #f37820 50%, transparent 50%),
     radial-gradient(#fb7 70%, transparent 72%);
@@ -98,8 +107,8 @@ select.round, input.round {
   background-repeat: no-repeat;
 }
 
-
-select.round:focus, input.round:focus {
+select.round:focus,
+input.round:focus {
   background-image: linear-gradient(45deg, white 50%, transparent 50%),
     linear-gradient(135deg, transparent 50%, white 50%),
     radial-gradient(#fb7 70%, transparent 72%);

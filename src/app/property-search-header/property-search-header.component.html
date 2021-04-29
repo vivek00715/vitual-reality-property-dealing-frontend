@@ -10,57 +10,133 @@
       <span class="landing-logo-name">Hash Homes</span>
     </a>
 
+    <!-- Hamburgar button for responsiveness -->
+    <button
+      class="navbar-toggler"
+      (click)="hamburger = !hamburger"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
- <!-- Hamburgar button for responsiveness -->
- <button
- class="navbar-toggler"
- (click)="hamburger = !hamburger"
- type="button"
- data-toggle="collapse"
- data-target="#navbarSupportedContent"
- aria-controls="navbarSupportedContent"
- aria-expanded="false"
- aria-label="Toggle navigation"
->
- <span class="navbar-toggler-icon"></span>
-</button>
+    <!-- Search bar along with dropdown containing type of property and budget -->
+    <div
+      [ngClass]="{ show: hamburger }"
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+    >
+      <form
+        [formGroup]="searchProperty"
+        (ngSubmit)="handleSearchProperty()"
+        class="row"
+      >
+        <!-- <select
+          formControlName="state"
+          class="col-lg-2 col-md-12 col-sm-12 state"
+        >
+          <option value="" disabled style="color: grey">State</option>
+          <option *ngFor="let state of getStates()" [value]="state">
+            {{ state }}
+          </option>
+        </select> -->
+        <!-- <img src="../../assets/icons/location-icon.svg" /> -->
+        <input
+          type="text"
+          list="states"
+          formControlName="state"
+          (input)="searchState($event)"
+          class="col-lg-3 col-md-12 col-sm-12 state"
+          placeholder="States"
+        />
+        <datalist id="states">
+          <option *ngFor="let state of stateResult" [value]="state"></option>
+        </datalist>
 
-  <!-- Search bar along with dropdown containing type of property and budget -->
-  <div [ngClass]="{show:hamburger}" class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form [formGroup]="searchProperty"  (ngSubmit)="handleSearchProperty()" class="row">
-          <select formControlName="state" class="col-lg-2 col-md-12 col-sm-12 state">
-            <option value="" disabled style="color: grey;">State</option>
-            <option *ngFor="let state of getStates()" [value]="state">
-              {{state}}
-            </option>
-          </select>
-          <select formControlName="city" class="col-lg-2 col-md-12 col-sm-12 city">
-            <option value="" disabled style="color: grey;">City</option>
-            <option *ngFor="let city of getCities()" [value]="city">{{city}}</option>
-          </select>
-          <input formControlName="street" class="col-lg-2 col-md-12 col-sm-12" type="text" placeholder="Street">
-          <select formControlName="type" class=" property-type col-lg-2 col-md-12 col-sm-12 dropdown" >
-            <option value="" disabled style="color: grey;" disabled selected>Type</option>
-            <option style="color: black;">Home</option>
-            <option style="color: black;">Flat</option>
-            <option style="color: black;">Office</option>
-          </select>
+        <!-- <select
+          formControlName="city"
+          class="col-lg-2 col-md-12 col-sm-12 city"
+        >
+          <option value="" disabled style="color: grey">City</option>
+          <option *ngFor="let city of getCities()" [value]="city">
+            {{ city }}
+          </option>
+        </select> -->
+        <!-- <img src="../../assets/icons/location-icon.svg" /> -->
+        <input
+          type="text"
+          list="cities"
+          formControlName="city"
+          (input)="searchCity($event)"
+          class="col-lg-2 col-md-12 col-sm-12 city"
+          placeholder="City"
+        />
+        <datalist id="cities">
+          <option *ngFor="let city of cityResult" [value]="city"></option>
+        </datalist>
 
-          <select style="cursor: pointer;" formControlName="budget" class=" property-budget col-lg-3 col-md-12 col-sm-12 dropdown" (click)="toggleSlider()" >
-            <option value="" disabled style="color: grey;" disabled selected>Budget</option>
-          </select>
-          <button  type="submit" class="col-lg-1 col-md-12 col-sm-12 btn" [disabled]="searchProperty.invalid"></button>
-          <ngx-slider *ngIf="activeSlider"  class="slider" style="margin-top: 7%;" class="col-12" [(value)]="minPrice" [(highValue)]="maxPrice" [options]="options"></ngx-slider>
+        <img src="../../assets/icons/location-icon.svg" />
+        <input
+          formControlName="street"
+          class="col-lg-2 col-md-12 col-sm-12"
+          type="text"
+          placeholder="Street"
+          style="padding: 0 0 0 0"
+        />
 
-          </form>
-        <ng-container *ngIf="!authService.loggedIn">
-          <a routerLink="/auth" style="margin-left: 5%; color: grey;">Login</a>
-          <a routerLink="/auth" style="margin-left: 2%; color: grey;">Sign up</a>
-        </ng-container>
+        <select
+          formControlName="type"
+          class="property-type col-lg-2 col-md-12 col-sm-12 dropdown"
+        >
+          <option value="" disabled style="color: grey" disabled selected>
+            Type
+          </option>
+          <option style="color: black">Home</option>
+          <option style="color: black">Flat</option>
+          <option style="color: black">Office</option>
+        </select>
+
+        <select
+          style="cursor: pointer"
+          formControlName="budget"
+          class="property-budget col-lg-2 col-md-12 col-sm-12 dropdown"
+          (click)="toggleSlider($event)"
+          (mousedown)="$event.preventDefault()"
+        >
+          <option value="" disabled style="color: grey" disabled selected>
+            Budget
+          </option>
+        </select>
+
+        <button
+          type="submit"
+          class="col-lg col-md-12 col-sm-12 btn"
+          [disabled]="searchProperty.invalid"
+        ></button>
+
+        <ngx-slider
+          *ngIf="activeSlider"
+          class="slider"
+          style="margin-top: 7%"
+          class="col-12"
+          [(value)]="minPrice"
+          [(highValue)]="maxPrice"
+          [options]="options"
+        ></ngx-slider>
+      </form>
+      <ng-container *ngIf="!authService.loggedIn">
+        <a routerLink="/auth" class="login-button btn btn-danger mr-2">Login</a>
+        <a routerLink="/auth" class="signup-button btn btn-outline-danger"
+          >Sign up</a
+        >
+      </ng-container>
 
       <button
-        class="btn btn-link"
-        style="margin-left: 5%; color: grey"
+        class="logout-button btn btn-danger mr-2"
         *ngIf="authService.loggedIn"
         (click)="authService.logout()"
       >

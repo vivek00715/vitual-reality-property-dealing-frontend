@@ -1,0 +1,39 @@
+.landing-logo-size {
+  width: 2rem;
+  height: 2rem;
+}
+
+.landing-logo-name {
+  color: #f37820;
+}
+
+.toggle-button {
+  border: none;
+}
+
+.toggle-button-hamburger {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.login-button {
+  background: #f37820;
+  width: 5rem;
+}
+
+.logout-button {
+  background: #f37820;
+  width: 16rem;
+  border: none;
+}
+
+.signup-button {
+  border: 1px solid #f37820;
+  color: #f37820;
+  width: 16rem;
+}
+
+.signup-button:hover {
+  background: #f37820;
+  color: white;
+}

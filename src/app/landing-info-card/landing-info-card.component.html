@@ -62,7 +62,11 @@
           We're creating a seamless online experience - from shopping on the
           target rental network, to applying to paying rent
         </p>
-        <a href="#" class="card-button btn btn-primary">My Profile</a>
+        <a
+          class="card-button btn btn-primary"
+          [routerLink]="authService.loggedIn ? '/my-profile' : '/auth'"
+          >My Profile</a
+        >
       </div>
     </div>
   </div>

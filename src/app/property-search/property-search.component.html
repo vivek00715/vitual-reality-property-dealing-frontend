@@ -1,20 +1,36 @@
-<div class="container-fluid bg-light">
+<div class="bg-light">
   <app-property-search-header></app-property-search-header>
 
   <div class="container" style="margin-top: 3%">
-
-    <ul class="nav nav-tabs" style="margin-bottom:2%;">
+    <ul class="nav nav-tabs" style="margin-bottom: 2%">
       <li class="nav-item">
-        <a class="nav-link" [class.active]="myChoice=='all'" (click)="showAll()" style="cursor: pointer;">ALL</a>
+        <a
+          class="nav-link"
+          [class.active]="myChoice == 'all'"
+          (click)="showAll()"
+          style="cursor: pointer"
+          >ALL</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [class.active]="myChoice=='sell'" (click)="showBuy()" style="cursor: pointer;">BUY</a>
+        <a
+          class="nav-link"
+          [class.active]="myChoice == 'sell'"
+          (click)="showBuy()"
+          style="cursor: pointer"
+          >BUY</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" [class.active]="myChoice=='rent'" (click)="showRent()" style="cursor: pointer;">RENT</a>
+        <a
+          class="nav-link"
+          [class.active]="myChoice == 'rent'"
+          (click)="showRent()"
+          style="cursor: pointer"
+          >RENT</a
+        >
       </li>
     </ul>
-
 
     <div class="row">
       <!-- Map Column , Using safe Pipe to overcome maps api error -->
@@ -30,10 +46,12 @@
         </iframe>
       </div>
 
-
       <!-- Card to display city detail -->
       <div class="col-lg-4 col-md-12 col-sm-12">
-        <div class="card" style="border-radius: 0; border: 0">
+        <div
+          class="card"
+          style="border-radius: 0; border: 0; background: #f8f9fa"
+        >
           <img
             class="card-img-top"
             src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
@@ -65,10 +83,8 @@
 
     <div class="row">
       <!-- Using ngfor to display list of properties present -->
-      <div  *ngIf="list.length==0" class="col-lg-3 col-md-4 col-sm-6">
-        <h3 class="card3">
-          No Property is currently available in this area
-        </h3>
+      <div *ngIf="list.length == 0" class="col-lg-3 col-md-4 col-sm-6">
+        <h3 class="card3">No Property is currently available in this area</h3>
       </div>
 
       <div

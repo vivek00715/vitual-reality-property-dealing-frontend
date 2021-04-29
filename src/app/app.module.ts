@@ -26,6 +26,9 @@ import { CityDetailService } from './city-detail.service';
 import { CreatePropertyComponent } from './create-property/create-property.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MyPropertyComponent } from './my-property/my-property.component';
+import { MyPropertyRentComponent } from './my-property-rent/my-property-rent.component';
+import { MyPropertySellComponent } from './my-property-sell/my-property-sell.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     AuthPageComponent,
     CreatePropertyComponent,
     ErrorPageComponent,
+    MyPropertyComponent,
+    MyPropertyRentComponent,
+    MyPropertySellComponent,
   ],
   imports: [
     BrowserModule,
