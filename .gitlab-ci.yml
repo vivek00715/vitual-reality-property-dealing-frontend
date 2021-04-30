@@ -38,7 +38,7 @@ deploy_job:
   image: google/cloud-sdk:alpine
   stage: deploy
   dependencies: 
-    - build_job
+    - build_angular
   before_script:
   - "ServiceName=medicalfrontend"
   - "echo $ServiceName"
