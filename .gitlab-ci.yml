@@ -6,7 +6,7 @@ cache:
     paths:
     - ./node_modules
 
-generate_artifact:
+build_job::
  image: node:12-alpine
  stage: build
  before_script:
@@ -38,7 +38,7 @@ deploy_job:
   image: google/cloud-sdk:alpine
   stage: deploy
   dependencies: 
-    - build_angular
+    - build_job
   before_script:
   - "ServiceName=medicalfrontend"
   - "echo $ServiceName"
