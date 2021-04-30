@@ -17,19 +17,11 @@ build_job:
   - whoami
   - npm install
 # http-server to serve files, gzipper to compress them after build
-  - sudo npm install -g http-server gzipper
-  - npm run build
-# make 404 html for SPA
-  - cp ./dist/VirtualReality/index.html ./dist/VirtualReality/404.html
-# compressing files to decrease load time on client, brotli and gzip compression
-  - gzipper compress --brotli --exclude jpeg,png,ico ./dist
-  - gzipper compress --exclude jpeg,png,ico ./dist
-# view files
-  - ls -lsah ./dist/VirtualReality
-  - nohup http-server ./dist/VirtualReality --gzip --brotli --port 3000 -a 0.0.0.0 </dev/null &>/dev/null &
-#  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
-# obtain public IP
-  - wget -qO- https://ipecho.net/plain ; echo
+
+  - npm install
+  - ng build --prod --output-hashing none
+  - pwd
+
  artifacts:
   paths:
     - dist/
