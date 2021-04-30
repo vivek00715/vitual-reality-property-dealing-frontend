@@ -6,7 +6,7 @@ cache:
     paths:
     - ./node_modules
 
-build_job::
+build_job:
  image: node:12-alpine
  stage: build
  before_script:
