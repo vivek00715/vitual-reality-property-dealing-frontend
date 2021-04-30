@@ -40,7 +40,7 @@ deploy_job:
   dependencies: 
     - build_job
   before_script:
-  - "ServiceName=medicalfrontend"
+  - "ServiceName=vrpd-frontend"
   - "echo $ServiceName"
   - |
     cat <<EOF >> app.yaml
