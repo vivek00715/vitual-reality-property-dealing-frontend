@@ -73,7 +73,8 @@ gcloud_deploy:
     EOF
   - "cat app.yaml"
   - |
-  - "cat $CI_PIPELINE_ID.json"
+  - cat app.yaml
+  - echo $SERVICE_ACCOUNT > ${CI_PIPELINE_ID}.json
    
   script:
   - gcloud auth activate-service-account --key-file $CI_PIPELINE_ID.json
