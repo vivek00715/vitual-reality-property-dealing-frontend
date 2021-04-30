@@ -1,5 +1,5 @@
 stages:
-  - build_angular
+  - build
   - deploy
 
 cache:
@@ -8,7 +8,7 @@ cache:
 
 generate_artifact:
  image: node:12-alpine
- stage: build_angular
+ stage: build
  before_script:
         - echo "Installing NPM Dependencies and running angular application"
  only:
