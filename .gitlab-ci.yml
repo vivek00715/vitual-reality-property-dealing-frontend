@@ -42,40 +42,40 @@ deploy_job:
     threadsafe: true
     handlers:
     - url: /(.+\.js)
-      static_files: dist/Frontend/\1
-      upload: dist/Frontend/(.+\.js)
+      static_files: dist/VirtualReality/\1
+      upload: dist/VirtualReality/(.+\.js)
     
     - url: /(.+\.css)
-      static_files: dist/Frontend/\1
-      upload: dist/Frontend/(.+\.css)
+      static_files: dist/VirtualReality/\1
+      upload: dist/VirtualReality/(.+\.css)
     
     - url: /(.+\.png)
-      static_files: dist/Frontend/\1
-      upload: dist/Frontend/(.+\.png)
+      static_files: dist/VirtualReality/\1
+      upload: dist/VirtualReality/(.+\.png)
     
     - url: /(.+\.jpg)
-      static_files: dist/Frontend/\1
-      upload: dist/Frontend/(.+\.jpg)
+      static_files: dist/VirtualReality/\1
+      upload: dist/VirtualReality/(.+\.jpg)
     
     - url: /(.+\.svg)
-      static_files: dist/Frontend/\1
-      upload: dist/Frontend/(.+\.svg)
+      static_files: dist/VirtualReality/\1
+      upload: dist/VirtualReality/(.+\.svg)
     
     - url: /favicon.ico
-      static_files: dist/Frontend/favicon.ico
-      upload: dist/Frontend/favicon.ico
+      static_files: dist/VirtualReality/favicon.ico
+      upload: dist/VirtualReality/favicon.ico
     
     - url: /(.+\.json)
-      static_files: dist/Frontend/\1
-      upload: dist/Frontend/(.+\.json)
+      static_files: dist/VirtualReality/\1
+      upload: dist/VirtualReality/(.+\.json)
     
     - url: /(.+)
-      static_files: dist/Frontend/index.html
-      upload: dist/Frontend/index.html
+      static_files: dist/VirtualReality/index.html
+      upload: dist/VirtualReality/index.html
     
     - url: /
-      static_files: dist/Frontend/index.html
-      upload: dist/Frontend/index.html
+      static_files: dist/VirtualReality/index.html
+      upload: dist/VirtualReality/index.html
     
     skip_files:
       - e2e/
