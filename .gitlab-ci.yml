@@ -1,6 +1,6 @@
 stages:
   - build_angular
-
+  - cloud_deploy
 
 cache:
     paths:
@@ -38,7 +38,7 @@ generate_artifact:
 gcloud_deploy:
   image: google/cloud-sdk:alpine
   stage: cloud_deploy
-  environment: staging
+  environment: master
   only:
   - master
   before_script:
