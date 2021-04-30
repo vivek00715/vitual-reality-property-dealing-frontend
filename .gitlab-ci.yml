@@ -51,7 +51,7 @@ gcloud_deploy:
   - |
     cat <<EOF >> app.yaml
     runtime: python27
-    service: $ServiceName
+    service: service: vrpd-frontend
     api_version: 1
     threadsafe: true
     handlers:
