@@ -1,0 +1,85 @@
+stages:
+  - build_angular
+
+
+cache:
+    paths:
+    - ./node_modules
+
+generate_artifact:
+ image: node:12-alpine
+ stage: build_angular
+ before_script:
+        - echo "Installing NPM Dependencies and running angular application"
+ only:
+ - master
+ script:
+#  - npm install -g @angular/cli
+  - whoami
+  - npm install
+# http-server to serve files, gzipper to compress them after build
+  - sudo npm install -g http-server gzipper
+  - npm run build
+# make 404 html for SPA
+  - cp ./dist/VirtualReality/index.html ./dist/VirtualReality/404.html
+# compressing files to decrease load time on client, brotli and gzip compression
+  - gzipper compress --brotli --exclude jpeg,png,ico ./dist
+  - gzipper compress --exclude jpeg,png,ico ./dist
+# view files
+  - ls -lsah ./dist/VirtualReality
+  - nohup http-server ./dist/VirtualReality --gzip --brotli --port 3000 -a 0.0.0.0 </dev/null &>/dev/null &
+#  - nohup ng serve --host 0.0.0.0 </dev/null &>/dev/null &
+# obtain public IP
+  - wget -qO- https://ipecho.net/plain ; echo
+ artifacts:
+  paths:
+    - dist/
+    
+gcloud_deploy:
+  image: google/cloud-sdk:alpine
+  stage: cloud_deploy
+  environment: staging
+  only:
+  - master
+  before_script:
+  - "echo ${GITLAB_USER_LOGIN/./-}"
+  - "Servicename=${GITLAB_USER_LOGIN/./-}"
+  - "echo $Servicename"
+  - "ServiceName=${Servicename//-}"
+  - "echo $ServiceName"
+  - "echo $CI_PROJECT_NAME"
+  - |
+    cat <<EOF >> app.yaml
+    runtime: python27
+    service: $ServiceName
+    api_version: 1
+    threadsafe: true
+    handlers:
+    - url: /
+      static_files: dist/index.html
+      upload: dist/index.html
+    - url: /
+      static_dir: dist/
+
+    skip_files:
+      - e2e/
+      - node_modules/
+      - src/
+      - ^(.*/)?\..*$
+      - ^(.*/)?.*\.json$
+      - ^(.*/)?.*\.md$
+      - ^(.*/)?.*\.yaml$
+      - ^LICENSE
+    EOF
+  - "cat app.yaml"
+  - |
+  - "cat $CI_PIPELINE_ID.json"
+   
+  script:
+  - gcloud auth activate-service-account --key-file $CI_PIPELINE_ID.json
+  - gcloud --project hu18-groupa-angular app deploy --version v1 --appyaml app.yaml
+  - url=$(gcloud app services browse $ServiceName --no-launch-browser --project hu18-groupa-angular)
+  - echo $url
+
+  after_script:
+  - rm $CI_PIPELINE_ID.json
