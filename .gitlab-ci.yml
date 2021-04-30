@@ -1,6 +1,6 @@
 stages:
   - build_angular
-  - cloud_deploy
+  - deploy
 
 cache:
     paths:
@@ -14,7 +14,6 @@ generate_artifact:
  only:
  - master
  script:
-#  - npm install -g @angular/cli
   - whoami
   - npm install
 # http-server to serve files, gzipper to compress them after build
@@ -34,53 +33,74 @@ generate_artifact:
  artifacts:
   paths:
     - dist/
-    
-gcloud_deploy:
+
+deploy_job:
   image: google/cloud-sdk:alpine
-  stage: cloud_deploy
-  environment: master
-  only:
-  - master
+  stage: deploy
+  dependencies: 
+    - build_job
   before_script:
-  - "echo ${GITLAB_USER_LOGIN/./-}"
-  - "Servicename=${GITLAB_USER_LOGIN/./-}"
-  - "echo $Servicename"
-  - "ServiceName=${Servicename//-}"
+  - "ServiceName=medicalfrontend"
   - "echo $ServiceName"
-  - "echo $CI_PROJECT_NAME"
   - |
     cat <<EOF >> app.yaml
     runtime: python27
-    service: service: vrpd-frontend
+    service: $ServiceName
     api_version: 1
     threadsafe: true
     handlers:
+    - url: /(.+\.js)
+      static_files: dist/Frontend/\1
+      upload: dist/Frontend/(.+\.js)
+    
+    - url: /(.+\.css)
+      static_files: dist/Frontend/\1
+      upload: dist/Frontend/(.+\.css)
+    
+    - url: /(.+\.png)
+      static_files: dist/Frontend/\1
+      upload: dist/Frontend/(.+\.png)
+    
+    - url: /(.+\.jpg)
+      static_files: dist/Frontend/\1
+      upload: dist/Frontend/(.+\.jpg)
+    
+    - url: /(.+\.svg)
+      static_files: dist/Frontend/\1
+      upload: dist/Frontend/(.+\.svg)
+    
+    - url: /favicon.ico
+      static_files: dist/Frontend/favicon.ico
+      upload: dist/Frontend/favicon.ico
+    
+    - url: /(.+\.json)
+      static_files: dist/Frontend/\1
+      upload: dist/Frontend/(.+\.json)
+    
+    - url: /(.+)
+      static_files: dist/Frontend/index.html
+      upload: dist/Frontend/index.html
+    
     - url: /
-      static_files: dist/index.html
-      upload: dist/index.html
-    - url: /
-      static_dir: dist/
-
+      static_files: dist/Frontend/index.html
+      upload: dist/Frontend/index.html
+    
     skip_files:
       - e2e/
       - node_modules/
       - src/
-      - ^(.*/)?\..*$
-      - ^(.*/)?.*\.json$
-      - ^(.*/)?.*\.md$
-      - ^(.*/)?.*\.yaml$
+      - ^(./)?\..$
+      - ^(./)?.\.json$
+      - ^(./)?.\.md$
+      - ^(./)?.\.yaml$
       - ^LICENSE
     EOF
   - "cat app.yaml"
-  - |
-  - cat app.yaml
   - echo $SERVICE_ACCOUNT > ${CI_PIPELINE_ID}.json
-   
   script:
   - gcloud auth activate-service-account --key-file $CI_PIPELINE_ID.json
-  - gcloud --project hu18-groupa-angular app deploy --version v1 --appyaml app.yaml
+  - gcloud --project hu18-groupa-angular app deploy --version v1
   - url=$(gcloud app services browse $ServiceName --no-launch-browser --project hu18-groupa-angular)
   - echo $url
-
   after_script:
   - rm $CI_PIPELINE_ID.json
