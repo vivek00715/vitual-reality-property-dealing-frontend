@@ -1,1 +1,53 @@
-<p>property-information-virtual-view works!</p>
+<!-- <a-scene embedded>
+  <a-assets>
+    <a-mixin id="hotspot-text" text="font: exo2bold; width: 5" geometry="primitive: plane; width: 1.6; height: 0.4" material="color: black;" position="0 -0.6 0"></a-mixin>
+    <a-mixin id="hotspot-target" geometry="primitive: ring; radiusInner: 0.05; radiusOuter: 0.3" material="flatShading: true; color:#F47A20"></a-mixin>
+  </a-assets>
+  <a-tour #atour src=""rotation="0 0 0" animation="property:rotation;dur:150000;from:0 0 0;to:0 -360 0;loop:true;easing:linear" (click)="toggleRotation()">
+    <a-panorama id="livingroom" src="../../assets/vr_images/livingroom_2.jpg" rotation="0 0 0"></a-panorama>
+    <a-panorama id="kitchen" src="../../assets/vr_images/kitchen.jpg" rotation="0 0 0"></a-panorama>
+    <a-panorama id="bedroom" src="../../assets/vr_images/bedroom.jpg" rotation="0 0 0"></a-panorama>
+
+
+    <a-hotspot for="livingroom" to="kitchen" mixin="hotspot-target" position="-25 0 -7" rotation="0 450 0">
+      <a-text value="KITCHEN" align="center" mixin="hotspot-text"  ></a-text>
+    </a-hotspot>
+    <a-hotspot for="kitchen" to="livingroom" mixin="hotspot-target" position="-5 0 -7" rotation="0 450 0">
+      <a-text value="LIVING ROOM" align="center" mixin="hotspot-text"></a-text>
+    </a-hotspot>
+    <a-hotspot for="livingroom" to="bedroom" mixin="hotspot-target" position="4 0 5" rotation="0 240 0">
+      <a-text value="BEDROOM" align="center"  mixin="hotspot-text"></a-text>
+    </a-hotspot>
+    <a-hotspot for="bedroom" to="livingroom" mixin="hotspot-target" position="2 0 5" rotation="0 240 0">
+      <a-text value="LIVING ROOM" align="center"  mixin="hotspot-text"></a-text>
+    </a-hotspot>
+  </a-tour>
+
+  <a-entity camera look-controls wasd-controls>
+    <a-entity cursor position="0 0 -1"
+      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+      material="color: black; shader: flat">
+    </a-entity>
+  </a-entity>
+
+</a-scene>
+
+<ul class="row">
+    <li class="col-2">LivingRoom</li>
+    <li (click)="change()" class="col-2">BedRoom</li>
+    <li class="col-2">Kitchen</li>
+    <li class="col-2">WashRoom</li>
+</ul> -->
+
+<iframe
+   width="100%"
+   height="450"
+   [src]="src | safe"
+   frameborder="0"
+   allow="xr-spatial-tracking; accelerometer; magnetometer; gyroscope"
+   allowvr="yes"
+   allowfullscreen="yes">
+</iframe>
+
+
+

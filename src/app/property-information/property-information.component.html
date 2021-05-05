@@ -52,7 +52,7 @@
     ></app-property-information-street-view>
   </div>
 
-  <div class="row">
+  <div *ngIf="currentView==0 " class="row">
     <div class="col-12 col-lg-8">
       <app-property-information-details
         [data]="property"
