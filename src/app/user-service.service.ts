@@ -27,4 +27,12 @@ export class UserServiceService {
       { headers: { Authorization: this.authService.user?.token + '' } }
     );
   }
+
+  updateUserById(userBody: User) {
+    return this.http.put<User>(
+      this.baseUrlService.getBaseUrl() + '/user/',
+      userBody,
+      { headers: { Authorization: this.authService.user?.token + '' } }
+    );
+  }
 }

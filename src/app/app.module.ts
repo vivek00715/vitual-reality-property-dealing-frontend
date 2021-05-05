@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +29,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MyPropertyComponent } from './my-property/my-property.component';
 import { MyPropertyRentComponent } from './my-property-rent/my-property-rent.component';
 import { MyPropertySellComponent } from './my-property-sell/my-property-sell.component';
+import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MyPropertySellComponent } from './my-property-sell/my-property-sell.com
     MyPropertyComponent,
     MyPropertyRentComponent,
     MyPropertySellComponent,
+    EditPropertyDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,11 +63,11 @@ import { MyPropertySellComponent } from './my-property-sell/my-property-sell.com
     NgxSpinnerModule,
     BrowserAnimationsModule,
     NgxSliderModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],
   // for aframe custom html tags
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

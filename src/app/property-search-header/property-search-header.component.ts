@@ -5,6 +5,7 @@ import { PropertySearchService } from '../property-search.service';
 import { AuthService } from '../auth.service';
 import { StateCityService } from '../state-city.service';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
+import { UxService } from '../ux.service';
 
 @Component({
   selector: 'app-property-search-header',
@@ -26,7 +27,8 @@ export class PropertySearchHeaderComponent implements OnInit {
     propertyService: PropertySearchService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public authService: AuthService
+    public authService: AuthService,
+    public uxService: UxService
   ) {
     this.propertyService = propertyService;
     this.searchProperty = new FormGroup({
@@ -130,5 +132,11 @@ export class PropertySearchHeaderComponent implements OnInit {
       .filter((city) =>
         city.toLowerCase().includes(event.target.value.toLowerCase())
       );
+  }
+
+  getSrc() {
+    if (this.uxService.darkMode)
+      return '../../assets/icons/light_mode_black_24dp.svg';
+    else return '../../assets/icons/dark_mode_black_24dp.svg';
   }
 }

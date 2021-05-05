@@ -3,6 +3,8 @@ import { AuthService } from '../auth.service';
 import { UxService } from '../ux.service';
 import { PropertyService } from '../property.service';
 import { User, UserServiceService } from '../user-service.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-my-property',
@@ -12,6 +14,8 @@ import { User, UserServiceService } from '../user-service.service';
 export class MyPropertyComponent implements OnInit {
   headerOpen = false;
   user!: User;
+  editForm: FormGroup;
+  @ViewChild('closeModel') closeModel!: ElementRef;
 
   constructor(
     public authService: AuthService,
@@ -19,6 +23,13 @@ export class MyPropertyComponent implements OnInit {
     public property: PropertyService,
     public userService: UserServiceService
   ) {
+    this.editForm = new FormGroup({
+      name: new FormControl(''),
+      mobile: new FormControl(''),
+      address: new FormControl(''),
+      // userImage: new FormControl(null),
+      // email: new FormControl(null),
+    });
     this.getUserDetail();
   }
 
@@ -35,7 +46,27 @@ export class MyPropertyComponent implements OnInit {
       .getUserById(this.authService.user?.email)
       .subscribe((Response) => {
         this.user = Response;
+        const { name, address, mobile } = Response;
         console.log(this.user);
+        // this.editForm.value.name = this.user.name;
+        this.editForm.setValue({ name, address, mobile });
       });
+  }
+
+  onSubmit() {
+    this.uxService.showSpinner();
+    this.userService.updateUserById(this.editForm.value).subscribe(
+      (Response) => {
+        console.log(Response);
+        this.uxService.hideSpinner();
+        this.user = Response;
+        this.uxService.showToast('Success', 'Update Successfully');
+
+        this.closeModel.nativeElement.click();
+      },
+      (err) => {
+        this.uxService.hideSpinner();
+      }
+    );
   }
 }
