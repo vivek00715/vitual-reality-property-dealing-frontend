@@ -31,4 +31,21 @@ export class PropertyService {
       this.baseUrl + '/owner/' + userid + '/property/'
     );
   }
+
+  editProperty(createForm: any, id: number): Observable<Property> {
+    return this.http.patch<Property>(
+      `${this.baseUrl}/patch/` + id,
+      createForm,
+      {
+        headers: {
+          Authorization: this.authService.user?.token || '',
+        },
+      }
+    );
+  }
+
+  deleteProperty(id: number) {
+    console.log(id);
+    return this.http.delete(`${this.baseUrl}/delete/` + id);
+  }
 }

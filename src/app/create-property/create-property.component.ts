@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth.service';
-import {PropertyService} from '../property.service';
-import {StateCityService} from '../state-city.service';
-import {UxService} from '../ux.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { PropertyService } from '../property.service';
+import { StateCityService } from '../state-city.service';
+import { UxService } from '../ux.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-property',
@@ -24,8 +24,7 @@ export class CreatePropertyComponent implements OnInit {
     private cityStateService: StateCityService,
     private uxService: UxService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     for (let year = 1990; year <= 2021; year++) {
@@ -47,16 +46,16 @@ export class CreatePropertyComponent implements OnInit {
         Validators.maxLength(350),
       ]),
       area: new FormControl(null, Validators.required),
-      bathrooms: new FormControl(null, Validators.required),
-      bedrooms: new FormControl(null, Validators.required),
-      bhk: new FormControl(null, Validators.required),
-      builtYear: new FormControl(null, Validators.required),
+      bathrooms: new FormControl(1, Validators.required),
+      bedrooms: new FormControl(1, Validators.required),
+      bhk: new FormControl(1, Validators.required),
+      builtYear: new FormControl(1990, Validators.required),
       city: new FormControl('', Validators.required),
       description: new FormControl(null, [
         Validators.required,
         Validators.maxLength(350),
       ]),
-      floors: new FormControl(null, Validators.required),
+      floors: new FormControl(1, Validators.required),
       // 'owneremail' : new FormControl(null),
       pinCode: new FormControl(null, [
         Validators.required,
@@ -75,7 +74,7 @@ export class CreatePropertyComponent implements OnInit {
   }
 
   getCities() {
-    const {state} = this.createForm.value;
+    const { state } = this.createForm.value;
     if (state) {
       return this.cityStateService.getCities(state);
     }
@@ -89,14 +88,17 @@ export class CreatePropertyComponent implements OnInit {
     this.uxService.showSpinner();
     // console.log(this.createForm.value.pincode);
     // this.createForm.value.owneremail = this.authService.user?.email;
-    this.propertyService.createProperty(this.createForm.value).subscribe(res => {
-      this.uxService.hideSpinner();
-      this.uxService.showToast('Success', 'Property created successfully');
-      this.router.navigate(['/']);
-    }, (err) => {
-      console.error(err);
-      this.uxService.hideSpinner();
-      this.uxService.handleError(err);
-    });
+    this.propertyService.createProperty(this.createForm.value).subscribe(
+      (res) => {
+        this.uxService.hideSpinner();
+        this.uxService.showToast('Success', 'Property created successfully');
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        console.error(err);
+        this.uxService.hideSpinner();
+        this.uxService.handleError(err);
+      }
+    );
   }
 }

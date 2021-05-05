@@ -1,11 +1,80 @@
 <!-- DON'T REMOVE data-angular from html, it is for testing -->
+<br />
+<div *ngIf="this.authService.user?.email === getPropertyEmail()">
+  <a
+    type="button"
+    class="edit-button btn btn-danger mr-2"
+    [routerLink]="'/property/edit/' + data.propertyId"
+  >
+    <img class="edit-img" src="../../assets/icons/edit_black_24dp.svg" />
+    Edit
+  </a>
+  &nbsp;
+  <button
+    type="button"
+    class="delete-button btn btn-danger mr-2"
+    data-toggle="modal"
+    data-target="#exampleModal"
+  >
+    <img class="edit-img" src="../../assets/icons/delete_white_24dp.svg" />
+    Delete
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Property</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Do you really want to delete this property ?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            #closeModel
+          >
+            No
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="deleteProperty()"
+          >
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="mt-4" data-angular="address">
   <b>{{ data.address }}</b> {{ data.city }}, {{ data.state }}
   {{ data.pinCode }}
 </div>
+
 <div class="row mt-2" data-angular="property-details">
   <div class="col d-flex flex-column">
-    <b class="big-text">{{ data.price | currency:"INR" }}</b>
+    <b class="big-text">{{ data.price | currency: "INR" }}</b>
     <div>Price</div>
   </div>
   <div class="col d-flex flex-column">
@@ -40,12 +109,12 @@
   </div>
   <div class="col-12 col-lg-6 row font-large">
     <div class="col-6">List Price:</div>
-    <div class="col-6 text-right p-0">{{ data.price | currency:"INR" }}</div>
+    <div class="col-6 text-right p-0">{{ data.price | currency: "INR" }}</div>
   </div>
   <div class="col-12 col-lg-6 row font-large">
     <div class="col-6">Price/Sq.Ft:</div>
     <div class="col-6 text-right p-0">
-      {{ data.price / data.area | currency:"INR" }}
+      {{ data.price / data.area | currency: "INR" }}
     </div>
   </div>
   <div class="col-12 my-3 text-center text-lg-left">
