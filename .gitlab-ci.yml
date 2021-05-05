@@ -11,8 +11,6 @@ build_job:
  stage: build
  before_script:
         - echo "Installing NPM Dependencies and running angular application"
- only:
- - master
  script:
   - whoami
   - npm install
@@ -29,7 +27,9 @@ build_job:
 deploy_job:
   image: google/cloud-sdk:alpine
   stage: deploy
-  dependencies: 
+  only:
+    - master
+  dependencies:
     - build_job
   before_script:
   - "ServiceName=vrpd-frontend"
@@ -44,39 +44,39 @@ deploy_job:
     - url: /(.+\.js)
       static_files: dist/VirtualReality/\1
       upload: dist/VirtualReality/(.+\.js)
-    
+
     - url: /(.+\.css)
       static_files: dist/VirtualReality/\1
       upload: dist/VirtualReality/(.+\.css)
-    
+
     - url: /(.+\.png)
       static_files: dist/VirtualReality/\1
       upload: dist/VirtualReality/(.+\.png)
-    
+
     - url: /(.+\.jpg)
       static_files: dist/VirtualReality/\1
       upload: dist/VirtualReality/(.+\.jpg)
-    
+
     - url: /(.+\.svg)
       static_files: dist/VirtualReality/\1
       upload: dist/VirtualReality/(.+\.svg)
-    
+
     - url: /favicon.ico
       static_files: dist/VirtualReality/favicon.ico
       upload: dist/VirtualReality/favicon.ico
-    
+
     - url: /(.+\.json)
       static_files: dist/VirtualReality/\1
       upload: dist/VirtualReality/(.+\.json)
-    
+
     - url: /(.+)
       static_files: dist/VirtualReality/index.html
       upload: dist/VirtualReality/index.html
-    
+
     - url: /
       static_files: dist/VirtualReality/index.html
       upload: dist/VirtualReality/index.html
-    
+
     skip_files:
       - e2e/
       - node_modules/
