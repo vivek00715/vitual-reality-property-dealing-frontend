@@ -69,6 +69,10 @@ deploy_job:
       static_files: dist/VirtualReality/\1
       upload: dist/VirtualReality/(.+\.json)
 
+    - url: /(.+\.gltf)
+          static_files: dist/VirtualReality/\1
+          upload: dist/VirtualReality/(.+\.gltf)
+
     - url: /(.+)
       static_files: dist/VirtualReality/index.html
       upload: dist/VirtualReality/index.html
