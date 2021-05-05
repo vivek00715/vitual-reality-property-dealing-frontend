@@ -1,0 +1,31 @@
+<div class="container" *ngIf="screen === 0">
+  <div class="row" *ngIf="screen===0">
+    <div class="col-12 text-center my-4"><h2>Enter Details of Plot</h2></div>
+    <div class="col-6">
+      <div class="form-group">
+        <label>Length in Feet</label>
+        <input type="number" class="form-control" [(ngModel)]="plotLength">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label>Breadth in Feet</label>
+        <input type="number" class="form-control" [(ngModel)]="plotBreadth">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Screen 1, Canvas to draw walls -->
+<div *ngIf="plotLength > 0 && plotBreadth > 0" [ngClass]="{ 'd-none': screen === 1}">
+  <app-house-map-generator
+    [breadth]="+plotBreadth"
+    [length]="+plotLength"
+    (vrView)="handleVrData($event)"
+  >
+  </app-house-map-generator>
+</div>
+
+<div *ngIf="screen === 1">
+  <app-house-model-viewer [vrWallData]="vrData"></app-house-model-viewer>
+</div>

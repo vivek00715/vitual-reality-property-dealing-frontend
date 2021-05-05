@@ -1,0 +1,115 @@
+{
+  "accessors": [
+    {
+      "name": "Cube_1_0_positions",
+      "componentType": 5126,
+      "count": 62,
+      "min": [
+        -50,
+        -5,
+        -5
+      ],
+      "max": [
+        50,
+        5,
+        5
+      ],
+      "type": "VEC3",
+      "bufferView": 0,
+      "byteOffset": 0
+    },
+    {
+      "name": "Cube_1_0_indices",
+      "componentType": 5123,
+      "count": 360,
+      "min": [
+        0
+      ],
+      "max": [
+        61
+      ],
+      "type": "SCALAR",
+      "bufferView": 1,
+      "byteOffset": 0
+    }
+  ],
+  "asset": {
+    "generator": "obj2gltf",
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "name": "cornice",
+      "byteLength": 1464,
+      "uri": "data:application/octet-stream;base64,AABIwgAAoMAAAKDAAABIwgAAQMAAAKDAAABIQgAAQMAAAKDAAABIQgAAoMAAAKDAAABIQgAAoEAAAABAAABIQgAAoEAAAKBAAABIQs3MjEAAAKBAAABIQgjIi0ABGZdAAABIQkJbiEAtMY9AAABIQhnFg0Au8ohAAABIQjFhe0CBhoRAAABIQqOSakC7GYFAAABIQpqZWUAAAIBAAABIQpqZWUAzMzNAAABIQkZ4K0Cy1SNAAABIQt6t+j/mXApAAABIQhHhrT+w49U/AABIQvhtUD/p1YI/AABIQs3MzD4F27A+AABIQkFEKj1J9d2+AABIQmaIw76Mu4u/AABIQpNWaL9EFdS/AABIQrN7yr/hswTAAABIQonwFsDkahnAAABIQs3MTMBmZibAAABIQs3MTMDNzEzAAABIQjMzc8DNzEzAAABIQjGZd8DzAGLAAABIQlLzf8C3fHTAAABIQgZjhcAqgoHAAABIQnbGjMAoC4fAAABIQjJmlcATmorAAABIQgAAoMDNzIzAAABIwgAAoEAAAKBAAABIws3MjEAAAKBAAABIwgAAoEAAAABAAABIwgAAoMDNzIzAAABIwjJmlcCJmYrAAABIwnbGjMCeCofAAABIwgZjhcCfgYHAAABIwlLzf8Cie3TAAABIwjGZd8De/2HAAABIwjMzc8DNzEzAAABIws3MTMDNzEzAAABIws3MTMBmZibAAABIwonwFsDLaRnAAABIwrN7yr/MsgTAAABIwpNWaL8bE9S/AABIwmaIw75juYu/AABIwkFEKj2i7N2+AABIws3MzD7O47A+AABIwvhtUD8S2II/AABIwhHhrT/a5dU/AABIwt6t+j/7XQpAAABIwkZ4K0DH1iNAAABIwpqZWUAzMzNAAABIwpqZWUAAAIBAAABIwqOSakBIGoFAAABIwjFhe0AOh4RAAABIwhnFg0C78ohAAABIwkJbiEC6MY9AAABIwgjIi0CNGZdAAQADAAAAAwABAAIAHwAgAAMAAwACAAQABAAFAAYACwAMAA0ADQAOAA8ADwAQABEAEQASABMAFwAYABkAGQAaABsAHgAfAAMABAAGAAcACgALAA0ADQAPABEAFgAXABkAGQAbABwAHQAeAAMABAAHAAgACQAKAA0ADQARABMAFQAWABkAGQAcAB0AHQADAAQABAAIAAkADQATABQAFQAZAB0ABAAJAA0ADQAUABUAFQAdAAQABAANABUAIQAiAAYABgAFACEAIQA9ACIAOQA3ADgANwA1ADYANQAzADQAMwAxADIALQArACwAKwApACoAJQAAACQAAAAjAAEAIwA9ACEAOgA3ADkANwAzADUALgArAC0AKwAoACkAJgAAACUAIwA8AD0AOwA3ADoANwAxADMALwArAC4AKwAnACgAJwAAACYAIwA7ADwANwAwADEALwAnACsAJwAjAAAAIwA3ADsANwAvADAALwAjACcAIwAvADcAAgAjAAQAIwACAAEABAAhAAUAIQAEACMADAA4ADcANwANAAwAGAAsACsAKwAZABgAGQArACoAKgAaABkAJAAAAAMAAwAgACQABgAiAD0APQAHAAYADQA3ADYANgAOAA0AKgApABsAGwAaACoAJQAkACAAIAAfACUAJgAlAB8AHwAeACYAJwAmAB4AHgAdACcAKAAnAB0AHQAcACgAKQAoABwAHAAbACkACwA5ADgAOAAMAAsACgA6ADkAOQALAAoACQA7ADoAOgAKAAkACAA8ADsAOwAJAAgABwA9ADwAPAAIAAcAFwAtACwALAAYABcAFgAuAC0ALQAXABYAFQAvAC4ALgAWABUAFAAwAC8ALwAVABQAEwAxADAAMAAUABMAEgAyADEAMQATABIAEQAzADIAMgASABEAEAA0ADMAMwARABAADwA1ADQANAAQAA8ADgA2ADUANQAPAA4A"
+    }
+  ],
+  "bufferViews": [
+    {
+      "name": "bufferView_0",
+      "buffer": 0,
+      "byteLength": 744,
+      "byteOffset": 0,
+      "byteStride": 12,
+      "target": 34962
+    },
+    {
+      "name": "bufferView_1",
+      "buffer": 0,
+      "byteLength": 720,
+      "byteOffset": 744,
+      "target": 34963
+    }
+  ],
+  "materials": [
+    {
+      "name": "flwhite1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "alphaMode": "OPAQUE",
+      "doubleSided": false
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Cube_1",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Cube",
+      "mesh": 0
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}

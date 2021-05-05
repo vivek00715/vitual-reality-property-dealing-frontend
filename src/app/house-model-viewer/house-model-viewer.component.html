@@ -1,0 +1,106 @@
+<a-scene #aScene embedded fog="type: linear; color: #fff; far: 19; near: 10">
+  <a-entity id="walls" #walls></a-entity>
+
+
+  <!-- Sky -->
+  <a-sky id="sky" color="#000000"></a-sky>
+  <a-plane material="color: #FFF; color: #fff; repeat: 500 500" rotation="90 0 0" scale="500 500"
+           position="0 7 0"></a-plane>
+
+  <a-plane static-body material="src: /assets/floor/f3.jpg; repeat: 500 500" rotation="-90 0 0" scale="500 500" #floor></a-plane>
+
+  <!-- This plane keeps the camera 1.6m above the ground -->
+  <a-plane static-body material="color: white" rotation="-90 0 0" scale="500 500" position="0 1.6 0"
+           visible="false" #floorUpper></a-plane>
+
+  <a-entity
+    id="player"
+    camera
+    wasd-controls
+    look-controls
+    kinematic-body
+    listener
+    position="0 1.6 0"
+    height="1.6"
+    #player
+  >
+    <a-cursor #cursor></a-cursor>
+  </a-entity>
+</a-scene>
+<div class="d-flex justify-content-center py-2">
+  <span class="mr-4">Mode: </span>
+  <button
+    class="btn btn-sm"
+    [ngClass]="{'btn-outline-primary': mode !== 0, 'btn-primary': mode === 0}"
+    (click)="mode = 0"
+  >Wall Paint Color
+  </button>
+  <button
+    class="btn btn-sm mx-3"
+    [ngClass]="{'btn-outline-primary': mode !== 1, 'btn-primary': mode === 1}"
+    (click)="mode = 1"
+  >Wall Texture
+  </button>
+  <button
+    class="btn btn-sm"
+    [ngClass]="{'btn-outline-primary': mode !== 2, 'btn-primary': mode === 2}"
+    (click)="mode = 2"
+  >Floor Texture
+  </button>
+  <button
+    class="btn btn-sm mx-3"
+    [ngClass]="{'btn-outline-primary': mode !== 3, 'btn-primary': mode === 3}"
+    (click)="mode = 3"
+  >Object Placer
+  </button>
+
+  <button
+    class="btn btn-sm"
+    [ngClass]="{'btn-outline-primary': mode !== 4, 'btn-primary': mode === 4}"
+    (click)="mode = 4"
+  >Remove Object
+  </button>
+</div>
+<div *ngIf="mode === 0">
+  <div class="row">
+    <div class="col-2 text-right">
+      Color:
+    </div>
+    <div class="col-10">
+      <input type="color" [(ngModel)]="wallColor" class="form-control">
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mode === 1" class="d-flex justify-content-around">
+    <img
+      [src]="texture.thumb"
+      alt="Texture"
+      *ngFor="let texture of houseModelService.wallTextures; let i = index;"
+      (click)="houseModelService.selectedWallIndex = i"
+      class="img-thumbnail"
+      [ngClass]="{textureActive: houseModelService.selectedWallIndex === i}"
+    >
+</div>
+
+<div *ngIf="mode === 2" class="d-flex justify-content-around">
+  <img
+    [src]="texture.thumb"
+    alt="Texture"
+    *ngFor="let texture of houseModelService.floorTextures; let i = index;"
+    (click)="setFloorTextureIndex(i)"
+    class="img-thumbnail"
+    [ngClass]="{textureActive: houseModelService.selectedFloorTexture === i}"
+  >
+</div>
+
+<div *ngIf="mode === 3" class="d-flex justify-content-around">
+  <img
+    [src]="model.image"
+    alt="Model"
+    *ngFor="let model of houseModelService.objectModels; let i = index;"
+    (click)="houseModelService.selectedObjectModel = i"
+    width="64"
+    [ngClass]="{textureActive: houseModelService.selectedObjectModel === i}"
+  >
+</div>
