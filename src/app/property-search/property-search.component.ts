@@ -26,6 +26,7 @@ export class PropertySearchComponent implements OnInit {
   myChoice='all';
 
   mapSrc="";
+  // Api="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uIgJLlFocMlwcu8b3wKPKkdT2mWV3AU&libraries=common,util,map,overlay,onion,controls,stats,places,geometry&v=3.44"
   Api="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2TLiALPifHWu9QDw25D1cLsSYTYrOaUk&q=";
   city="";
   street="";
