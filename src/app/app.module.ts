@@ -18,7 +18,7 @@ import { PropertyInformationNearbyCardsComponent } from './property-information-
 import { HttpClientModule } from '@angular/common/http';
 import { PropertySearchService } from './property-search.service';
 import { AuthPageComponent } from './auth-page/auth-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +26,9 @@ import { CityDetailService } from './city-detail.service';
 import { CreatePropertyComponent } from './create-property/create-property.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { HouseModelMainComponent } from './house-model-main/house-model-main.component';
+import { HouseMapGeneratorComponent } from './house-map-generator/house-map-generator.component';
+import { HouseModelViewerComponent } from './house-model-viewer/house-model-viewer.component';
 import { MyPropertyComponent } from './my-property/my-property.component';
 import { MyPropertyRentComponent } from './my-property-rent/my-property-rent.component';
 import { MyPropertySellComponent } from './my-property-sell/my-property-sell.component';
@@ -50,6 +53,9 @@ import { EditPropertyDetailComponent } from './edit-property-detail/edit-propert
     AuthPageComponent,
     CreatePropertyComponent,
     ErrorPageComponent,
+    HouseModelMainComponent,
+    HouseMapGeneratorComponent,
+    HouseModelViewerComponent,
     MyPropertyComponent,
     MyPropertyRentComponent,
     MyPropertySellComponent,
@@ -64,6 +70,7 @@ import { EditPropertyDetailComponent } from './edit-property-detail/edit-propert
     BrowserAnimationsModule,
     NgxSliderModule,
     ToastrModule.forRoot(),
+    FormsModule
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],
