@@ -86,6 +86,7 @@ deploy_job:
       - ^(./)?.\.md$
       - ^(./)?.\.yaml$
       - ^LICENSE
+      - .git/objects
     EOF
   - "cat app.yaml"
   - echo $SERVICE_ACCOUNT > ${CI_PIPELINE_ID}.json
