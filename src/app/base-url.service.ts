@@ -1,15 +1,19 @@
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseUrlService {
-  private serverPort = 8080;
 
   getBaseUrl(): string {
     // will automatically point to correct url whether running locally or on cloud
-    const {protocol, hostname} = window.location;
-    return `${protocol}//${hostname}:${this.serverPort}`;
+    if (isDevMode()) {
+      // running locally, use local server
+      return 'http://localhost:8080';
+    } else {
+      // running in production, use the new url
+      return 'https://vrpd-backend-dot-hu18-groupa-angular.et.r.appspot.com';
+    }
   }
 
   constructor() {
