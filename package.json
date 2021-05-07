@@ -21,11 +21,9 @@
     "@angular/platform-browser": "~11.2.7",
     "@angular/platform-browser-dynamic": "~11.2.7",
     "@angular/router": "~11.2.7",
-    "@types/googlemaps": "^3.43.3",
-    "bootstrap": "^4.6.0",
-    "ngx-google-places-autocomplete": "^2.0.5",
     "ngx-spinner": "^11.0.1",
-    "ngx-toastr": "^13.2.1",
+    "primeicons": "^4.1.0",
+    "primeng": "^11.4.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

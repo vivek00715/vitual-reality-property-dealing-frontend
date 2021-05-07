@@ -20,7 +20,6 @@ import { PropertySearchService } from './property-search.service';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CityDetailService } from './city-detail.service';
 import { CreatePropertyComponent } from './create-property/create-property.component';
@@ -69,7 +68,6 @@ import { EditPropertyDetailComponent } from './edit-property-detail/edit-propert
     NgxSpinnerModule,
     BrowserAnimationsModule,
     NgxSliderModule,
-    ToastrModule.forRoot(),
     FormsModule
   ],
   providers: [PropertySearchService, CityDetailService],
