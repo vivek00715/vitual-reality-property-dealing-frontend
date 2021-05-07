@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { NgxSpinnerService } from "ngx-spinner";
-import { ToastrService } from 'ngx-toastr';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 
 @Injectable({
@@ -9,14 +8,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UxService {
   public darkMode = false;
-  constructor(private toast: ToastrService, private spinner: NgxSpinnerService) { }
 
-  showToast(title: string, content: string, errorToast=false){
+  constructor(private spinner: NgxSpinnerService) {
+  }
+
+  showToast(title: string, content: string, errorToast = false) {
     // will show red colored toast if errorToast is true, default is green
-    if(errorToast){
-      this.toast.error(content, title);
+    if (errorToast) {
+      alert(content);
     } else {
-      this.toast.success(content, title);
+      alert(content);
     }
   }
 
@@ -34,7 +35,7 @@ export class UxService {
     let errorMessage = err.error;
     if (typeof errorMessage != 'string') {
       errorMessage = err.statusText;
-      if (errorMessage === 'OK'){
+      if (errorMessage === 'OK') {
         errorMessage = err.message || 'Something went wrong';
       }
     }
