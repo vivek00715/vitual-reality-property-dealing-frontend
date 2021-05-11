@@ -1,306 +1,333 @@
-<!-- nav start from here  -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- brand name and logo  -->
-  <a class="navbar-brand" routerLink="/">
-    <img
-      src="../../assets/images/Logo.png"
-      class="d-inline-block align-top landing-logo-size"
-      alt=""
-    />
-    <span class="landing-logo-name">Hash Homes</span>
-  </a>
-
-  <!-- button to toggle when in mobile screen view  -->
-  <button
-    class="toggle-button"
-    (click)="headerOpen = !headerOpen"
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <!-- <span class="navbar-toggler-icon"></span> -->
-    <span
-      ><img
-        src="../../assets/icons/hamburger.svg"
-        class="toggle-button-hamburger"
-    /></span>
-  </button>
-
-  <!-- menu items -->
-  <div
-    class="collapse navbar-collapse"
-    id="navbarText"
-    [ngClass]="{ show: headerOpen }"
-  >
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
-      </li>
-    </ul>
-    <!-- logout button-->
-    <button
-      type="button"
-      class="login-button btn btn-danger mr-2"
-      *ngIf="authService.loggedIn"
-      (click)="authService.logout()"
-    >
-      Log out
-    </button>
-  </div>
-</nav>
-<!-- nav bar ends here  -->
-
-<br />
-<div class="create-property-heading-div">
-  <span class="create-property-heading">Want to Sell or Rent Property ? </span>
-</div>
-<br />
-<form class="container" [formGroup]="createForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Enter Address of Property:</label><br />
-    <textarea class="form-control" formControlName="address"></textarea>
-    <span
-      *ngIf="
-        !createForm.get('address')?.valid && createForm.get('address')?.touched
-      "
-      class="help-block"
-      style="color: red"
-      >Mandatory *</span
-    >
-  </div>
-  <br />
-  <div class="row">
-    <div class="col-md-4 col-12">
-      <label>Enter Area in sq meter:</label><br />
-      <input type="number" formControlName="area" class="form-control" />
-      <span
-        *ngIf="
-          !createForm.get('area')?.valid && createForm.get('area')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-
-    <div class="col-md-4 col-12">
-      <label>Enter number of bathrooms:</label><br />
-      <input type="number" formControlName="bathrooms" class="form-control" />
-      <span
-        *ngIf="
-          !createForm.get('bathrooms')?.valid &&
-          createForm.get('bathrooms')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-
-    <div class="col-md-4 col-12">
-      <label>Enter number of bedrooms:</label><br />
-      <input type="number" formControlName="bedrooms" class="form-control" />
-      <span
-        *ngIf="
-          !createForm.get('bedrooms')?.valid &&
-          createForm.get('bedrooms')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-  </div>
-
-  <br />
-  <div class="row">
-    <div class="col-md-4 col-12">
-      <label>Enter Number of BHK:</label><br />
-      <!-- <input type="number" formControlName = "bhk" class="form-control"> -->
-      <select formControlName="bhk" class="form-control">
-        <option *ngFor="let y of bhk">{{ y }}</option>
-      </select>
-      <span
-        *ngIf="!createForm.get('bhk')?.valid && createForm.get('bhk')?.touched"
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-
-    <div class="col-md-4 col-12">
-      <label>Enter Build year:</label><br />
-      <select formControlName="builtYear" class="form-control">
-        <option *ngFor="let y of year">{{ y }}</option>
-      </select>
-      <span
-        *ngIf="
-          !createForm.get('builtYear')?.valid &&
-          createForm.get('builtYear')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-
-    <div class="col-md-4 col-12">
-      <label>Enter number of Floor:</label><br />
-      <select formControlName="floors" class="form-control">
-        <option *ngFor="let y of floor">{{ y }}</option>
-      </select>
-      <span
-        *ngIf="
-          !createForm.get('floors')?.valid && createForm.get('floors')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-  </div>
-
-  <br />
-  <div class="row">
-    <div class="col-md-4 col-12">
-      <label>Enter State:</label><br />
-      <!-- <input type="text" formControlName = "state" class="form-control"> -->
-      <select formControlName="state" class="form-control">
-        <option value="" disabled>State</option>
-        <option *ngFor="let state of getStates()" [value]="state">
-          {{ state }}
-        </option>
-      </select>
-      <span
-        *ngIf="
-          !createForm.get('state')?.valid && createForm.get('state')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-
-    <div class="col-md-4 col-12">
-      <label>Enter City:</label><br />
-      <select formControlName="city" class="form-control">
-        <option value="" disabled>City</option>
-        <option *ngFor="let city of getCities()" [value]="city">
-          {{ city }}
-        </option>
-      </select>
-      <span
-        *ngIf="
-          !createForm.get('city')?.valid && createForm.get('city')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
-
-    <div class="col-md-4 col-12">
-      <label>Enter PinCode:</label><br />
-      <input
-        type="text"
-        formControlName="pinCode"
-        class="form-control"
-        pattern="[1-9][0-9]{5}"
+<div style="font-family: 'Work Sans', sans-serif; letter-spacing: 0.5px">
+  <div class="p-grid">
+    <div style="text-align: center; font-family: sans-serif" class="p-col">
+      <h3 style="color: lightgrey">REACH UPTO 42 LAC BUYERS</h3>
+      <h1>Sell or Rent your</h1>
+      <h1>Property on Hash Homes</h1>
+      <img
+        style="width: 40rem; height: 30rem"
+        src="../../assets/images/postProperty.png"
       />
-      <span
-        *ngIf="
-          !createForm.get('pinCode')?.valid &&
-          createForm.get('pinCode')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Enter 6 digit pin code</span
-      >
-      <!-- <span *ngIf = "!createForm.get('pincode')?.valid" class="help-block" style="color: red;">Enter 6 digit pin code</span> -->
+      <br />
+
+      <div>
+        <p style="color: gray">HOW TO POST</p>
+        <p style="font-size: 2.5rem" class="p-mt-2">
+          <b
+            >Post Your Property in <br />
+            3 Simple Steps</b
+          >
+        </p>
+      </div>
+
+      <div class="p-grid p-m-5">
+        <div class="p-col-4" style="text-align: left">
+          <p>
+            <img
+              style="width: 4rem; height: 4rem"
+              src="../../assets/icons/undraw_Add_notes_re_ln36.svg"
+            />
+          </p>
+          <p style="font-size: 1.3rem">
+            <span style="color: #6c63ff">01. </span>
+            <span>Add details of your property</span>
+          </p>
+          <p style="color: gray; font-size: 0.92rem">
+            Begin by telling us the few basic details about your property like
+            your property type, location, No. of rooms etc
+          </p>
+        </div>
+
+        <div class="p-col-4" style="text-align: left">
+          <p>
+            <img
+              style="width: 4rem; height: 4rem"
+              src="../../assets/icons/undraw_Photos_re_pvh3.svg"
+            />
+          </p>
+          <p style="font-size: 1.3rem">
+            <span style="color: #6c63ff">02. </span>
+            <span>Upload Photos and Videos</span>
+          </p>
+          <p style="color: gray; font-size: 0.92rem">
+            Upload photos and videos of your property either via your desktop
+            device or from your mobile phone.
+          </p>
+        </div>
+
+        <div class="p-col-4" style="text-align: left">
+          <p>
+            <img
+              style="width: 4rem; height: 4rem"
+              src="../../assets/icons/undraw_business_shop_qw5t.svg"
+            />
+          </p>
+          <p style="font-size: 1.3rem">
+            <span style="color: #6c63ff">03. </span>
+            <span> Add Pricing &amp; Ownership</span>
+          </p>
+          <p style="color: gray; font-size: 0.92rem">
+            Just update your property’s ownership details and your expeced price
+            and your property is ready for posting
+          </p>
+        </div>
+      </div>
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Begin to Post your property"
+      ></button>
     </div>
   </div>
 
   <br />
-  <div>
-    <label>Enter Description:</label><br />
-    <!-- <input type="text" class="form-control" formControlName = "description"> -->
-    <textarea class="form-control" formControlName="description"></textarea>
-    <span
-      *ngIf="
-        !createForm.get('description')?.valid &&
-        createForm.get('description')?.touched
-      "
-      class="help-block"
-      style="color: red"
-      >Mandatory *</span
-    >
+  <div class="p-m-5" style="z-index: -1">
+    <img style="width: 100%" src="../../assets/images/visBanner.a0563737.png" />
   </div>
 
-  <br />
-  <div class="row">
-    <div class="col-md-4 col-12">
-      <label>Enter Price:</label><br />
-      <input type="number" formControlName="price" class="form-control" />
-      <span
-        *ngIf="
-          !createForm.get('price')?.valid && createForm.get('price')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
+  <div
+    style="
+      background: white;
+      width: 80%;
+      height: 25rem;
+      margin-top: -15rem;
+      margin-left: 7.5rem;
+      z-index: 10;
+      position: absolute;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    "
+  >
+    <div style="margin-left: 5rem; margin-top: 5rem; margin-right: 5rem">
+      <p style="font-size: 1.9rem">
+        <b
+          >With over 4 million unique visitors every month, your property gets
+          maximum visibility on HashHomes</b
+        >
+      </p>
+      <br />
+      <div class="p-grid">
+        <div class="p-col-4">
+          <p style="color: gray">Over</p>
+          <p style="font-size: 2.5rem" class="p-mt-2 p-mb-2"><b>1M</b></p>
+          <p style="color: gray">Property Listings</p>
+        </div>
 
-    <div class="col-md-4 col-12">
-      <label>Enter Purpose:</label><br />
-      <select formControlName="purpose" class="form-control">
-        <option>Rent</option>
-        <option>Sell</option>
-      </select>
-      <span
-        *ngIf="
-          !createForm.get('purpose')?.valid &&
-          createForm.get('purpose')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
-    </div>
+        <div class="p-col-4">
+          <p style="color: gray">Over</p>
+          <p style="font-size: 2.5rem" class="p-mt-2 p-mb-2"><b>4.5M</b></p>
+          <p style="color: gray">Monthly Searches</p>
+        </div>
 
-    <div class="col-md-4 col-12">
-      <label>Enter Type:</label><br />
-      <select formControlName="type" class="form-control">
-        <option>Home</option>
-        <option>Flat</option>
-        <option>Office</option>
-      </select>
-      <span
-        *ngIf="
-          !createForm.get('type')?.valid && createForm.get('type')?.touched
-        "
-        class="help-block"
-        style="color: red"
-        >Mandatory *</span
-      >
+        <div class="p-col-4">
+          <p style="color: gray">Over</p>
+          <p style="font-size: 2.5rem" class="p-mt-2 p-mb-2"><b>200K</b></p>
+          <p style="color: gray">Owners Advertise Monthly</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <br />
-  <div class="form-button-div">
-    <button
-      type="submit"
-      class="btn btn-primary form-button"
-      [disabled]="createForm.invalid"
-    >
-      Submit
-    </button>
+  <div class="p-grid" style="margin-top: 15rem">
+    <div class="p-col-5" style="margin-left: 2rem; padding-right: 2rem">
+      <p style="color: gray">ADDITIONAL BENEFITS</p>
+      <p style="font-size: 2.7rem" class="p-mt-0 p-mb-2">
+        <b>And there’s a lot more to it ... </b>
+      </p>
+      <p style="color: gray; font-size: 0.8rem">
+        Selling property online was never so easy and is now just a click away.
+        HashHomes.com, a leading property site to sale/rent your property,
+        brings you the quickest and most convenient way for displaying your
+        property advertisement and connecting with prospective buyers.
+      </p>
+      <br />
+      <p>
+        <i class="pi pi-check" style="color: #6c63ff"></i
+        ><span style="font-size: 0.8rem; color: gray"
+          >&nbsp; Get high visibility for your property</span
+        >
+      </p>
+      <p>
+        <i class="pi pi-check" style="color: #6c63ff"></i>
+        <span style="font-size: 0.8rem; color: gray"
+          >&nbsp; Buyer/tenants can contact you directly</span
+        >
+      </p>
+
+      <p>
+        <i class="pi pi-check" style="color: #6c63ff"></i
+        ><span style="font-size: 0.8rem; color: gray"
+          >&nbsp; Customer Care Support over Email, chat &amp; Toll Free
+          numbers</span
+        >
+      </p>
+      <br />
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Begin to Post your property"
+      ></button>
+    </div>
+    <div class="p-col-6 p-ml-25">
+      <img
+        style="width: 35rem; height: 30rem"
+        src="../../assets/images/MicrosoftTeams-image.png"
+      />
+    </div>
   </div>
-</form>
+
+  <div class="p-grid">
+    <div style="margin-left: 2rem" class="p-col-8">
+      <p style="color: gray">KNOW MORE ABOUT POSTING ON HASHHOMES</p>
+      <p style="font-size: 2.7rem" class="p-mt-0 p-mb-2">
+        <b>Frequetly Asked Questions</b>
+      </p>
+
+      <p-panel [toggleable]="true" [collapsed]="true" style="width: 10rem">
+        <ng-template pTemplate="header"
+          ><span style="font-size: 1.2rem; font-weight: bold"
+            >Posting on HashHomes</span
+          ></ng-template
+        >
+        <p>
+          Selling property online was never so easy and is now just a click
+          away. HashHomes.com, a leading property site to sale/rent your
+          property, brings you the quickest and most convenient way for
+          displaying your property advertisement and connecting with prospective
+          buyers.
+          <br />
+          <br />
+          Whether you’re an owner, a builder, a broker or have a property for
+          sale or want to rent a shop, rent office spaces, post property for
+          rent, rent a house, rent flat, or lease a land, advertise your
+          property for sell / rent / paying guest with us for free. We are the
+          best free property ads posting site for both residential and
+          commercial properties that assures great results along with a hassle
+          free process. A listing usually takes maximum of 24 working hours to
+          get screened and become visible on HashHomes platform. Once your
+          property listing is screened, it will automatically be visible on the
+          site, and has a standard live duration of 60 days.
+        </p>
+      </p-panel>
+      <br />
+      <!-- <hr /> -->
+      <p-panel [toggleable]="true" [collapsed]="true" style="width: 10rem">
+        <ng-template pTemplate="header"
+          ><span style="font-size: 1.2rem; font-weight: bold"
+            >Why should you choose HashHomes</span
+          ></ng-template
+        >
+        <p>
+          We are the largest one stop solution for you to post ad for rent /
+          sell house. Our property experts and robust systems allow property
+          sellers to list property and get the best leads that meet their
+          expectations. Following are some highlights
+        </p>
+        <ul>
+          <li>4 million+ monthly unique visitors</li>
+          <li>8 lac+ overall listings on the site</li>
+          <li>4.5 million+ monthly queries</li>
+          <li>2 lac+ owners advertise every month</li>
+          <li>48% page view share in rael estate category</li>
+          <li>Highest above numbers in real estate category</li>
+          <li>Over 1,00,000 clients</li>
+        </ul>
+      </p-panel>
+      <br />
+      <!-- <hr /> -->
+      <p-panel [toggleable]="true" [collapsed]="true">
+        <ng-template pTemplate="header"
+          ><span style="font-size: 1.2rem; font-weight: bold"
+            >Steps to post an advertisement for a property</span
+          ></ng-template
+        >
+        <p style="margin-bottom: 5px">Rent/ Sell property in 3 simple steps</p>
+        <ul>
+          <li>Register with us</li>
+          <li>Post property details</li>
+          <li>Receive enquiries</li>
+        </ul>
+        <p style="margin: 10px 0px 5px">
+          Our experts perform several quality checks before your property
+          photographs go live. Here are the guideline to post photo
+        </p>
+        <ul>
+          <li>Supported photographs formats are “JPEG” and “PNG”</li>
+          <li>Acceptable file size range is 10 KB - 5 MB</li>
+          <li>Upto 50 photographs can be uploaded for each property listing</li>
+        </ul>
+      </p-panel>
+    </div>
+  </div>
+
+  <div style="margin-top: 3rem">
+    <div style="margin-left: 2rem">
+      <img
+        style="width: 5rem; height: 5rem"
+        src="../../assets/icons/double_quote.svg"
+      />
+      <p style="color: gray; margin-top: -1.3rem; margin-left: 1rem">
+        TESTIMONIAL
+      </p>
+
+      <p style="font-size: 2.7rem" class="p-mt-0 p-mb-2">
+        <b
+          >This is what other owners &amp; <br />
+          Dealers have to say ...</b
+        >
+      </p>
+      <br />
+      <p-carousel
+        [value]="test"
+        styleClass="custom-carousel"
+        [numVisible]="3"
+        [numScroll]="1"
+        [circular]="true"
+        [autoplayInterval]="5000"
+      >
+        <!-- <ng-template pTemplate="header">
+          <h5>Circular, AutoPlay, 3 Items per Page and Scroll by 1</h5>
+        </ng-template> -->
+        <ng-template let-test pTemplate="item">
+          <div
+            style="
+              border: 1px solid lightgrey;
+              border-radius: 1rem;
+              margin-right: 1rem;
+              height: 10rem;
+            "
+            class="testimonial-card"
+          >
+            <div
+              style="
+                margin-left: 1rem;
+                margin-bottom: 1rem;
+                margin-top: 1rem;
+                margin-right: 1rem;
+              "
+            >
+              <p style="margin-top: 0; margin-bottom: 0; font-weight: bold">
+                {{ test.name }}
+              </p>
+              <p
+                style="
+                  font-size: 0.8rem;
+                  color: gray;
+                  margin-top: 0;
+                  margin-bottom: 0;
+                "
+              >
+                {{ test.designation }}
+              </p>
+              <p style="font-size: 0.9rem">{{ test.content }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</div>

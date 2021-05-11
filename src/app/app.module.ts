@@ -18,7 +18,7 @@ import { PropertyInformationNearbyCardsComponent } from './property-information-
 import { HttpClientModule } from '@angular/common/http';
 import { PropertySearchService } from './property-search.service';
 import { AuthPageComponent } from './auth-page/auth-page.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CityDetailService } from './city-detail.service';
@@ -32,6 +32,12 @@ import { MyPropertyComponent } from './my-property/my-property.component';
 import { MyPropertyRentComponent } from './my-property-rent/my-property-rent.component';
 import { MyPropertySellComponent } from './my-property-sell/my-property-sell.component';
 import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
+import { TimelineModule } from 'primeng/timeline';
+import { StepsModule } from 'primeng/steps';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { ButtonModule } from 'primeng/button';
+import { PanelModule } from 'primeng/panel';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [
@@ -68,7 +74,13 @@ import { EditPropertyDetailComponent } from './edit-property-detail/edit-propert
     NgxSpinnerModule,
     BrowserAnimationsModule,
     NgxSliderModule,
-    FormsModule
+    FormsModule,
+    TimelineModule,
+    StepsModule,
+    RadioButtonModule,
+    ButtonModule,
+    PanelModule,
+    CarouselModule,
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],
