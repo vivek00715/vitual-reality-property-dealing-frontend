@@ -4,7 +4,6 @@ import { AuthService } from './auth.service';
 import { BaseUrlService } from './base-url.service';
 import { Observable } from 'rxjs';
 import { Property } from './property-search.service';
-import {FormBuilder} from '@angular/forms';
 
 export interface PropertyRequestBody {
   address: string;
@@ -32,17 +31,12 @@ export class PropertyService {
     private authService: AuthService,
     private http: HttpClient,
     private baseUrlService: BaseUrlService,
-    private fb: FormBuilder
   ) {
     this.baseUrl = baseUrlService.getBaseUrl();
   }
 
   createProperty(propertyBody: PropertyRequestBody): Observable<Property> {
-    return this.http.post<Property>(`${this.baseUrl}/property`, propertyBody, {
-      headers: {
-        Authorization: this.authService.user?.token || '',
-      },
-    });
+    return this.http.post<Property>(`${this.baseUrl}/property`, propertyBody);
   }
 
   getUserProperty(userid: string | any) {
@@ -53,14 +47,7 @@ export class PropertyService {
 
   editProperty(createForm: any, id: number): Observable<Property> {
     return this.http.patch<Property>(
-      `${this.baseUrl}/patch/` + id,
-      createForm,
-      {
-        headers: {
-          Authorization: this.authService.user?.token || '',
-        },
-      }
-    );
+      `${this.baseUrl}/patch/` + id, createForm);
   }
 
   deleteProperty(id: number) {
@@ -71,10 +58,6 @@ export class PropertyService {
   uploadImage(image: File, propertyId: number): Observable<Property> {
     const formData = new FormData();
     formData.append('image', image);
-    return this.http.post<Property>(`${this.baseUrl}/property/${propertyId}/image`, formData, {
-      headers : {
-        Authorization: this.authService.user?.token || ''
-      }
-    });
+    return this.http.post<Property>(`${this.baseUrl}/property/${propertyId}/image`, formData);
   }
 }

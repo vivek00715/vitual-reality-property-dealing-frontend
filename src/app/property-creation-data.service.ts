@@ -62,6 +62,7 @@ export class PropertyCreationDataService {
       this.uploadPhotos();
     }, err => {
       alert(err.message);
+      this.creatingProperty = false;
       this.uploadingPhoto = false;
     });
   }
@@ -73,7 +74,6 @@ export class PropertyCreationDataService {
       const newPropertyId = this.propertyId;
       this.resetData();
       this.router.navigate(['property', 'id', newPropertyId]);
-
       return;
     }
     const image = this.images[this.currentPhotoIndex];
@@ -82,6 +82,8 @@ export class PropertyCreationDataService {
       this.uploadPhotos();
     }, err => {
       alert(err.message);
+      this.uploadingPhoto = false;
+      this.creatingProperty = false;
     });
   }
 

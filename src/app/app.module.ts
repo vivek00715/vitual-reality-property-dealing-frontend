@@ -15,7 +15,7 @@ import { PropertyInformationVirtualViewComponent } from './property-information-
 import { PropertyInformationStreetViewComponent } from './property-information-street-view/property-information-street-view.component';
 import { PropertyInformationDetailsComponent } from './property-information-details/property-information-details.component';
 import { PropertyInformationNearbyCardsComponent } from './property-information-nearby-cards/property-information-nearby-cards.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { PropertySearchService } from './property-search.service';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +57,7 @@ import { PropertyCreateInformationComponent } from './property-create-informatio
 import { PropertyCreateImagesComponent } from './property-create-images/property-create-images.component';
 import {GalleriaModule} from 'primeng/galleria';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {AuthInterceptor} from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,15 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     GalleriaModule,
     ProgressSpinnerModule
   ],
-  providers: [PropertySearchService, CityDetailService],
+  providers: [
+    PropertySearchService,
+    CityDetailService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   // for aframe custom html tags
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
