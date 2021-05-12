@@ -1,0 +1,105 @@
+<div class="p-grid p-mx-3">
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    City:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.city}}
+  </div>
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    State:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.state}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Address:
+  </div>
+  <div class="p-col-6 p-lg-9">
+    {{propertyData.address}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Pincode:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.pinCode}}
+  </div>
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Price:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.price}}
+  </div>
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Area:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.area}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Purpose:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.purpose}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Type:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.type}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Bedroom:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.bedrooms}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Bathroom:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.bathrooms}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    BHK:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.bhk}}
+  </div>
+
+  <div class="p-col-6 p-lg-3 p-text-bold">
+    Floors:
+  </div>
+  <div class="p-col-6 p-lg-3">
+    {{propertyData.floors}}
+  </div>
+
+  <div class="p-col-12 p-text-bold">
+    Description
+  </div>
+  <div class="p-col-12">
+    {{propertyData.description}}
+  </div>
+
+  <div class="p-col-12 p-text-bold">
+    Images
+  </div>
+  <div class="p-col-12">
+    <p-galleria [value]="propertyData.images">
+
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="p-grid p-nogutter p-justify-center">
+          <img [src]="item.objectURL" style="width: 100%"/>
+        </div>
+      </ng-template>
+    </p-galleria>
+  </div>
+
+
+</div>

@@ -1,0 +1,17 @@
+p-chip {
+  cursor: pointer;
+  .active {
+    background-color: white;
+  }
+}
+
+:host ::ng-deep .p-chip.active {
+  background: #9325A6;
+  color: white;
+  transition: background-color 800ms ease-out, color 1000ms ease-out;
+}
+
+:host ::ng-deep .p-chip.chip {
+  padding-left: 20px;
+  padding-right: 20px;
+}

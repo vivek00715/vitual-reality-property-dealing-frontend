@@ -1,0 +1,69 @@
+<div class="p-grid">
+  <div class="p-col-3 p-d-none p-d-lg-block">
+    <app-create-property-timeline [activeIndex]="currentPage"></app-create-property-timeline>
+  </div>
+
+  <div class="p-col-12 p-lg-6">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h1 class="p-text-center">{{title[currentPage]}}</h1>
+      </ng-template>
+
+      <div style="min-height: 63.7vh; overflow: hidden">
+        <ng-container *ngIf="!propertyData.creatingProperty">
+          <!--  basic details    -->
+          <div *ngIf="currentPage === 0">
+            <app-property-basic-details></app-property-basic-details>
+          </div>
+          <!--  Property Location    -->
+          <div *ngIf="currentPage === 1">
+            <app-property-location-details></app-property-location-details>
+          </div>
+          <!--  Add Photos    -->
+          <div *ngIf="currentPage === 2">
+            <app-property-create-images></app-property-create-images>
+          </div>
+          <!--  Pricing    -->
+          <div *ngIf="currentPage === 3" class="p-fluid">
+            <app-property-pricing></app-property-pricing>
+          </div>
+          <!-- Review -->
+          <div *ngIf="currentPage === 4">
+            <app-property-review></app-property-review>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="propertyData.creatingProperty">
+          <div class="p-d-flex p-jc-center p-flex-column p-align-center">
+            <h2 *ngIf="!propertyData.uploadingPhoto">Creating Property</h2>
+            <h2 *ngIf="propertyData.uploadingPhoto">Uploading Image {{propertyData.currentPhotoIndex + 1}}
+              / {{propertyData.images.length}}</h2>
+            <h4>Please don't close the tab</h4>
+            <p-progressSpinner></p-progressSpinner>
+          </div>
+        </ng-container>
+      </div>
+      <ng-template pTemplate="footer" >
+        <div class="p-grid" [ngClass]="{ 'hidden' : propertyData.creatingProperty}">
+          <div class="p-col-6" *ngIf="currentPage > 0">
+            <p-button label="Back" styleClass="p-button-sm" (onClick)="currentPage = currentPage - 1"></p-button>
+          </div>
+          <div class="p-col">
+            <div class="p-d-flex p-jc-end">
+              <p-button
+                [disabled]="!propertyData.isPageValid(currentPage)"
+                [label]="currentPage === maxPages ? 'Create' : 'Next'"
+                styleClass="p-button-sm"
+                (onClick)="incrementPage()"
+                *ngIf="currentPage <= maxPages"></p-button>
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="p-col-3 p-mt-3 p-d-none p-d-lg-block">
+    <app-create-property-side-info [page]="currentPage"></app-create-property-side-info>
+  </div>
+</div>

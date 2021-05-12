@@ -13,6 +13,7 @@ export interface Property {
   city: string;
   description: string;
   floors: number;
+  images: { publicId: string; url: string; } [];
   ownerEmail: string;
   pinCode: number;
   price: number;

@@ -9,6 +9,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import {HouseModelMainComponent} from './house-model-main/house-model-main.component';
 import { MyPropertyComponent } from './my-property/my-property.component';
 import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
+import {PropertyCreateStepsComponent} from './property-create-steps/property-create-steps.component';
 
 const routes: Routes = [
   { path: 'property/:address', component: PropertySearchComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'model', component: HouseModelMainComponent},
   { path: 'my-profile', component: MyPropertyComponent },
   { path: 'property/edit/:id', component: EditPropertyDetailComponent },
+  { path: 'create/property', component: PropertyCreateStepsComponent },
   { path: '**', component: ErrorPageComponent },
 ];
 

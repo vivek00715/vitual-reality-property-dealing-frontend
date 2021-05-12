@@ -38,6 +38,25 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
 import { CarouselModule } from 'primeng/carousel';
+import { PropertyCreateStepsComponent } from './property-create-steps/property-create-steps.component';
+import { CreatePropertyTimelineComponent } from './create-property-timeline/create-property-timeline.component';
+import { CreatePropertySideInfoComponent } from './create-property-side-info/create-property-side-info.component';
+import {CardModule} from 'primeng/card';
+import {ChipModule} from 'primeng/chip';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {FileUploadModule} from 'primeng/fileupload';
+import { PropertyBasicDetailsComponent } from './property-basic-details/property-basic-details.component';
+import { PropertyLocationDetailsComponent } from './property-location-details/property-location-details.component';
+import { PropertyRoomDetailsComponent } from './property-room-details/property-room-details.component';
+import { PropertyPricingComponent } from './property-pricing/property-pricing.component';
+import { PropertyReviewComponent } from './property-review/property-review.component';
+import { PropertyCreateInformationComponent } from './property-create-information/property-create-information.component';
+import { PropertyCreateImagesComponent } from './property-create-images/property-create-images.component';
+import {GalleriaModule} from 'primeng/galleria';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -65,6 +84,16 @@ import { CarouselModule } from 'primeng/carousel';
     MyPropertyRentComponent,
     MyPropertySellComponent,
     EditPropertyDetailComponent,
+    PropertyCreateStepsComponent,
+    CreatePropertyTimelineComponent,
+    CreatePropertySideInfoComponent,
+    PropertyBasicDetailsComponent,
+    PropertyLocationDetailsComponent,
+    PropertyRoomDetailsComponent,
+    PropertyPricingComponent,
+    PropertyReviewComponent,
+    PropertyCreateInformationComponent,
+    PropertyCreateImagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +110,15 @@ import { CarouselModule } from 'primeng/carousel';
     ButtonModule,
     PanelModule,
     CarouselModule,
+    CardModule,
+    ChipModule,
+    AutoCompleteModule,
+    InputTextareaModule,
+    InputTextModule,
+    InputNumberModule,
+    FileUploadModule,
+    GalleriaModule,
+    ProgressSpinnerModule
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],

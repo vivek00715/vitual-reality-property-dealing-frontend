@@ -1,0 +1,26 @@
+<h3>State</h3>
+<div class="p-fluid">
+  <p-autoComplete [(ngModel)]="propertyData.state" [suggestions]="filteredStates" (completeMethod)="filterState($event)"
+                  [dropdown]="true">
+    <ng-template let-state pTemplate="item">
+      <div>{{state}}</div>
+    </ng-template>
+  </p-autoComplete>
+</div>
+
+<ng-container *ngIf="this.isStateValid()">
+  <h3>City</h3>
+  <div class="p-fluid">
+    <p-autoComplete [(ngModel)]="propertyData.city" [suggestions]="filteredCities" (completeMethod)="filterCity($event)"
+                    [dropdown]="true">
+      <ng-template let-state pTemplate="item">
+        <div>{{state}}</div>
+      </ng-template>
+    </p-autoComplete>
+    <h3>Pincode</h3>
+    <input type="text" pInputText [(ngModel)]="propertyData.pinCode" [minLength]="6" maxlength="6"/>
+
+    <h3>Address</h3>
+    <textarea pInputTextarea [(ngModel)]="propertyData.address"></textarea>
+  </div>
+</ng-container>

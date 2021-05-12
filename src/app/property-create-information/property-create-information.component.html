@@ -1,0 +1,112 @@
+<h3>Add Room Details</h3>
+<div class="p-grid">
+
+  <div class="p-col-3">
+    <label for="bhk" class="p-mr-5">Bedrooms/Hall/Kitchen: </label>
+  </div>
+  <div class="p-col-9">
+    <p-inputNumber
+      [(ngModel)]="propertyData.bhk"
+      (onInput)="handleBhkChange()"
+      [showButtons]="true"
+      buttonLayout="horizontal"
+      inputId="bhk"
+      spinnerMode="horizontal"
+      [step]="1"
+      [size]="6"
+      [min]="1"
+      align="center"
+      [style]="{height: '25px'}"
+      decrementButtonClass="p-button-primary p-button-outlined p-button-sm "
+      incrementButtonClass="p-button-primary p-button-outlined p-button-sm"
+      incrementButtonIcon="pi pi-plus"
+      decrementButtonIcon="pi pi-minus">
+    </p-inputNumber>
+  </div>
+
+  <div class="p-col-3">
+    <label for="bedrooms" class="p-mr-5">No. of Bedrooms</label>
+  </div>
+  <div class="p-col-9">
+    <p-inputNumber
+      [(ngModel)]="propertyData.bedrooms"
+      [showButtons]="true"
+      buttonLayout="horizontal"
+      inputId="bedrooms"
+      spinnerMode="horizontal"
+      [step]="1"
+      [size]="6"
+      [min]="1"
+      [max]="propertyData.bhk"
+      align="center"
+      [style]="{height: '25px'}"
+      decrementButtonClass="p-button-primary p-button-outlined p-button-sm "
+      incrementButtonClass="p-button-primary p-button-outlined p-button-sm"
+      incrementButtonIcon="pi pi-plus"
+      decrementButtonIcon="pi pi-minus">
+    </p-inputNumber>
+  </div>
+  <div class="p-col-3">
+    <label for="bathrooms" class="p-mr-5">No. of Bathrooms</label>
+  </div>
+  <div class="p-col-9">
+    <p-inputNumber
+      [(ngModel)]="propertyData.bathrooms"
+      [showButtons]="true"
+      buttonLayout="horizontal"
+      inputId="bathrooms"
+      spinnerMode="horizontal"
+      [step]="1"
+      [size]="6"
+      [min]="1"
+      align="center"
+      [style]="{height: '25px'}"
+      decrementButtonClass="p-button-primary p-button-outlined p-button-sm "
+      incrementButtonClass="p-button-primary p-button-outlined p-button-sm"
+      incrementButtonIcon="pi pi-plus"
+      decrementButtonIcon="pi pi-minus">
+    </p-inputNumber>
+  </div>
+  <div class="p-col-3">
+    <label for="area" class="p-mr-5">Area in Sq. Feet</label>
+  </div>
+  <div class="p-col-9">
+    <p-inputNumber
+      [(ngModel)]="propertyData.area"
+      [showButtons]="true"
+      buttonLayout="horizontal"
+      inputId="area"
+      spinnerMode="horizontal"
+      [step]="1"
+      [size]="6"
+      [min]="1"
+      align="center"
+      [style]="{height: '25px'}"
+      decrementButtonClass="p-button-primary p-button-outlined p-button-sm "
+      incrementButtonClass="p-button-primary p-button-outlined p-button-sm"
+      incrementButtonIcon="pi pi-plus"
+      decrementButtonIcon="pi pi-minus">
+    </p-inputNumber>
+</div>
+<div class="p-col-3">
+  <label for="floors" class="p-mr-5">No. of floors</label>
+</div>
+<div class="p-col-9">
+  <p-inputNumber
+    [(ngModel)]="propertyData.floors"
+    [showButtons]="true"
+    buttonLayout="horizontal"
+    inputId="floors"
+    spinnerMode="horizontal"
+    [step]="1"
+    [size]="6"
+    [min]="1"
+    align="center"
+    [style]="{height: '25px'}"
+    decrementButtonClass="p-button-primary p-button-outlined p-button-sm "
+    incrementButtonClass="p-button-primary p-button-outlined p-button-sm"
+    incrementButtonIcon="pi pi-plus"
+    decrementButtonIcon="pi pi-minus">
+  </p-inputNumber>
+</div>
+</div>

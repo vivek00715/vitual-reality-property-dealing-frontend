@@ -1,0 +1,12 @@
+<h3>Expected Price</h3>
+<p-inputNumber
+  [(ngModel)]="propertyData.price"
+  [min]="1000"
+  locale="en-IN"
+  mode="currency"
+  currency="INR"
+  [maxFractionDigits]="0"
+></p-inputNumber>
+
+<h3>Tell us about your property</h3>
+<textarea pInputTextarea [rows]="4" [(ngModel)]="propertyData.description"></textarea>

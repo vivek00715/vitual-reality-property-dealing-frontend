@@ -1,0 +1,15 @@
+<div class="p-d-flex p-jc-center p-flex-column p-mr-5" style="height: 80vh">
+  <p-timeline [value]="events">
+    <ng-template pTemplate="marker" let-event>
+      <span class="marker p-shadow-2" style="background-color: purple" *ngIf="event.index <= activeIndex">
+        <i class="pi pi-circle-on" *ngIf="activeIndex === event.index"></i>
+        <i class="pi pi-check-circle" *ngIf="event.index < activeIndex"></i>
+      </span>
+      <span class="marker p-shadow-2" style="background-color: white" *ngIf="event.index > activeIndex">
+      </span>
+    </ng-template>
+    <ng-template pTemplate="content" let-event>
+      {{event.status}}
+    </ng-template>
+  </p-timeline>
+</div>
