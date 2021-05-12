@@ -10,17 +10,19 @@ import {HouseModelMainComponent} from './house-model-main/house-model-main.compo
 import { MyPropertyComponent } from './my-property/my-property.component';
 import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
 import {PropertyCreateStepsComponent} from './property-create-steps/property-create-steps.component';
+import {AuthRequiredGuard} from './auth-required.guard';
+import {AuthNotRequiredGuard} from './auth-not-required.guard';
 
 const routes: Routes = [
   { path: 'property/:address', component: PropertySearchComponent },
   { path: '', component: LandingPageComponent },
   { path: 'property/id/:id', component: PropertyInformationComponent },
-  { path: 'auth', component: AuthPageComponent },
-  { path: 'create', component: CreatePropertyComponent },
+  { path: 'auth', component: AuthPageComponent, canActivate: [AuthNotRequiredGuard] },
+  { path: 'create', component: CreatePropertyComponent, canActivate: [AuthRequiredGuard] },
   { path: 'model', component: HouseModelMainComponent},
-  { path: 'my-profile', component: MyPropertyComponent },
-  { path: 'property/edit/:id', component: EditPropertyDetailComponent },
-  { path: 'create/property', component: PropertyCreateStepsComponent },
+  { path: 'my-profile', component: MyPropertyComponent, canActivate: [AuthRequiredGuard] },
+  { path: 'property/edit/:id', component: EditPropertyDetailComponent, canActivate: [AuthRequiredGuard] },
+  { path: 'create/property', component: PropertyCreateStepsComponent, canActivate: [AuthRequiredGuard] },
   { path: '**', component: ErrorPageComponent },
 ];
 
