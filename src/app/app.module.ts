@@ -58,6 +58,7 @@ import { PropertyCreateImagesComponent } from './property-create-images/property
 import {GalleriaModule} from 'primeng/galleria';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {AuthInterceptor} from './auth.interceptor';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import {AuthInterceptor} from './auth.interceptor';
     InputNumberModule,
     FileUploadModule,
     GalleriaModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     PropertySearchService,
