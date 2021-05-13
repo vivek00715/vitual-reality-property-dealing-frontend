@@ -1,0 +1,35 @@
+<app-landing-header></app-landing-header>
+<div class="page">
+  <div class="container">
+    <div class="container-header">
+      <h1><strong>LOG IN</strong></h1>
+      <p>If you don't have an account <a routerLink="/signup">sign up.</a></p>
+    </div>
+    <form [formGroup]="authForm" (ngSubmit)="handleAuth()" >
+      <div class="p-fluid">
+        <div class="form-group">
+          <div class="p-field">
+            <label for="email">Email</label>
+            <input id="email" type="text"  formControlName="email" pInputText>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="p-field">
+            <label for="password">Password</label>
+            <p-password [toggleMask]="true" id="password"  formControlName="password"></p-password>
+          </div>
+        </div>
+      </div>
+      <div class="button-fam">
+        <button class="submit" type="submit">SUBMIT</button>
+        <button class="cancel" type="reset">RESET</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="coverimage">
+    <img src="../../assets/images/account-log-page_41910-263.jpg" alt="">
+  </div>
+</div>
+<app-landing-footer></app-landing-footer>

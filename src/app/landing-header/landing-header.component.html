@@ -48,7 +48,7 @@
     <button
       type="button"
       class="login-button btn btn-danger mr-2"
-      routerLink="/auth"
+      routerLink="/log-in"
       *ngIf="!authService.loggedIn"
     >
       Log in
@@ -57,7 +57,7 @@
     <button
       type="button"
       class="signup-button btn btn-outline-danger"
-      routerLink="/auth"
+      routerLink="/signup"
       *ngIf="!authService.loggedIn"
     >
       Sign up
@@ -165,7 +165,7 @@
 
 <header *ngIf="!hamburger">
 <div class="p-grid" style="padding: 0 1% 0 2%;">
-  <img src="../../assets/images/logo.png" class="p-col-2" height="100px">
+  <img src="../../assets/images/Logo.png" class="p-col-2" height="100px">
   <div *ngIf="authService.loggedIn" class="p-col-3"></div>
   <div *ngIf="!authService.loggedIn" class="p-col-4"></div>
   <div class="p-col-2">
@@ -184,10 +184,10 @@
     <div>Profile</div>
   </div>
   <div *ngIf="!authService.loggedIn" class="p-col-1" style="border-color: black; margin-top: 2%;">
-    <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Login</button>
+    <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;" [routerLink]="['/log-in']">Login</button>
   </div>
   <div *ngIf="authService.loggedIn" class="p-col-1" style="border-color: black; margin-top: 2%;">
-    <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Logout</button>
+    <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;" [routerLink]="['/']">Logout</button>
   </div>
 </div>
 </header>
@@ -197,10 +197,10 @@
     <img src="../../assets/images/logo.png" class="p-col-6">
     <div class="p-col-3"></div>
     <div *ngIf="!authService.loggedIn" class="p-col-3" style="border-color: black;  margin-top: 5%;">
-      <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Login</button>
+      <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;" [routerLink]="['/log-in']" >Login</button>
     </div>
     <div *ngIf="authService.loggedIn" class="p-col-3" style="border-color: black;  margin-top: 5%;">
-      <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Login</button>
+      <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;" [routerLink]="['/']" >Logout</button>
     </div>
   </div>
 </header>

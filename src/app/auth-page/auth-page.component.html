@@ -1,139 +1,58 @@
-<!-- nav start from here  -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- brand name and logo  -->
-  <a class="navbar-brand" routerLink="/">
-    <img
-      src="../../assets/images/Logo.png"
-      class="d-inline-block align-top landing-logo-size"
-      alt=""
-    />
-    <span class="landing-logo-name">Hash Homes</span>
-  </a>
-
-  <!-- button to toggle when in mobile screen view  -->
-  <button
-    class="toggle-button"
-    (click)="headerOpen = !headerOpen"
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <!-- <span class="navbar-toggler-icon"></span> -->
-    <span
-      ><img
-        src="../../assets/icons/hamburger.svg"
-        class="toggle-button-hamburger"
-    /></span>
-  </button>
-
-  <!-- menu items -->
-  <div
-    class="collapse navbar-collapse"
-    id="navbarText"
-    [ngClass]="{ show: headerOpen }"
-  >
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
-      </li>
-    </ul>
-
-    <button
-      type="button"
-      class="btn btn-link mr-2"
-      (click)="uxService.toggleDarkMode()"
-    >
-      {{ uxService.darkMode ? "Light" : "Dark" }}
-    </button>
-  </div>
-</nav>
-<!-- nav bar ends here  -->
-
-<div class="container my-3">
-  <div class="row">
-    <div class="col-12 col-lg-6 offset-md-3 card py-4">
-      <h2 class="text-center">Welcome to Hash Homes</h2>
-      <form class="py-2" [formGroup]="authForm" (ngSubmit)="handleAuth()">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            placeholder="Enter Email"
-            formControlName="email"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            class="form-control"
-            placeholder="Enter Password"
-            formControlName="password"
-          />
-        </div>
-        <ng-container *ngIf="!showLoginPage">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              class="form-control"
-              placeholder="Enter name"
-              formControlName="name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="mobile">Mobile Number</label>
-            <input
-              type="mobile"
-              id="mobile"
-              class="form-control"
-              placeholder="Enter mobile"
-              maxlength="10"
-              formControlName="mobile"
-            />
-          </div>
-          <div class="form-group">
-            <label for="address">Address</label>
-            <textarea
-              id="address"
-              class="form-control"
-              placeholder="Enter address"
-              formControlName="address"
-            ></textarea>
-          </div>
-        </ng-container>
-        <div class="row mt-2 mt-lg-5">
-          <div class="col-6">
-            <button
-              class="btn btn-primary btn-block logout-button"
-              [disabled]="!isFormValid()"
-              type="submit"
-            >
-              {{ showLoginPage ? "Login" : "Signup" }}
-            </button>
-          </div>
-          <div class="col-6">
-            <button
-              class="btn signup-button"
-              type="button"
-              (click)="toggleForm()"
-            >
-              Switch to {{ showLoginPage ? "Signup" : "Login" }}
-            </button>
-          </div>
-        </div>
-      </form>
+<app-landing-header></app-landing-header>
+<div class="page">
+  <div class="container">
+    <div class="container-header">
+      <h2>SIGN UP</h2>
+      <p>If you already have an account? <a (click)="login()">login</a></p>
     </div>
+    <form [formGroup]="authForm" (ngSubmit)="handleAuth()">
+      <div class="p-fluid">
+        <div class="form-group">
+          <div class="p-field">
+            <label for="name">Name</label>
+            <input id="name" type="text"  formControlName="name" pInputText>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="p-field">
+            <label for="email">Email</label>
+            <input id="email" type="text"  formControlName="email" pInputText>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="p-field">
+            <label for="mobile">Mobile Number</label>
+            <input id="mobile" type="text"  formControlName="mobile" pInputText>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="p-field">
+            <label for="password1">Password</label>
+            <p-password [toggleMask]="true" id="password1"  formControlName="password1"></p-password>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="p-field">
+            <label for="password2">Confirm Password</label>
+            <p-password [toggleMask]="true" id="password2"  formControlName="password2"></p-password>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class=p-field>
+            <label for="address">Address</label>
+            <textarea rows="5" cols="30" id="address"  formControlName="address" pInputTextarea></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="button-fam">
+        <button class="submit" type="submit">SUBMIT</button>
+        <button class="cancel" type="reset">RESET</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="coverimage">
+    <img src="../../assets/images/signup.jpg" alt="">
   </div>
 </div>
+<app-landing-footer></app-landing-footer>
