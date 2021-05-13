@@ -42,6 +42,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
 import { CarouselModule } from 'primeng/carousel';
+import {PaginatorModule} from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { CarouselModule } from 'primeng/carousel';
     ButtonModule,
     PanelModule,
     CarouselModule,
+    PaginatorModule
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],
