@@ -33,21 +33,21 @@ import { MyPropertyRentComponent } from './my-property-rent/my-property-rent.com
 import { MyPropertySellComponent } from './my-property-sell/my-property-sell.component';
 import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
 import { LoginComponent } from './login/login.component';
-import {PasswordModule} from 'primeng/password';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {CarouselModule} from 'primeng/carousel';
+import { PasswordModule } from 'primeng/password';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CarouselModule } from 'primeng/carousel';
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
-import {CardModule} from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
 import { TimelineModule } from 'primeng/timeline';
 import { StepsModule } from 'primeng/steps';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
-import {PaginatorModule} from 'primeng/paginator';
-
+import { DialogModule } from 'primeng/dialog';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -98,7 +98,8 @@ import {PaginatorModule} from 'primeng/paginator';
     StepsModule,
     RadioButtonModule,
     PanelModule,
-    PaginatorModule
+    DialogModule,
+    PaginatorModule,
   ],
   providers: [PropertySearchService, CityDetailService],
   bootstrap: [AppComponent],
