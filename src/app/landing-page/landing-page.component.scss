@@ -1,0 +1,47 @@
+body{
+  font-family: 'Work Sans', sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  section{
+    p{
+      text-decoration: none;
+      color: purple;
+      font-weight: 700;
+      font-size: larger;
+      // text-decoration: underline;
+    }
+    p:hover{
+      background-color: purple;
+      color: white;
+      font-size: x-large;
+      text-align: center;
+      font-weight: 500;
+      text-decoration: none;
+      animation: normal both,
+    }
+
+
+    .line {
+      // position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .typing {
+      animation: typewriter 3s steps(25) 0s infinite normal both,
+     }
+
+  }
+}
+
+  @keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+  }
+
+

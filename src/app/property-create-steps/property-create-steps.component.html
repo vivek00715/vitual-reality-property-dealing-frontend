@@ -1,3 +1,4 @@
+<app-landing-header></app-landing-header>
 <div class="p-grid">
   <div class="p-col-3 p-d-none p-d-lg-block">
     <app-create-property-timeline [activeIndex]="currentPage"></app-create-property-timeline>
@@ -6,10 +7,10 @@
   <div class="p-col-12 p-lg-6">
     <p-card>
       <ng-template pTemplate="header">
-        <h1 class="p-text-center">{{title[currentPage]}}</h1>
+        <h1 class="p-text-center p-p-0">{{title[currentPage]}}</h1>
       </ng-template>
 
-      <div style="min-height: 63.7vh; overflow: hidden">
+      <div style="min-height: 56.5vh; overflow: hidden">
         <ng-container *ngIf="!propertyData.creatingProperty">
           <!--  basic details    -->
           <div *ngIf="currentPage === 0">

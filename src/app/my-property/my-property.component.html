@@ -1,6 +1,6 @@
-<!-- nav start from here  -->
+<!-- nav start from here
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- brand name and logo  -->
+
   <a class="navbar-brand" routerLink="/">
     <img
       src="../../assets/images/Logo.png"
@@ -10,7 +10,7 @@
     <span class="landing-logo-name">Hash Homes</span>
   </a>
 
-  <!-- button to toggle when in mobile screen view  -->
+
   <button
     class="toggle-button"
     (click)="headerOpen = !headerOpen"
@@ -22,7 +22,7 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
-    <!-- <span class="navbar-toggler-icon"></span> -->
+
     <span
       ><img
         src="../../assets/icons/hamburger.svg"
@@ -30,7 +30,7 @@
     /></span>
   </button>
 
-  <!-- menu items -->
+
   <div
     class="collapse navbar-collapse"
     id="navbarText"
@@ -44,7 +44,7 @@
         <a class="nav-link" href="#">Help</a>
       </li>
     </ul>
-    <!-- logout button-->
+
     <button
       type="button"
       class="logout-button btn btn-danger mr-2"
@@ -56,7 +56,7 @@
     <img [src]="getSrc()" (click)="uxService.toggleDarkMode()" class="ml-2" />
   </div>
 </nav>
-<!-- nav bar ends here  -->
+
 
 <div>
   <img class="cover-img" src="../../assets/images/cover.jpg" />
@@ -102,7 +102,7 @@
         Edit
       </button>
 
-      <!-- Modal -->
+
       <div
         class="modal fade"
         id="exampleModalCenter"
@@ -173,4 +173,113 @@
 </div>
 
 <app-my-property-rent></app-my-property-rent>
+<app-my-property-sell></app-my-property-sell> -->
+<app-landing-header></app-landing-header>
+<div class="my-profile-detail">
+  <div>
+    <img class="profile-img" src="../../assets/images/profile-photo-1.jpeg" />
+  </div>
+
+  <div style="display: flex">
+    <div class="user-details" *ngIf="user">
+      <div>
+        <span class="user-name">Welcome {{ user.name }}</span>
+      </div>
+
+      <br />
+
+      <div>
+        <img src="../../assets/icons/location-icon.svg" />
+        <span class="user-address">{{ user.address }}</span>
+      </div>
+
+      <br />
+
+      <div>
+        <img
+          style="width: 1rem; height: 1rem; margin-left: 4px"
+          src="../../assets/icons/phone-call.svg"
+        />
+        <span class="user-address"> {{ user.mobile }}</span>
+      </div>
+
+      <br />
+
+      <div>
+        <img
+          style="width: 1rem; height: 1rem; margin-left: 4px"
+          src="../../assets/icons/email.svg"
+        />
+        <span class="user-address"> {{ user.email }}</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 3.5rem; margin-left: 5rem">
+      <p-button
+        (click)="showModalDialog()"
+        icon="pi pi-external-link"
+        label="Edit"
+      ></p-button>
+    </div>
+  </div>
+</div>
+
+<app-my-property-rent></app-my-property-rent>
 <app-my-property-sell></app-my-property-sell>
+<app-landing-footer></app-landing-footer>
+
+<p-dialog
+  header="Your Contact Details"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <br />
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <span class="p-float-label">
+      <input
+        id="float-input"
+        type="text"
+        pInputText
+        formControlName="name"
+        style="width: 100%"
+      />
+      <label for="float-input">Username</label>
+    </span>
+    <br />
+    <br />
+    <span class="p-float-label">
+      <input
+        id="float-input"
+        type="text"
+        pInputText
+        formControlName="mobile"
+        style="width: 100%"
+      />
+      <label for="float-input">Mobile Number</label>
+    </span>
+    <br />
+    <br />
+    <span class="p-float-label">
+      <input
+        id="float-input"
+        type="text"
+        pInputText
+        formControlName="address"
+        style="width: 100%"
+      />
+      <label for="float-input">Address</label>
+    </span>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="onSubmit()"
+      label="Save Changes"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>

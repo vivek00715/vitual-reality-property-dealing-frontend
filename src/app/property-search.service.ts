@@ -3,6 +3,13 @@ import {Injectable} from '@angular/core';
 import {BaseUrlService} from './base-url.service';
 import {Observable} from 'rxjs';
 
+export interface PaginatedProperty {
+  currentPage: number;
+  totalPage: number;
+  totalResults: number;
+  data: PropertyShort[];
+}
+
 export interface Property {
   address: string;
   area: number;
@@ -13,13 +20,34 @@ export interface Property {
   city: string;
   description: string;
   floors: number;
-  images: { publicId: string; url: string; } [];
   ownerEmail: string;
   pinCode: number;
   price: number;
   propertyId: number;
   purpose: string;
   state: string;
+  type: string;
+  images: {
+    publicId: string;
+    url: string;
+  }[];
+}
+
+export interface PropertyShort {
+  address: string;
+  area: number;
+  bathrooms: number;
+  bedrooms: number;
+  purpose: string;
+  bhk: number;
+  city: string;
+  floors: number;
+  image: string;
+  pinCode: number;
+  price: number;
+  propertyId: number;
+  state: string;
+  built_year: number;
   type: string;
 }
 
@@ -39,9 +67,12 @@ export class PropertySearchService {
     state: string,
     type: string,
     minPrice: any,
-    maxPrice: any
+    maxPrice: any,
+    purpose: any,
+    page = 1,
   ) {
-    return this.http.get(this.url + '/property', {
+    console.log(purpose);
+    return this.http.get<PaginatedProperty>(this.url + '/property', {
       params: {
         street: street,
         city: city,
@@ -49,7 +80,8 @@ export class PropertySearchService {
         type: type,
         minPrice: minPrice,
         maxPrice: maxPrice,
-        purpose: '',
+        purpose: purpose,
+        page: page + '',
       },
     });
   }

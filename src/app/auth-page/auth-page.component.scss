@@ -1,39 +1,63 @@
-.landing-logo-size {
-  width: 2rem;
-  height: 2rem;
+.page{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Work Sans', sans-serif;
+  letter-spacing: 0.5px;
 }
-
-.landing-logo-name {
-  color: #f37820;
+.container{
+  color: #87556f;
+  width: 35%;
+  margin: 3rem;
+  padding: 1rem;
 }
-
-.toggle-button {
+.container-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+input{
+  width: 80%;
+  height: 2.3rem;
+  border-radius: 2px;
+  outline: none;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+input:focus{
+  outline:none !important;
+}
+.coverimage{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+img{
+  height: 90vh;
+}
+.button-fam{
+  display: flex;
+  justify-content: space-around;
+}
+.submit{
+  height: 3rem;
+  width: 8rem;
   border: none;
-}
-
-.toggle-button-hamburger {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.login-button {
-  background: #f37820;
-  width: 5rem;
-}
-
-.logout-button {
-  background: #f37820;
-  width: 16rem;
-  border: none;
-}
-
-.signup-button {
-  border: 1px solid #f37820;
-  color: #f37820;
-  width: 16rem;
-}
-
-.signup-button:hover {
-  background: #f37820;
+  border-radius: 5px;
+  background-color: #87556f;
+  outline: none;
   color: white;
+  cursor: pointer;
+}
+.cancel{
+  background-color: white;
+  color: #87556f;
+  border-color: #87556f;
+  outline: none;
+  height: 3rem;
+  width: 8rem;
+  border-radius: 5px;
+  cursor: pointer;
 }

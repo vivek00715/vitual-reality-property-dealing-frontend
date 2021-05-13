@@ -1,69 +1,49 @@
-.landing-logo-size {
-  width: 2rem;
-  height: 2rem;
-}
-
-.landing-logo-name {
-  color: #f37820;
-}
-
-.toggle-button {
+//
+.my-profile-detail {
+  transform-style: preserve-3d;
+  border-radius: 30px;
+  padding: 0rem 5rem;
+  width: 70rem;
+  height: 20rem;
+  // padding:4%;
+  box-shadow: 0 20px 20px rgba(235, 232, 232, 0.2),
+    0px 0px 20px rgba(0, 0, 0, 0.2);
+  background: rgb(146, 144, 150);
+  background: linear-gradient(
+    0deg,
+    rgb(195, 194, 197) 0%,
+    rgb(255, 254, 255) 100%
+  );
   border: none;
-}
-
-.toggle-button-hamburger {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.logout-button {
-  background: #f37820;
-  width: 7rem;
-}
-
-.cover-img {
-  height: 17rem;
-  width: 100%;
+  margin: auto;
+  display: flex;
 }
 
 .profile-img {
   width: 10rem;
-  height: 10rem;
-  // background-color: black;
-  position: absolute;
-  z-index: 2;
-  margin-top: -4rem;
-  border-radius: 5rem;
-  margin-left: 10rem;
-  border: 4px solid #f37820;
+  height: 14rem;
+  margin-top: 2.5rem;
+  box-shadow: 0 20px 20px rgba(235, 232, 232, 0.2),
+    0px 0px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.75s ease-out;
 }
 
-.user-details {
-  margin-left: 22rem;
+.profile-img:hover {
+  width: 14rem;
+  height: 18rem;
   margin-top: 1rem;
+  transition: all 0.75s ease-out;
 }
 
 .user-name {
-  font-size: 1.5rem;
-  margin-left: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.user-details {
+  margin-top: 3rem;
+  margin-left: 5rem;
 }
 
 .user-address {
-  font-size: 0.8rem;
-  color: gray;
-}
-
-.edit-button {
-  background: #f37820;
-  width: 5.5rem;
-}
-
-.edit {
-  margin: auto;
-}
-
-.edit-img {
-  width: 1.3rem;
-  height: 1.3rem;
-  margin-top: -5px;
+  font-size: 1.1rem;
 }

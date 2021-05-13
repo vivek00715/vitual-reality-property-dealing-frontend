@@ -1,6 +1,5 @@
-<div class="header-body">
+<!-- <div class="header-body">
   <nav class="navbar navbar-expand-lg navbar-light">
-    <!-- Company logo and Name -->
     <a class="navbar-brand" routerLink="/">
       <img
         src="../../assets/images/Logo.png"
@@ -10,8 +9,6 @@
       <span class="landing-logo-name">Hash Homes</span>
     </a>
 
-
-    <!-- Search bar along with dropdown containing type of property and budget -->
     <div
       [ngClass]="{ show: hamburger }"
       class="collapse navbar-collapse"
@@ -22,7 +19,6 @@
         (ngSubmit)="handleSearchProperty()"
         class="row"
       >
-        <!-- <select
           formControlName="state"
           class="col-lg-2 col-md-12 col-sm-12 state"
         >
@@ -31,7 +27,7 @@
             {{ state }}
           </option>
         </select> -->
-        <!-- <img src="../../assets/icons/location-icon.svg" /> -->
+        <!-- <img src="../../assets/icons/location-icon.svg" />
         <input
           type="text"
           list="states"
@@ -44,7 +40,7 @@
           <option *ngFor="let state of stateResult" [value]="state"></option>
         </datalist>
 
-        <!-- <select
+         <select
           formControlName="city"
           class="col-lg-2 col-md-12 col-sm-12 city"
         >
@@ -53,7 +49,7 @@
             {{ city }}
           </option>
         </select> -->
-        <!-- <img src="../../assets/icons/location-icon.svg" /> -->
+        <!-- <img src="../../assets/icons/location-icon.svg" />
         <input
           type="text"
           list="cities"
@@ -133,4 +129,42 @@
       <img [src]="getSrc()" (click)="uxService.toggleDarkMode()" class="ml-1" />
     </div>
   </nav>
-</div>
+</div> -->
+
+<header *ngIf="!hamburger">
+  <div class="p-grid" style="padding: 0 1% 0 2%;">
+    <img  (click)="home()" src="../../assets/images/Logo.png" class="p-col-2" height="100px">
+    <div class="p-col-4"></div>
+    <div class="p-col-2">
+      <div>Why HashHomes ?</div>
+    </div>
+    <div class="p-col-1" style="margin-top: 1.6%;">
+      <div (click)="home()">Home</div>
+    </div>
+    <div class="p-col-1" style="margin-top: 1.6%;">
+      <div (click)="design()">Design</div>
+    </div>
+    <div class="p-col-1" style="margin-top: 1.6%;">
+      <div>Profile</div>
+    </div>
+    <div *ngIf="!authService.loggedIn" class="p-col-1" style="border-color: black; margin-top: 2%;">
+      <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Login</button>
+    </div>
+    <div *ngIf="authService.loggedIn" class="p-col-1" style="border-color: black; margin-top: 2%;">
+      <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Logout</button>
+    </div>
+  </div>
+  </header>
+
+  <header *ngIf="hamburger">
+    <div class="p-grid">
+      <img (click)="home()" src="../../assets/images/Logo.png" class="p-col-6">
+      <div class="p-col-3"></div>
+      <div *ngIf="!authService.loggedIn" class="p-col-3" style="border-color: black;  margin-top: 5%;">
+        <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Login</button>
+      </div>
+      <div *ngIf="authService.loggedIn" class="p-col-3" style="border-color: black;  margin-top: 5%;">
+        <button pButton type="button" class="p-button-secondary p-button-text p-button-raised" style="border:0; border-radius: 0px;">Logout</button>
+      </div>
+    </div>
+  </header>
