@@ -185,14 +185,14 @@
 
         <div class="p-grid" style="margin-top: 4%;">
 
-         <select formControlName="forr"  class="p-col-3">
+         <select formControlName="for"  class="p-col-3">
           <option selected>All</option>
           <option>Buy</option>
           <option>Rent</option>
          </select>
 
          <select formControlName="type" class="p-col-3">
-          <option disabled selected>Type</option>
+          <option>All</option>
           <option>Home</option>
           <option>Flat</option>
           <option>Office</option>
@@ -223,16 +223,12 @@
 
         <hr>
 
-        <h2>
-          Search Results :
-        </h2>
+        <h4>
+          Search Results :  {{totalResults}} Listings
+        </h4>
 
-        <h4 *ngIf="list[0].propertyId!=0">
-          {{list.length}} Listings
-        </h4>
-        <h4 *ngIf="list[0].propertyId==0">
-          0 Listings
-        </h4>
+
+        <p-paginator (onPageChange)="paginate($event)" [rows]="10" [totalRecords]="totalResults"></p-paginator>
 
       </div>
 
@@ -240,19 +236,18 @@
 </div>
 
 <div class="p-grid" style="padding: 2%; padding-top: 0%;" >
-  <div *ngIf="list.length==1 && list[0].propertyId==0" class="p-col-12 card" style="height: 25vh; text-align: center;">
+  <div *ngIf="list.length==0" class="p-col-12 card" style="height: 25vh; text-align: center;">
     <h1 style="text-align: center;">No Property is listed in this Area</h1>
   </div>
   <div  class="p-lg-5 p-md-12 p-sm-12 card" *ngFor="let property of list; let i = index">
       <div (click)="showProperty(i)" *ngIf="list[0].propertyId!=0" class="p-grid">
-         <div *ngIf="list[0].propertyId!=0" class="p-col-4 image">
-           <img src="../../assets/images/home3d_icon.png">
+         <div *ngIf="list.length>0" class="p-col-4 image">
+           <img [src]="property.image">
          </div>
-         <div *ngIf="list[0].propertyId!=0" class="p-col-8">
+         <div  class="p-col-8">
             <h1>Price: {{property.price | currency: "INR"}}</h1>
             <h2>{{property.address}}</h2>
             <h2>{{property.type}}</h2>
-            <h2>{{property.ownerEmail}}</h2>
             <hr>
             <div class="p-grid">
               <div class="p-col-4" style="background-image:url(../../assets/icons/bed_black_24dp.svg);"> {{property.bedrooms}} </div>

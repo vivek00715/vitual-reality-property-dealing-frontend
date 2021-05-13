@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CityDetailService } from '../city-detail.service';
-import { PropertySearchService } from '../property-search.service';
+import { PropertySearchService, PropertyShort } from '../property-search.service';
 import { StateCityService } from '../state-city.service';
 
 @Pipe({name: 'safe'})
@@ -32,8 +32,8 @@ export class PropertySearchComponent implements OnInit {
   // Api="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uIgJLlFocMlwcu8b3wKPKkdT2mWV3AU&libraries=common,util,map,overlay,onion,controls,stats,places,geometry&v=3.44"
   Api="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2TLiALPifHWu9QDw25D1cLsSYTYrOaUk&q=";
   city="";
-  forr="";
-  type="";
+  for="";
+  type="All";
   street="";
   state="";
   propertyType="";
@@ -42,39 +42,9 @@ export class PropertySearchComponent implements OnInit {
   stateResult: string[] = [];
   cityResult: string[] = [];
 
-  list=[{"propertyId":0,
-  "address":"",
-  "city":"",
-  "state":"",
-  "pinCode":"",
-  "area":0,
-  "bathrooms":"",
-  "bedrooms":"",
-  "bhk":0,
-  "floors":0,
-  "ownerEmail":"",
-  "price":0,
-  "type":"",
-  "purpose":"",
-  "built_year":0,
-  "description":""}]
+  list:PropertyShort[]=[]
 
-  list_dummy=[{"propertyId":0,
-  "address":"",
-  "city":"",
-  "state":"",
-  "pinCode":"",
-  "area":0,
-  "bathrooms":"",
-  "bedrooms":"",
-  "bhk":0,
-  "floors":0,
-  "ownerEmail":"",
-  "price":0,
-  "type":"",
-  "purpose":"",
-  "built_year":0,
-  "description":""}]
+  list_dummy:PropertyShort[]=[]
 
   list_copy=this.list;
   mapheight:number;
@@ -84,11 +54,14 @@ export class PropertySearchComponent implements OnInit {
   minPrice: number = 0;
   maxPrice: number = 100000000;
 
+  currentPage=1;
+  totalResults=0;
+
   constructor(public cityStateService:StateCityService,propertyService:PropertySearchService, cityService:CityDetailService, private activatedRoute:ActivatedRoute, private router:Router) {
 
     this.searchProperty = new FormGroup({
       street: new FormControl(null),
-      forr:new FormControl(this.forr),
+      for:new FormControl(this.for),
       city: new FormControl(this.city),
       state: new FormControl(this.state),
       type: new FormControl(this.type),
@@ -111,7 +84,7 @@ export class PropertySearchComponent implements OnInit {
       this.city=query.params.city==null?"":query.params.city;
       this.state=query.params.state==null?"":query.params.state;
       this.propertyType=query.params.type==null?"":query.params.type;
-      this.forr=query.params.forr==null?"all":query.params.forr;
+      this.for=query.params.for==null?"All":query.params.for;
       this.minPrice=query.params.minPrice==null?"0":query.params.minPrice;
       this.maxPrice=query.params.maxPrice==null?"10000000":query.params.maxPrice;
     })
@@ -124,28 +97,28 @@ export class PropertySearchComponent implements OnInit {
     this.mapSrc=this.Api+this.city+this.state;
     else
     this.mapSrc=this.Api+this.state;
-    this.propertyService.getPropertyByAddress(this.street,this.city,this.state,this.propertyType,this.minPrice,this.maxPrice).subscribe((response:any)=>{
-      this.list=response;
-      this.list_copy=this.list;
-      console.log(this.list)
+    // this.propertyService.getPropertyByAddress(this.street,this.city,this.state,this.propertyType,this.minPrice,this.maxPrice).subscribe((response)=>{
+    //   this.list=response.data;
+    //   this.list_copy=this.list;
+    //   console.log(this.list)
 
-      if(this.searchProperty.value.forr=="All")
-      {
-        this.showAll();
-      }
-      else if(this.searchProperty.value.forr=="Buy")
-      {
-        this.showBuy();
-      }
-      else if(this.searchProperty.value.forr=="Rent"){
-        this.showRent();
-      }
+    //   if(this.searchProperty.value.for=="All")
+    //   {
+    //     this.showAll();
+    //   }
+    //   else if(this.searchProperty.value.for=="Buy")
+    //   {
+    //     this.showBuy();
+    //   }
+    //   else if(this.searchProperty.value.for=="Rent"){
+    //     this.showRent();
+    //   }
 
-    })
+    // })
 
-    console.log(this.searchProperty.value.forr);
+    // console.log(this.searchProperty.value.for);
 
-
+    this.getProperty();
     const detail:string=(this.city==null)?this.state:this.city;
 
 
@@ -172,6 +145,56 @@ export class PropertySearchComponent implements OnInit {
   }
 
 
+  getProperty(page=1)
+  {
+    let purpose:string;
+    if(this.searchProperty.value.for=="Buy")
+    {
+      purpose="Sell"
+    }
+    else if(this.searchProperty.value.for=="All")
+    {
+      purpose="";
+    }
+    else{
+      purpose="Rent";
+    }
+
+    let type:string;
+
+    if(this.propertyType=="All")
+    {
+      type="";
+    }
+    else{
+      type=this.propertyType;
+    }
+
+    this.propertyService.getPropertyByAddress(this.street,this.city,this.state,type,this.minPrice,this.maxPrice,purpose,page).subscribe((response)=>{
+      this.list=response.data;
+      this.list_copy=this.list;
+      this.currentPage=response.currentPage;
+      this.totalResults=response.totalResults;
+      console.log(this.list)
+
+      if(this.searchProperty.value.for=="All")
+      {
+        this.showAll();
+      }
+      else if(this.searchProperty.value.for=="Buy")
+      {
+        this.showBuy();
+      }
+      else if(this.searchProperty.value.for=="Rent"){
+        this.showRent();
+      }
+
+    })
+
+    console.log(this.searchProperty.value.for);
+  }
+
+
   toggleSlider(event: any) {
     event.preventDefault();
     this.activeSlider =
@@ -187,14 +210,14 @@ export class PropertySearchComponent implements OnInit {
     console.log(data);
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    const { street, city, type, forr, state } = data;
+    const { street, city, type, state } = data;
     const queryParams: { [e: string]: any } = {
       street,
       city,
       state,
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
-      forr,
+      for:data.for,
     };
     if (type) {
       queryParams.type = type;
@@ -214,14 +237,26 @@ export class PropertySearchComponent implements OnInit {
     if (this.city && !this.searchProperty.value.city) {
       this.searchProperty.patchValue({ city: this.city });
     }
-    if (this.forr && !this.searchProperty.value.forr) {
-      this.searchProperty.patchValue({ forr:this.forr });
+    if (this.for && !this.searchProperty.value.for) {
+      this.searchProperty.patchValue({ for:this.for });
     }
     if (this.type && !this.searchProperty.value.type) {
       this.searchProperty.patchValue({ type:this.type });
     }
 
   }
+
+  paginate(event:any)
+  {
+      this.getProperty(event.page+1);
+  }
+
+
+
+
+
+
+
 
   showProperty(index:number)
   {
