@@ -32,6 +32,11 @@ import { MyPropertyComponent } from './my-property/my-property.component';
 import { MyPropertyRentComponent } from './my-property-rent/my-property-rent.component';
 import { MyPropertySellComponent } from './my-property-sell/my-property-sell.component';
 import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
+import { LoginComponent } from './login/login.component';
+import {PasswordModule} from 'primeng/password';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CarouselModule} from 'primeng/carousel';
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
@@ -41,8 +46,8 @@ import { StepsModule } from 'primeng/steps';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
-import { CarouselModule } from 'primeng/carousel';
 import {PaginatorModule} from 'primeng/paginator';
+
 
 @NgModule({
   declarations: [
@@ -70,6 +75,7 @@ import {PaginatorModule} from 'primeng/paginator';
     MyPropertyRentComponent,
     MyPropertySellComponent,
     EditPropertyDetailComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,16 +86,18 @@ import {PaginatorModule} from 'primeng/paginator';
     BrowserAnimationsModule,
     NgxSliderModule,
     FormsModule,
-    MenubarModule,
-    InputTextModule,
     ButtonModule,
+    InputTextModule,
+    PasswordModule,
+    ProgressBarModule,
+    InputTextareaModule,
+    CarouselModule,
+    MenubarModule,
     DropdownModule,
     TimelineModule,
     StepsModule,
     RadioButtonModule,
-    ButtonModule,
     PanelModule,
-    CarouselModule,
     PaginatorModule
   ],
   providers: [PropertySearchService, CityDetailService],

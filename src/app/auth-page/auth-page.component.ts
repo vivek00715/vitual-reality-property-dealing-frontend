@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
@@ -11,16 +11,14 @@ import { UxService } from '../ux.service';
   styleUrls: ['./auth-page.component.scss'],
 })
 export class AuthPageComponent implements OnInit {
-  headerOpen = false;
-  showLoginPage = true; // if true, shows login page, else signup page
   authForm: FormGroup;
   private authChangeSubscription: Subscription;
   constructor(
+    private fb:FormBuilder,
+    private router:Router,
     public authService: AuthService,
-    private router: Router,
     public uxService: UxService
-  ) {
-    // listen to changes for auth state change, check for redirect if state changes
+  ){
     this.authChangeSubscription = this.authService.authStateChanged.subscribe(
       () => {
         this.redirectIfLoggedIn();
@@ -28,8 +26,15 @@ export class AuthPageComponent implements OnInit {
     );
 
     this.authForm = new FormGroup({
-      email: new FormControl(null, [Validators.email, Validators.required]),
-      password: new FormControl(null, [
+      email: new FormControl(null, [
+        Validators.email,
+        Validators.required
+      ]),
+      password1: new FormControl(null, [
+        Validators.minLength(6),
+        Validators.required,
+      ]),
+      password2: new FormControl(null, [
         Validators.minLength(6),
         Validators.required,
       ]),
@@ -47,53 +52,45 @@ export class AuthPageComponent implements OnInit {
         Validators.minLength(3),
       ]),
     });
-  }
 
-  toggleForm() {
-    // toggles between login page and signup page
-    this.showLoginPage = !this.showLoginPage;
   }
-
   private redirectIfLoggedIn(): void {
     // automatically redirect to / if user is logged in
     if (this.authService.loggedIn) {
       this.router.navigate(['/']);
     }
   }
-  ngOnInit(): void {
-    // check if user is logged in
+  ngOnInit():void{
     this.redirectIfLoggedIn();
   }
 
+  handleAuth() {
+    const { email, password1,password2, mobile, address, name } = this.authForm.controls;
+    if(password1.value===password2.value){
+    this.authService.signup(
+      email.value,
+      password2.value,
+      name.value,
+      address.value,
+      mobile.value
+    );
+    }else{
+      this.uxService.showToast("Error","Passwords do not match",true)
+    }
+  }
   ngOnDestroy(): void {
     // prevent memory leaks
     this.authChangeSubscription.unsubscribe();
   }
 
-  handleAuth() {
-    const { email, password, mobile, address, name } = this.authForm.controls;
-    if (this.showLoginPage) {
-      // do login
-      this.authService.login(email.value, password.value);
-    } else {
-      this.authService.signup(
-        email.value,
-        password.value,
-        name.value,
-        address.value,
-        mobile.value
-      );
-    }
-  }
-
   isFormValid(): boolean {
     // return if the form is valid or invalid based on whether form is login form or signup form
-    const { email, password } = this.authForm.controls;
-    if (this.showLoginPage) {
-      // only email and password should be valid
-      return email.valid && password.valid;
-    }
+    const { email, password2 } = this.authForm.controls;
     // everything should be valid if it is signup form
     return this.authForm.valid;
+  }
+
+  login(){
+    this.router.navigate(['/log-in']);
   }
 }

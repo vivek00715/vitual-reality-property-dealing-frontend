@@ -9,17 +9,20 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import {HouseModelMainComponent} from './house-model-main/house-model-main.component';
 import { MyPropertyComponent } from './my-property/my-property.component';
 import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'property/:address', component: PropertySearchComponent },
   { path: '', component: LandingPageComponent },
   { path: 'property/id/:id', component: PropertyInformationComponent },
-  { path: 'auth', component: AuthPageComponent },
+  { path: 'signup', component: AuthPageComponent },
   { path: 'create', component: CreatePropertyComponent },
   { path: 'model', component: HouseModelMainComponent},
   { path: 'my-profile', component: MyPropertyComponent },
   { path: 'property/edit/:id', component: EditPropertyDetailComponent },
+  { path: 'log-in', component:LoginComponent},
   { path: '**', component: ErrorPageComponent },
+
 ];
 
 @NgModule({
