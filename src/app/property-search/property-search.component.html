@@ -1,4 +1,4 @@
-<div class="bg-light">
+<!-- <div class="bg-light">
   <app-property-search-header></app-property-search-header>
 
   <div class="container" style="margin-top: 3%">
@@ -33,7 +33,6 @@
     </ul>
 
     <div class="row">
-      <!-- Map Column , Using safe Pipe to overcome maps api error -->
       <div class="col-lg-8 col-md-12 col-sm-12">
         <iframe
           [src]="mapSrc | safe"
@@ -47,7 +46,6 @@
       </div>
 
 
-      <!-- Card to display city detail -->
       <div class="col-lg-4 col-md-12 col-sm-12">
         <div
           class="card"
@@ -83,7 +81,6 @@
     </div>
 
     <div class="row">
-      <!-- Using ngfor to display list of properties present -->
       <div *ngIf="list.length == 0" class="col-lg-3 col-md-4 col-sm-6">
         <h3 class="card3">No Property is currently available in this area</h3>
       </div>
@@ -138,4 +135,138 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<app-property-search-header></app-property-search-header>
+
+<div class="p-grid">
+    <div class="p-lg-6 p-md-12 p-sm-12">
+      <iframe
+      [src]="mapSrc | safe"
+      width="100%"
+      height=350;
+      style="border-radius: 10px; border-color: white; border-style: solid;"
+      allowfullscreen=""
+      loading="lazy"
+      >
+      </iframe>
+    </div>
+    <div class="p-lg-6 p-md-12 p-sm-12">
+      <div [formGroup]="searchProperty" (ngSubmit)="handleSearchProperty()">
+        <div class="searchbar p-grid">
+            <!-- <input class="p-col-4" formControlName="state" type="text" placeholder="State"> -->
+
+          <input
+           type="text"
+            list="states"
+           formControlName="state"
+           (input)="searchState($event)"
+           class="p-col-4 input"
+           placeholder="State"
+          />
+          <datalist class="input" id="states">
+          <option *ngFor="let state of stateResult" [value]="state"></option>
+          </datalist>
+
+          <input
+           type="text"
+            list="cities"
+           formControlName="city"
+           (input)="searchCity($event)"
+           class="p-col-4 input"
+           placeholder="City"
+          />
+          <datalist class="input" id="cities">
+          <option *ngFor="let city of cityResult" [value]="city"></option>
+          </datalist>
+
+          <input formControlName="street" class="input p-col-4" style="border-color: white;" type="text" placeholder="Area">
+        </div>
+
+        <div class="p-grid" style="margin-top: 4%;">
+
+         <select formControlName="forr"  class="p-col-3">
+          <option selected>All</option>
+          <option>Buy</option>
+          <option>Rent</option>
+         </select>
+
+         <select formControlName="type" class="p-col-3">
+          <option disabled selected>Type</option>
+          <option>Home</option>
+          <option>Flat</option>
+          <option>Office</option>
+         </select>
+         <select
+          style="cursor: pointer"
+          class="p-col-3"
+          (click)="toggleSlider($event)"
+          (mousedown)="$event.preventDefault()"
+          >
+         <option  value="" style="color: grey" disabled selected>
+          Budget
+         </option>
+         </select>
+
+         <button pButton type="submit" (click)="handleSearchProperty()"  icon="pi pi-search" iconPos="right" class="p-col-1 p-button-text p-button-raised p-button-rounded"></button>
+
+         <ngx-slider
+          *ngIf="activeSlider"
+          class="slider"
+          style="margin-top: 10%"
+          class="col-12"
+          [(value)]="minPrice"
+          [(highValue)]="maxPrice"
+          [options]="options"
+          ></ngx-slider>
+        </div>
+
+        <hr>
+
+        <h2>
+          Search Results :
+        </h2>
+
+        <h4 *ngIf="list[0].propertyId!=0">
+          {{list.length}} Listings
+        </h4>
+        <h4 *ngIf="list[0].propertyId==0">
+          0 Listings
+        </h4>
+
+      </div>
+
+    </div>
 </div>
+
+<div class="p-grid" style="padding: 2%; padding-top: 0%;" >
+  <div *ngIf="list.length==1 && list[0].propertyId==0" class="p-col-12 card" style="height: 25vh; text-align: center;">
+    <h1 style="text-align: center;">No Property is listed in this Area</h1>
+  </div>
+  <div  class="p-lg-5 p-md-12 p-sm-12 card" *ngFor="let property of list; let i = index">
+      <div (click)="showProperty(i)" *ngIf="list[0].propertyId!=0" class="p-grid">
+         <div *ngIf="list[0].propertyId!=0" class="p-col-4 image">
+           <img src="../../assets/images/home3d_icon.png">
+         </div>
+         <div *ngIf="list[0].propertyId!=0" class="p-col-8">
+            <h1>Price: {{property.price | currency: "INR"}}</h1>
+            <h2>{{property.address}}</h2>
+            <h2>{{property.type}}</h2>
+            <h2>{{property.ownerEmail}}</h2>
+            <hr>
+            <div class="p-grid">
+              <div class="p-col-4" style="background-image:url(../../assets/icons/bed_black_24dp.svg);"> {{property.bedrooms}} </div>
+              <div class="p-col-4" style="background-image:url(../../assets/icons/bathtub_black_24dp.svg)"> {{property.bathrooms}} </div>
+              <div class="p-col-4" style="background-image:url(../../assets/icons/square_foot_black_24dp.svg);"> {{property.area}} </div>
+            </div>
+            <div style="text-align: right; font-size: 1rem; padding-top: 5%;">
+              <b>Built: {{property.built_year}}</b>
+            </div>
+         </div>
+      </div>
+  </div>
+
+</div>
+
+
+<app-landing-footer></app-landing-footer>

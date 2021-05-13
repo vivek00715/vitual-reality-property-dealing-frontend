@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  state:string="Delhi";
+
+  constructor(private router:Router) {
+
+  }
 
   ngOnInit(): void {
+  }
+
+
+  search()
+  {
+     this.router.navigate(['/property/',this.state],{
+      queryParams: {
+        state: this.state,
+        forr:null,
+        type:null,
+        city:null,
+        minPrice:null,
+        maxPrice:null,
+
+      }
+     }
+    );
   }
 
 }

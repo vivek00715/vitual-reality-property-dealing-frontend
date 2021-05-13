@@ -32,6 +32,10 @@ import { MyPropertyComponent } from './my-property/my-property.component';
 import { MyPropertyRentComponent } from './my-property-rent/my-property-rent.component';
 import { MyPropertySellComponent } from './my-property-sell/my-property-sell.component';
 import { EditPropertyDetailComponent } from './edit-property-detail/edit-property-detail.component';
+import { MenubarModule } from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
+import {CardModule} from 'primeng/card';
 import { TimelineModule } from 'primeng/timeline';
 import { StepsModule } from 'primeng/steps';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -75,6 +79,10 @@ import { CarouselModule } from 'primeng/carousel';
     BrowserAnimationsModule,
     NgxSliderModule,
     FormsModule,
+    MenubarModule,
+    InputTextModule,
+    ButtonModule,
+    DropdownModule,
     TimelineModule,
     StepsModule,
     RadioButtonModule,
