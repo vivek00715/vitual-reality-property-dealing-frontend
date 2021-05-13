@@ -4,7 +4,6 @@ import { UxService } from '../ux.service';
 import { PropertyService } from '../property.service';
 import { User, UserServiceService } from '../user-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-my-property',
@@ -13,9 +12,9 @@ import { ViewChild, ElementRef } from '@angular/core';
 })
 export class MyPropertyComponent implements OnInit {
   headerOpen = false;
+  displayModal: boolean = false;
   user!: User;
   editForm: FormGroup;
-  @ViewChild('closeModel') closeModel!: ElementRef;
 
   constructor(
     public authService: AuthService,
@@ -34,6 +33,10 @@ export class MyPropertyComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  showModalDialog() {
+    this.displayModal = true;
+  }
 
   getSrc() {
     if (this.uxService.darkMode)
@@ -62,7 +65,8 @@ export class MyPropertyComponent implements OnInit {
         this.user = Response;
         this.uxService.showToast('Success', 'Update Successfully');
 
-        this.closeModel.nativeElement.click();
+        // this.closeModel.nativeElement.click();
+        this.displayModal = false;
       },
       (err) => {
         this.uxService.hideSpinner();
