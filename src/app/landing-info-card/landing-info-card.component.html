@@ -1,6 +1,6 @@
-<!-- container  -->
+<!-- container
 <div class="container">
-  <!-- container heading  -->
+   container heading
   <div class="container-heading">
     <br />
     <p class="container-heading-text">
@@ -9,9 +9,9 @@
     <p class="container-heading-text"><i>We can help you move forward</i></p>
   </div>
 
-  <!-- card holder  -->
+   card holder
   <div class="card-deck">
-    <!-- card 1 -->
+    card 1
     <div class="card-style card">
       <img
         class="card-img-top"
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <!-- card 2 -->
+    card 2
     <div class="card-style card">
       <img
         class="card-img-top"
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <!-- card 3 -->
+    card 3
     <div class="card-style card">
       <img
         class="card-img-top-size card-img-top"
@@ -70,4 +70,102 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+<div style="width: 100%; height: fit-content;">
+<div style="width: 100%; height: fit-content; margin-top: -5%;">
+  <div style="background-color: #FBFCFE;">
+
+    <div class="container p-grid " style="padding: 4%;" id='container' #container>
+      <div class="p-lg-4 p-med-12">
+       <div class="card">
+        <div class="sneaker">
+          <img id='img' src="../../assets/images/home3d_icon.png" alt="adidas" />
+        </div>
+        <div class="info">
+          <h1 class="title">Buy Property</h1>
+          <h3 style="text-align: left; ">
+            Looking for a home where you can live with your family, or a work space ?
+            HashHomes is the right place for this, press the button below and explore the properties.
+          </h3>
+          <div class="purchase">
+            <button (click)="buy()">Buy</button>
+          </div>
+        </div>
+       </div>
+      </div>
+      <div class="p-lg-4 p-med-12">
+       <div class="card">
+        <div class="sneaker">
+          <img #img src="../../assets/images/home3d_2.png" alt="adidas" />
+        </div>
+        <div class="info" >
+          <h1 class="title" >Sell Property</h1>
+          <h3 style="text-align: left;">
+            Looking to sell a home, flat, or a work space or any property?
+            HashHomes is the right place for this as we assure that you should get the best deal in the market.
+          </h3>
+          <div class="purchase">
+            <button (click)="sell()">Sell</button>
+          </div>
+        </div>
+       </div>
+      </div>
+      <div class="p-lg-4 p-med-12">
+       <div class="card">
+        <div class="sneaker">
+          <img src="../../assets/images/construction.png" alt="adidas" />
+        </div>
+        <div class="info">
+          <h1 class="title">Design Property</h1>
+          <h3 style="text-align: left;">
+            Want to design a home or a work space for yourself. HashHomes gives you an opportunity to design
+            the property and do the interior designing.
+          </h3>
+          <div class="purchase">
+            <button (click)="design()">Design</button>
+          </div>
+        </div>
+       </div>
+      </div>
+    </div>
+
+    <svg viewBox="0 0 1440 319">
+      <path fill="#fff" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+
+  </div>
 </div>
+
+<div class="prime p-grid " style="padding: 4%; height: fit-content; width: 100%;">
+  <div class="p-col-12">
+   <div class="card" id='card' #card style=" background: rgb(146, 144, 150);
+   background: linear-gradient(0deg, rgb(195, 194, 197) 0%, rgb(255, 254, 255) 100%);
+   border: none;">
+    <div class="p-grid">
+     <div class="p-lg-4 p-md-12 sneaker">
+      <img id='img' #img src="../../assets/images/member.jpg" alt="adidas"/>
+     </div>
+     <div class="info p-lg-8 p-md-12">
+      <h1 class="title" id='title' #title style="color: black;">Become A Prime Member Of HashHomes</h1>
+      <h3 style="text-align: left; font-size: medium; color: black;" id='description' #description>
+        Prime members of HashHomes will have the access to the virtual tour of each property.Prime members
+        can also do the designing of their dream property and along with that they also have the access of
+        interior designing which gives the clear picture of the desired property.We also give the facility
+        of taking 3d picture of your property, if you want to host it on HashHomes
+        with no extra charges.Properties of Prime Members will always get priority over Non-Prime Member.So
+        what are you waiting for just click the button
+        below and be the prime members, we assure you it will be worth it.
+      </h3>
+      <div class="purchase" id='btn' #btn >
+        <button style="background-color: rgb(10, 10, 10); color: white;">Subscribe</button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  </div>
+  </div>
+
+

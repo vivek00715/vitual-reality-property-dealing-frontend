@@ -1,30 +1,118 @@
-.container-heading {
-  text-align: center;
+// .container-heading {
+//   text-align: center;
+// }
+
+// .container-heading-text {
+//   font-size: 1.5rem;
+//   font-family: sans-serif;
+//   color: #f37820;
+// }
+
+// .card-style {
+//   width: 100%;
+//   text-align: center;
+// }
+
+// .card-button {
+//   background: #f37820;
+//   border: none;
+//   width: 10rem;
+// }
+
+// .card-img-top-size {
+//   height: 10rem;
+// }
+
+// .card-style:hover,
+// .card-button:hover {
+//   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+//   transition: box-shadow 1000ms ease-out;
+// }
+
+
+div{
+  font-family: 'Work Sans', sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  svg{
+    display: block;
+  }
+
 }
 
-.container-heading-text {
+.card {
+  transform-style: preserve-3d;
+  min-height: 70vh;
+  // width: 20rem;
+  border-radius: 30px;
+  padding: 0rem 5rem;
+  padding:4%;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover{
+  color: white;
+  background-color: black;
+
+  .sneaker img {
+    width: 20rem;
+    // height: 15rem;
+  }
+  .info h3{
+    color: white;
+    font-size: medium;
+    transition: all 0s ease-out;
+  }
+}
+
+.title{
+  text-align:center ;
+}
+
+.sneaker {
+  min-height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sneaker img {
+  width: 15rem;
+  z-index: 2;
+  transition: all 0.75s ease-out;
+}
+
+.info h1 {
   font-size: 1.5rem;
-  font-family: sans-serif;
-  color: #f37820;
+  transition: all 0.75s ease-out;
 }
 
-.card-style {
+.info h3 {
+  font-size: 0.7rem;
+  padding: 1rem 0rem;
+  color: #585858;
+  font-weight: lighter;
+  transition: all 0s ease-out;
+}
+
+.purchase {
+  margin-top: 2rem;
+  transition: all 0.75s ease-out;
+}
+
+.purchase button {
   width: 100%;
-  text-align: center;
-}
-
-.card-button {
-  background: #f37820;
+  padding: 1rem 0rem;
+  background: #f54642;
   border: none;
-  width: 10rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bolder;
+  outline: none;
 }
 
-.card-img-top-size {
-  height: 10rem;
-}
-
-.card-style:hover,
-.card-button:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
-  transition: box-shadow 1000ms ease-out;
+.prime{
+  margin-top: -10%;
+  height: 1rem;
 }

@@ -30,9 +30,20 @@ export class PropertySearchHeaderComponent implements OnInit {
     public authService: AuthService,
     public uxService: UxService
   ) {
+
+    if(screen.width<=750)
+    {
+      this.hamburger=true;
+    }
+    else
+    {
+      this.hamburger=false;
+    }
+
     this.propertyService = propertyService;
     this.searchProperty = new FormGroup({
       street: new FormControl(null),
+      for:new FormControl(''),
       city: new FormControl(this.city),
       state: new FormControl(this.state, Validators.required),
       type: new FormControl(''),
@@ -139,4 +150,17 @@ export class PropertySearchHeaderComponent implements OnInit {
       return '../../assets/icons/light_mode_black_24dp.svg';
     else return '../../assets/icons/dark_mode_black_24dp.svg';
   }
+
+
+  home()
+  {
+    this.router.navigate(['/']);
+  }
+
+  design()
+  {
+    this.router.navigate(['/model']);
+  }
+
+
 }
