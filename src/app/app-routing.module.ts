@@ -13,6 +13,8 @@ import {PropertyCreateStepsComponent} from './property-create-steps/property-cre
 import {AuthRequiredGuard} from './auth-required.guard';
 import {AuthNotRequiredGuard} from './auth-not-required.guard';
 import {LoginComponent} from './login/login.component';
+import {EmailVerifyComponent} from './email-verify/email-verify.component';
+import {PasswordResetComponent} from './password-reset/password-reset.component';
 
 const routes: Routes = [
   {path: 'property/:address', component: PropertySearchComponent},
@@ -30,6 +32,8 @@ const routes: Routes = [
   {path: 'my-profile', component: MyPropertyComponent},
   {path: 'property/edit/:id', component: EditPropertyDetailComponent},
   {path: 'log-in', component: LoginComponent},
+  {path: 'verify/:token', component: EmailVerifyComponent},
+  {path: 'reset/:token', component: PasswordResetComponent},
   {path: '**', component: ErrorPageComponent},
 
 ];

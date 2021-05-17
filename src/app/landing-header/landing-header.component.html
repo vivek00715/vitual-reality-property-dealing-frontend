@@ -165,27 +165,31 @@
 
 <header *ngIf="!hamburger">
   <div class="p-grid" style="padding: 0 1% 0 2%">
-    <img
-      src="../../assets/images/Logo.png"
-      class="p-col-2"
-      height="100px"
-      routerLink="/"
-    />
+    <div class="p-col">
+      <img
+        src="/assets/new%20logo.png"
+        height="100px"
+        style="width: 150px !important;"
+        routerLink="/"
+        class="no-hover"
+      />
+    </div>
+
     <div *ngIf="authService.loggedIn" class="p-col-3"></div>
     <div *ngIf="!authService.loggedIn" class="p-col-4"></div>
-    <div class="p-col-2">
+    <div class="p-col-2" style="margin-top: -0.54%">
       <div>Why HashHomes ?</div>
     </div>
-    <div (click)="Buy()" class="p-col-1" style="margin-top: 1.6%">
+    <div (click)="Buy()" class="p-col-1" style="margin-top: 1.1%">
       <div>Buy</div>
     </div>
-    <div (click)="Rent()" class="p-col-1" style="margin-top: 1.6%">
+    <div (click)="Rent()" class="p-col-1" style="margin-top: 1.1%">
       <div>Rent</div>
     </div>
-    <div (click)="Sell()" class="p-col-1" style="margin-top: 1.6%">
+    <div (click)="Sell()" class="p-col-1" style="margin-top: 1.1%">
       <div>Sell</div>
     </div>
-    <div *ngIf="authService.loggedIn" class="p-col-1" style="margin-top: 1.6%">
+    <div *ngIf="authService.loggedIn" class="p-col-1" style="margin-top: 1.1%">
       <div routerLink="/my-profile">Profile</div>
     </div>
     <div

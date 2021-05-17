@@ -163,3 +163,7 @@ button:hover{
   border-color:black ;
 }
 
+.no-hover:hover {
+  background-color: unset !important;
+  color: unset !important;
+}

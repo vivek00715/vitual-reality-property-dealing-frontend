@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="400"
+   height="200"
+   viewBox="0 0 105.83333 52.916668"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="new logo.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <defs
+     id="defs2">
+    <rect
+       x="35.146398"
+       y="34.623447"
+       width="70.861003"
+       height="18.641356"
+       id="rect933" />
+    <rect
+       x="38.469025"
+       y="37.250549"
+       width="43.691063"
+       height="14.099507"
+       id="rect927" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.52"
+     inkscape:cx="239.87353"
+     inkscape:cy="168.08822"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#1a1a1a;stroke-width:0.242449"
+       id="rect869"
+       width="3.0805082"
+       height="9.1502562"
+       x="12.308161"
+       y="43.876514" />
+    <rect
+       style="fill:#1a1a1a;stroke-width:0.242449"
+       id="rect871"
+       width="2.3369372"
+       height="2.2618613"
+       x="20.38122"
+       y="43.979332" />
+    <rect
+       style="fill:#1a1a1a;stroke-width:0.242449"
+       id="rect871-9"
+       width="2.3369372"
+       height="2.2618613"
+       x="23.211048"
+       y="43.979332" />
+    <rect
+       style="fill:#1a1a1a;stroke-width:0.242449"
+       id="rect871-94"
+       width="2.3369372"
+       height="2.2618613"
+       x="20.38122"
+       y="46.718235" />
+    <rect
+       style="fill:#1a1a1a;stroke-width:0.242449"
+       id="rect871-9-9"
+       width="2.3369372"
+       height="2.2618613"
+       x="23.211048"
+       y="46.718235" />
+    <path
+       style="fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.242449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 7.209378,27.529431 17.619367,17.55668 35.146398,34.623447 35.252627,52.821155 H 28.029365 L 28.348035,37.296558 17.725597,27.220996 7.209378,37.296558 Z"
+       id="path919" />
+    <path
+       style="fill:#1a1a08;fill-opacity:1;stroke:#000000;stroke-width:0.242449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 0.092345,0.69553157 V 52.821155 H 7.103158 L 6.996929,7.2754922 Z"
+       id="path923" />
+    <text
+       xml:space="preserve"
+       id="text931"
+       style="font-style:normal;font-weight:normal;font-size:6.12805px;line-height:0.75;font-family:sans-serif;white-space:pre;shape-inside:url(#rect933);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(1.634978,0,0,1.6304247,-21.970352,-22.222893)"><tspan
+         x="35.146484"
+         y="39.98089"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.12805px;font-family:'United Kingdom';-inkscape-font-specification:'United Kingdom'">ASH 
+</tspan></tspan><tspan
+         x="35.146484"
+         y="45.875979"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.12805px;font-family:'United Kingdom';-inkscape-font-specification:'United Kingdom'">OMES</tspan></tspan></text>
+  </g>
+</svg>
