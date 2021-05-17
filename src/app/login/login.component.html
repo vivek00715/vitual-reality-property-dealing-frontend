@@ -5,23 +5,24 @@
       <h1><strong>LOG IN</strong></h1>
       <p>If you don't have an account <a routerLink="/signup">sign up.</a></p>
     </div>
-    <form [formGroup]="authForm" (ngSubmit)="handleAuth()" >
+    <form [formGroup]="authForm" (ngSubmit)="handleAuth()">
       <div class="p-fluid">
         <div class="form-group">
           <div class="p-field">
             <label for="email">Email</label>
-            <input id="email" type="text"  formControlName="email" pInputText>
+            <input id="email" type="text" formControlName="email" pInputText>
           </div>
         </div>
 
         <div class="form-group">
           <div class="p-field">
             <label for="password">Password</label>
-            <p-password [toggleMask]="true" id="password"  formControlName="password"></p-password>
+            <p-password [toggleMask]="true" id="password" formControlName="password"></p-password>
           </div>
+          <small class="clickable" (click)="showResetPassword = true">Forgot Password?</small>
         </div>
       </div>
-      <div class="button-fam">
+      <div class="button-fam p-mt-4">
         <button class="submit" type="submit">SUBMIT</button>
         <button class="cancel" type="reset">RESET</button>
       </div>
@@ -32,4 +33,11 @@
     <img src="../../assets/images/account-log-page_41910-263.jpg" alt="">
   </div>
 </div>
+<p-dialog header="Reset Password" [(visible)]="showResetPassword" [style]="{width: '50vw'}">
+  <span class="p-float-label p-my-5 p-fluid">
+    <input type="text" id="emailReset" pInputText [(ngModel)]="resetEmail">
+    <label for="emailReset">Enter Email</label>
+  </span>
+  <p-button label="Send Password Reset Email" (onClick)="sendPasswordResetEmail()" [disabled]="!validateEmail(resetEmail)"></p-button>
+</p-dialog>
 <app-landing-footer></app-landing-footer>

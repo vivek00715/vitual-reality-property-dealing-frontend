@@ -66,6 +66,8 @@ import {AuthInterceptor} from './auth.interceptor';
 import {ToastrModule} from 'ngx-toastr';
 import {DialogModule} from 'primeng/dialog';
 import {PaginatorModule} from 'primeng/paginator';
+import { EmailVerifyComponent } from './email-verify/email-verify.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +106,8 @@ import {PaginatorModule} from 'primeng/paginator';
     PropertyCreateInformationComponent,
     PropertyCreateImagesComponent,
     LoginComponent,
+    EmailVerifyComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
