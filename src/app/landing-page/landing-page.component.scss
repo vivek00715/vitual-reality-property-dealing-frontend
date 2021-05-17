@@ -1,25 +1,27 @@
-body{
-  font-family: 'Work Sans', sans-serif;
+body {
+  font-family: "Work Sans", sans-serif;
   letter-spacing: 0.5px;
   cursor: pointer;
-  section{
-    p{
+  section {
+    p {
       text-decoration: none;
-      color: purple;
+      color: #234e70;
       font-weight: 700;
       font-size: larger;
       // text-decoration: underline;
     }
-    p:hover{
-      background-color: purple;
-      color: white;
+    p:hover {
+      background-color: #234e70;
+      height: 3rem;
+      padding-top: 0.6rem;
+      border-radius: 10px;
+      color: #fbf8be;
       font-size: x-large;
       text-align: center;
       font-weight: 500;
       text-decoration: none;
-      animation: normal both,
+      animation: normal both;
     }
-
 
     .line {
       // position: relative;
@@ -28,13 +30,12 @@ body{
     }
 
     .typing {
-      animation: typewriter 3s steps(25) 0s infinite normal both,
-     }
-
+      animation: typewriter 3s steps(25) 0s infinite normal both;
+    }
   }
 }
 
-  @keyframes typewriter {
+@keyframes typewriter {
   from {
     width: 0;
   }
@@ -42,6 +43,4 @@ body{
   to {
     width: 100%;
   }
-  }
-
-
+}

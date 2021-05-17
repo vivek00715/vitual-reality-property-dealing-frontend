@@ -5,17 +5,17 @@ import { AuthService } from '../auth.service';
 import { StateCityService } from '../state-city.service';
 import { UxService } from '../ux.service';
 
-import {MenubarModule} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api';
 
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 
 interface Buy {
-  name: string,
+  name: string;
 }
 
 interface Rent {
-  name: string,
+  name: string;
 }
 
 @Component({
@@ -128,58 +128,42 @@ interface Rent {
 //     else return '../../assets/icons/dark_mode_black_24dp.svg';
 //   }
 // }
+export class LandingHeaderComponent implements OnInit {
+  hamburger = false;
+  for: string = '';
+  buy: string = 'Buy';
+  state: string = 'Delhi';
+  rent: string = 'Rent';
 
-export class LandingHeaderComponent implements OnInit{
-
-  hamburger=false;
-  for:string="";
-  buy:string="Buy"
-  state:string="Delhi";
-  rent:string="Rent";
-
-
-   constructor(public authService: AuthService, private router:Router)
-   {
-      if(screen.width<=750)
-      {
-        this.hamburger=true;
-      }
-      else
-      {
-        this.hamburger=false;
-      }
-   }
-
-    ngOnInit() {
-
-
-
+  constructor(public authService: AuthService, private router: Router) {
+    if (screen.width <= 750) {
+      this.hamburger = true;
+    } else {
+      this.hamburger = false;
     }
+  }
 
-    Rent()
-    {
-       this.router.navigate(['/property/',this.state],{
-        queryParams: {
-          for: this.rent,
-          state:this.state
-        }
-      });
-    }
+  ngOnInit() {}
 
-    Buy()
-    {
-      this.router.navigate(['/property/',this.state],{
-        queryParams: {
-          for: this.buy,
-          state:this.state
-        }
-      });
-    }
+  Rent() {
+    this.router.navigate(['/property/', this.state], {
+      queryParams: {
+        for: this.rent,
+        state: this.state,
+      },
+    });
+  }
 
-    Sell()
-    {
-      this.router.navigate(['/create']);
-    }
+  Buy() {
+    this.router.navigate(['/property/', this.state], {
+      queryParams: {
+        for: this.buy,
+        state: this.state,
+      },
+    });
+  }
 
-
+  Sell() {
+    this.router.navigate(['/create']);
+  }
 }

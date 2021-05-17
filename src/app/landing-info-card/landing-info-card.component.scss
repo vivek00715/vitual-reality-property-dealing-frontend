@@ -29,15 +29,13 @@
 //   transition: box-shadow 1000ms ease-out;
 // }
 
-
-div{
-  font-family: 'Work Sans', sans-serif;
+div {
+  font-family: "Work Sans", sans-serif;
   letter-spacing: 0.5px;
   cursor: pointer;
-  svg{
+  svg {
     display: block;
   }
-
 }
 
 .card {
@@ -46,27 +44,39 @@ div{
   // width: 20rem;
   border-radius: 30px;
   padding: 0rem 5rem;
-  padding:4%;
+  padding: 4%;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
 }
 
-.card:hover{
-  color: white;
-  background-color: black;
+.card:hover {
+  color: #fbf8be;
+  background-color: #234e70;
 
   .sneaker img {
     width: 20rem;
     // height: 15rem;
   }
-  .info h3{
-    color: white;
+  .info h3 {
+    color: #fbf8be;
     font-size: medium;
     transition: all 0s ease-out;
   }
+
+  .purchase button {
+    width: 100%;
+    padding: 1rem 0rem;
+    background: #fbf8be !important;
+    border: none;
+    color: #234e70 !important;
+    cursor: pointer;
+    border-radius: 30px;
+    font-weight: bolder;
+    outline: none;
+  }
 }
 
-.title{
-  text-align:center ;
+.title {
+  text-align: center;
 }
 
 .sneaker {
@@ -90,7 +100,7 @@ div{
 .info h3 {
   font-size: 0.7rem;
   padding: 1rem 0rem;
-  color: #585858;
+  color: #234e70;
   font-weight: lighter;
   transition: all 0s ease-out;
 }
@@ -103,16 +113,16 @@ div{
 .purchase button {
   width: 100%;
   padding: 1rem 0rem;
-  background: #f54642;
+  background: #234e70;
   border: none;
-  color: white;
+  color: #fbf8be;
   cursor: pointer;
   border-radius: 30px;
   font-weight: bolder;
   outline: none;
 }
 
-.prime{
+.prime {
   margin-top: -10%;
   height: 1rem;
 }

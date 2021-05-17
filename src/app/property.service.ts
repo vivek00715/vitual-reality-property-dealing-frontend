@@ -23,14 +23,14 @@ export interface PropertyRequestBody {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PropertyService {
   private baseUrl = '';
   constructor(
     private authService: AuthService,
     private http: HttpClient,
-    private baseUrlService: BaseUrlService,
+    private baseUrlService: BaseUrlService
   ) {
     this.baseUrl = baseUrlService.getBaseUrl();
   }
@@ -41,13 +41,12 @@ export class PropertyService {
 
   getUserProperty(userid: string | any) {
     return this.http.get<Property[]>(
-      this.baseUrl + '/owner/' + userid + '/property/'
+      this.baseUrl + '/property/owner/' + userid
     );
   }
 
   editProperty(createForm: any, id: number): Observable<Property> {
-    return this.http.patch<Property>(
-      `${this.baseUrl}/patch/` + id, createForm);
+    return this.http.patch<Property>(`${this.baseUrl}/patch/` + id, createForm);
   }
 
   deleteProperty(id: number) {
@@ -58,6 +57,9 @@ export class PropertyService {
   uploadImage(image: File, propertyId: number): Observable<Property> {
     const formData = new FormData();
     formData.append('image', image);
-    return this.http.post<Property>(`${this.baseUrl}/property/${propertyId}/image`, formData);
+    return this.http.post<Property>(
+      `${this.baseUrl}/property/${propertyId}/image`,
+      formData
+    );
   }
 }

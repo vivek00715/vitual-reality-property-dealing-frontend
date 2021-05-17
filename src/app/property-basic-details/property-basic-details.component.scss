@@ -6,8 +6,8 @@ p-chip {
 }
 
 :host ::ng-deep .p-chip.active {
-  background: #9325A6;
-  color: white;
+  background: #234e70;
+  color: #fbf8be;
   transition: background-color 800ms ease-out, color 1000ms ease-out;
 }
 

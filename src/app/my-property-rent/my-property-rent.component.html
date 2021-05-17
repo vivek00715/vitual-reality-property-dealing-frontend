@@ -1,12 +1,8 @@
-<div class="container property-rent-div">
+<!-- <div class="container property-rent-div">
   <p class="property-rent-heading">Properties on Rent</p>
   <hr />
 
   <div class="row">
-    <!-- Using ngfor to display list of properties present -->
-    <!-- <div *ngIf="list.length == 0" class="col-lg-3 col-md-4 col-sm-6">
-      <h3 class="card3">No Property is currently available in this area</h3>
-    </div> -->
 
     <div
       class="col-lg-3 col-md-4 col-sm-6"
@@ -53,6 +49,70 @@
           <div class="go-arrow">→</div>
         </div>
       </a>
+    </div>
+  </div>
+</div> -->
+
+<p class="property-rent-heading">Properties on Rent</p>
+<hr />
+<p-paginator
+  (onPageChange)="paginate($event)"
+  [rows]="10"
+  [totalRecords]="totalResults"
+></p-paginator>
+<div class="p-grid" style="padding: 2%; padding-top: 0%">
+  <div
+    *ngIf="list.length == 0"
+    class="p-col-12 card"
+    style="height: 25vh; text-align: center"
+  >
+    <h1 style="text-align: center">No Property is listed in this Area</h1>
+  </div>
+  <div
+    class="p-lg-5 p-md-12 p-sm-12 card"
+    *ngFor="let property of list; let i = index"
+  >
+    <div
+      (click)="showProperty(i)"
+      *ngIf="list[0].propertyId != 0"
+      class="p-grid"
+    >
+      <div *ngIf="list.length > 0" class="p-col-4 image">
+        <img [src]="property.image" />
+      </div>
+      <div class="p-col-8">
+        <h1>Price: {{ property.price | currency: "INR" }}</h1>
+        <h2>{{ property.address }}</h2>
+        <h2>{{ property.type }}</h2>
+        <hr />
+        <div class="p-grid">
+          <div
+            class="p-col-4"
+            style="background-image: url(../../assets/icons/bed_black_24dp.svg)"
+          >
+            {{ property.bedrooms }}
+          </div>
+          <div
+            class="p-col-4"
+            style="
+              background-image: url(../../assets/icons/bathtub_black_24dp.svg);
+            "
+          >
+            {{ property.bathrooms }}
+          </div>
+          <div
+            class="p-col-4"
+            style="
+              background-image: url(../../assets/icons/square_foot_black_24dp.svg);
+            "
+          >
+            {{ property.area }}
+          </div>
+        </div>
+        <div style="text-align: right; font-size: 1rem; padding-top: 5%">
+          <b style="padding-right: 5px">Built: {{ property.built_year }}</b>
+        </div>
+      </div>
     </div>
   </div>
 </div>
