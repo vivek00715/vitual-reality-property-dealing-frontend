@@ -1,13 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~primeng/resources/themes/saga-purple/theme.css";
+@import "~primeng/resources/themes/saga-blue/theme.css";
 @import "~primeng/resources/primeng.min.css";
-@import '~ngx-toastr/toastr';
+@import "~ngx-toastr/toastr";
 
 .clickable {
   cursor: pointer;
 }
 
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
+}
+
+.p-button,
+button {
+  background-color: #234e70 !important;
+  color: #fbf8be !important;
+  border-color: #234e70 !important ;
 }

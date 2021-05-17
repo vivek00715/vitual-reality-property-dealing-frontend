@@ -93,3 +93,89 @@
     opacity: 1;
   }
 }
+
+div {
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: 0.5px;
+  .card {
+    height: fit-content;
+    // background: rgb(230, 222, 248);
+    // background: linear-gradient(
+    //   0deg,
+    //   rgb(192, 191, 194) 0%,
+    //   rgb(243, 246, 247) 100%
+    // );
+    border: none;
+    transform-style: preserve-3d;
+    // border-radius: 30px;
+    cursor: pointer;
+    // padding: 0rem 5rem;
+    margin-left: 3%;
+    margin-top: 1%;
+    box-shadow: 0 2px 2px rgba(235, 232, 232, 0.2),
+      0px 0px 5px rgba(0, 0, 0, 0.2);
+
+    div div img {
+      width: 10rem;
+      z-index: 2;
+      transition: all 0.75s ease-out;
+    }
+
+    div div h1 {
+      text-align: left;
+      font-size: 1.5rem;
+      // color: rgb(19, 2, 2);
+      transition: all 0.75s ease-out;
+    }
+
+    div div h2 {
+      font-size: 1rem;
+      // padding: 1rem 0rem;
+      font-weight: 500;
+      transition: all 0s ease-out;
+    }
+
+    div {
+      padding-left: 2%;
+      .image {
+        min-height: 35vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    div div hr {
+      margin-top: 5%;
+      height: 2px;
+      border-style: solid;
+      border-radius: 1px;
+      border-color: whitesmoke;
+      background-color: whitesmoke;
+      background: whitesmoke;
+    }
+
+    div div div div {
+      background-repeat: no-repeat;
+      text-indent: 30%;
+      background-position-y: center;
+    }
+  }
+
+  // .card:hover{
+  //   background-color: black;
+  //   color: white;
+  // }
+}
+
+@media screen and (max-width: 580px) {
+  div {
+    .card {
+      div {
+        div img {
+          width: 6rem;
+        }
+      }
+    }
+  }
+}

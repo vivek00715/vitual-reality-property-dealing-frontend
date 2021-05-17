@@ -1,60 +1,60 @@
-.page{
+.page {
   display: flex;
   justify-content: space-between;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   letter-spacing: 0.5px;
 }
-.container{
-  color: #87556f;
+.container {
+  color: #234e70;
   width: 35%;
   margin: 3rem;
   padding: 1rem;
 }
-.container-header{
+.container-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-input{
+input {
   width: 80%;
   height: 2.3rem;
   border-radius: 2px;
   outline: none;
 }
-a{
+a {
   text-decoration: none;
   cursor: pointer;
 }
-input:focus{
-  outline:none !important;
+input:focus {
+  outline: none !important;
 }
-.coverimage{
+.coverimage {
   display: flex;
   justify-content: left;
   align-items: center;
 }
-img{
+img {
   height: 90vh;
 }
-.button-fam{
+.button-fam {
   display: flex;
   justify-content: space-around;
 }
-.submit{
+.submit {
   height: 3rem;
   width: 8rem;
   border: none;
   border-radius: 5px;
-  background-color: #87556f;
+  background-color: #234e70;
   outline: none;
   color: white;
   cursor: pointer;
 }
-.cancel{
+.cancel {
   background-color: white;
-  color: #87556f;
-  border-color: #87556f;
+  color: #234e70;
+  border-color: #234e70;
   outline: none;
   height: 3rem;
   width: 8rem;
