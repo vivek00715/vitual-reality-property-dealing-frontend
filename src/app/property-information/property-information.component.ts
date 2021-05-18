@@ -9,8 +9,9 @@ import { UxService } from '../ux.service';
   styleUrls: ['./property-information.component.scss'],
 })
 export class PropertyInformationComponent implements OnInit {
+
   currentView = 0;
-  property: Property | null = null;
+  property!: Property;
   error = false;
   // 0: photos, 1: virtual 3d view, 2: street view
   constructor(
@@ -34,7 +35,7 @@ export class PropertyInformationComponent implements OnInit {
       );
     });
   }
-
+  activeIndex=1;
   setCurrentView(newView: number) {
     if (newView < 0 || newView > 2) {
       throw new Error('New view should be between 0 and 2');
