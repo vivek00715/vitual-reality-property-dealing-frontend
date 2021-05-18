@@ -5,5 +5,18 @@ a-scene {
 
 .textureActive {
   border-color: blue;
-  background-color: #41479B;
+  background-color: #234e70;
+}
+
+.outline {
+  background-color: unset !important;
+  color: #234e70 !important;
+}
+
+.img-thumbnail {
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 2px;
+  width: 120px;
 }

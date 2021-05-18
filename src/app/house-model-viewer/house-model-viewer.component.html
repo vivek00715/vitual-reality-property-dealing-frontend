@@ -1,4 +1,4 @@
-<a-scene #aScene embedded fog="type: linear; color: #fff; far: 19; near: 10">
+<a-scene #aScene embedded >
   <a-entity id="walls" #walls></a-entity>
 
 
@@ -27,52 +27,66 @@
     <a-cursor #cursor></a-cursor>
   </a-entity>
 </a-scene>
-<div class="d-flex justify-content-center py-2">
-  <span class="mr-4">Mode: </span>
+<div class="p-d-flex p-justify-center p-py-2">
+  <span class="p-mr-4">Mode: </span>
   <button
-    class="btn btn-sm"
-    [ngClass]="{'btn-outline-primary': mode !== 0, 'btn-primary': mode === 0}"
+    pButton
+    class="p-button-sm"
+    [ngClass]="{'outline': mode !== 0}"
     (click)="mode = 0"
   >Wall Paint Color
   </button>
   <button
-    class="btn btn-sm mx-3"
-    [ngClass]="{'btn-outline-primary': mode !== 1, 'btn-primary': mode === 1}"
+    pButton
+    class="p-button-sm p-mx-3"
+    [ngClass]="{'outline': mode !== 1}"
     (click)="mode = 1"
   >Wall Texture
   </button>
   <button
-    class="btn btn-sm"
-    [ngClass]="{'btn-outline-primary': mode !== 2, 'btn-primary': mode === 2}"
+    pButton
+    class="p-button-sm"
+    [ngClass]="{'outline': mode !== 2}"
     (click)="mode = 2"
   >Floor Texture
   </button>
   <button
-    class="btn btn-sm mx-3"
-    [ngClass]="{'btn-outline-primary': mode !== 3, 'btn-primary': mode === 3}"
+    pButton
+    class="p-button-sm p-mx-3"
+    [ngClass]="{'outline': mode !== 3}"
     (click)="mode = 3"
-  >Object Placer
+  >Floor Objects
   </button>
 
   <button
-    class="btn btn-sm"
-    [ngClass]="{'btn-outline-primary': mode !== 4, 'btn-primary': mode === 4}"
+    pButton
+    class="p-button-sm"
+    [ngClass]="{'outline': mode !== 4}"
     (click)="mode = 4"
+  >Wall Objects
+  </button>
+
+  <button
+    pButton
+    class="p-button-sm"
+    [ngClass]="{'outline': mode !== 5}"
+    (click)="mode = 5"
   >Remove Object
   </button>
 </div>
 <div *ngIf="mode === 0">
-  <div class="row">
-    <div class="col-2 text-right">
+  <div class="p-grid">
+    <div class="p-col-2 p-text-right">
       Color:
     </div>
-    <div class="col-10">
-      <input type="color" [(ngModel)]="wallColor" class="form-control">
+    <div class="p-col-10">
+      <p-colorPicker [(ngModel)]="wallColor"></p-colorPicker>
     </div>
   </div>
 </div>
 
-<div *ngIf="mode === 1" class="d-flex justify-content-around">
+<!--Wall Texture-->
+<div *ngIf="mode === 1" class="p-d-flex p-justify-around">
     <img
       [src]="texture.thumb"
       alt="Texture"
@@ -82,8 +96,8 @@
       [ngClass]="{textureActive: houseModelService.selectedWallIndex === i}"
     >
 </div>
-
-<div *ngIf="mode === 2" class="d-flex justify-content-around">
+<!--Floor Texture-->
+<div *ngIf="mode === 2" class="p-d-flex p-justify-around">
   <img
     [src]="texture.thumb"
     alt="Texture"
@@ -94,7 +108,8 @@
   >
 </div>
 
-<div *ngIf="mode === 3" class="d-flex justify-content-around">
+<!--Object Placer-->
+<div *ngIf="mode === 3" class="p-d-flex p-justify-around">
   <img
     [src]="model.image"
     alt="Model"
@@ -102,5 +117,17 @@
     (click)="houseModelService.selectedObjectModel = i"
     width="64"
     [ngClass]="{textureActive: houseModelService.selectedObjectModel === i}"
+  >
+</div>
+
+<!--Wall Model-->
+<div *ngIf="mode === 4" class="p-d-flex p-justify-around">
+  <img
+    [src]="model.image"
+    alt="Model"
+    *ngFor="let model of houseModelService.wallModels; let i = index;"
+    (click)="houseModelService.selectedWallModel = i"
+    width="64"
+    [ngClass]="{textureActive: houseModelService.selectedWallModel === i}"
   >
 </div>

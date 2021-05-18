@@ -1,23 +1,24 @@
-<div class="container" *ngIf="screen === 0">
-  <div class="row" *ngIf="screen===0">
-    <div class="col-12 text-center my-4"><h2>Enter Details of Plot</h2></div>
-    <div class="col-6">
-      <div class="form-group">
-        <label>Length in Feet</label>
-        <input type="number" class="form-control" [(ngModel)]="plotLength">
-      </div>
+<app-landing-header></app-landing-header>
+<div class="p-fluid" *ngIf="screen === 0">
+  <div class="p-grid" *ngIf="screen===0">
+    <div class="p-col-12 p-text-center p-my-1"><h2>Enter Details of Plot</h2></div>
+    <div class="p-field p-col-6">
+      <span class="p-float-label">
+            <p-inputNumber inputId="plotLength" [(ngModel)]="plotLength"></p-inputNumber>
+            <label for="plotLength">Length in Feet</label>
+        </span>
     </div>
-    <div class="col-6">
-      <div class="form-group">
-        <label>Breadth in Feet</label>
-        <input type="number" class="form-control" [(ngModel)]="plotBreadth">
-      </div>
+    <div class="p-field p-col-6">
+      <span class="p-float-label">
+            <p-inputNumber inputId="plotBreadth" [(ngModel)]="plotBreadth"></p-inputNumber>
+            <label for="plotBreadth">Breadth in Feet</label>
+        </span>
     </div>
   </div>
 </div>
 
 <!-- Screen 1, Canvas to draw walls -->
-<div *ngIf="plotLength > 0 && plotBreadth > 0" [ngClass]="{ 'd-none': screen === 1}">
+<div *ngIf="plotLength > 0 && plotBreadth > 0 " [ngClass]="{ 'p-d-none': screen === 1}">
   <app-house-map-generator
     [breadth]="+plotBreadth"
     [length]="+plotLength"

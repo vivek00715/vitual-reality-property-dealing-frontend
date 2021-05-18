@@ -1,6 +1,15 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {HouseModelService} from '../house-model.service';
 
+enum houseModelMode {
+  PAINT_WALL,
+  WALL_TEXTURE,
+  FLOOR_TEXTURE,
+  FLOOR_OBJECTS,
+  WALL_OBJECTS,
+  REMOVE_OBJECTS
+}
+
 @Component({
   selector: 'app-house-model-viewer',
   templateUrl: './house-model-viewer.component.html',
@@ -15,8 +24,7 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
   @ViewChild('cursor') cursor!: ElementRef<HTMLElement>;
   @ViewChild('player') player!: ElementRef<HTMLElement>;
   wallColor = '#f0f8ff';
-  mode = 0; // 0: paint wall, 1: wall texture, 3: floor texture, 4: place objects
-
+  mode = houseModelMode.PAINT_WALL; // 0: paint wall, 1: wall texture, 3: floor texture, 4: place objects
 
   ngOnInit(): void {
   }
@@ -44,24 +52,26 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
           wall.setAttribute('roughness', '1');
           wall.setAttribute('color', 'gray');
           wall.setAttribute('material', 'src: #plaster; repeat: 1 1');
+          // shader: flat
+          wall.setAttribute('shader', 'flat');
           const wallPaintSide1 = document.createElement('a-plane');
           const wallPaintSide2 = document.createElement('a-plane');
           const wallPaintSide3 = document.createElement('a-plane');
           const wallPaintSide4 = document.createElement('a-plane');
-          wallPaintSide1.setAttribute('color', 'aliceblue');
+          wallPaintSide1.setAttribute('color', '#234e70');
           wallPaintSide1.setAttribute('height', WALL_HEIGHT);
           wallPaintSide1.setAttribute('position', `0 0 ${+WALL_SIZE / 1.96}`);
-          wallPaintSide2.setAttribute('color', 'aliceblue');
+          wallPaintSide2.setAttribute('color', '#234e70');
           wallPaintSide2.setAttribute('height', WALL_HEIGHT);
           wallPaintSide2.setAttribute('position', `${+WALL_SIZE / 1.94} 0 0`);
           wallPaintSide2.setAttribute('rotation', '0 90 0');
 
-          wallPaintSide3.setAttribute('color', 'aliceblue');
+          wallPaintSide3.setAttribute('color', '#234e70');
           wallPaintSide3.setAttribute('height', WALL_HEIGHT);
           wallPaintSide3.setAttribute('position', `0 0 -${+WALL_SIZE / 1.96}`);
           wallPaintSide3.setAttribute('rotation', '180 0 0');
 
-          wallPaintSide4.setAttribute('color', 'aliceblue');
+          wallPaintSide4.setAttribute('color', '#234e70');
           wallPaintSide4.setAttribute('height', WALL_HEIGHT);
           wallPaintSide4.setAttribute('position', `-${+WALL_SIZE / 1.94} 0 0`);
           wallPaintSide4.setAttribute('rotation', '180 90 0');
@@ -71,10 +81,52 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
           wall.appendChild(wallPaintSide3);
           wall.appendChild(wallPaintSide4);
 
+          wall.addEventListener('click', (event: any) => {
+            if (this.mode === houseModelMode.WALL_OBJECTS) {
+
+              const clickedPoint = event.detail.intersection.point;
+              const rotation: any = this.player.nativeElement.getAttribute('rotation');
+              rotation.x = 0;
+              rotation.y = this.roundAngle(rotation.y);
+              rotation.z = 0;
+              const model = this.houseModelService.getWallObjectModel();
+              const object = document.createElement('a-entity');
+              object.setAttribute('gltf-model', model.src);
+              // place object 1cm above surface of wall
+              switch (rotation.y) {
+                case 0:
+                  clickedPoint.z += 0.1;
+                  break;
+                case 90:
+                case -270:
+                  clickedPoint.x += 0.1;
+                  break;
+                case 180:
+                case -180:
+                  clickedPoint.z -= 0.1;
+                  break;
+                case 270:
+                case -90:
+                  clickedPoint.x -= 0.1;
+              }
+              clickedPoint.x += model.offsetX;
+              clickedPoint.y += model.offsetY;
+              object.setAttribute('scale', model.scale);
+              object.setAttribute('position', clickedPoint);
+              object.setAttribute('rotation', rotation);
+              this.walls.nativeElement.appendChild(object);
+              object.addEventListener('click', () => {
+                if (this.mode === houseModelMode.REMOVE_OBJECTS) {
+                  object.remove();
+                }
+              });
+            }
+          });
+
           wallPaintSide1.addEventListener('click', () => {
-            if (this.mode === 0) {
+            if (this.mode === houseModelMode.PAINT_WALL) {
               wallPaintSide1.setAttribute('color', this.wallColor);
-            } else if (this.mode === 1) {
+            } else if (this.mode === houseModelMode.WALL_TEXTURE) {
               const {image, rx, ry} = this.houseModelService.getWallTexture();
               wallPaintSide1.setAttribute(
                 'material',
@@ -82,9 +134,9 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
             }
           });
           wallPaintSide2.addEventListener('click', () => {
-            if (this.mode === 0) {
+            if (this.mode === houseModelMode.PAINT_WALL) {
               wallPaintSide2.setAttribute('color', this.wallColor);
-            } else if (this.mode === 1) {
+            } else if (this.mode === houseModelMode.WALL_TEXTURE) {
               const {image, rx, ry} = this.houseModelService.getWallTexture();
               wallPaintSide2.setAttribute(
                 'material',
@@ -92,9 +144,9 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
             }
           });
           wallPaintSide3.addEventListener('click', () => {
-            if (this.mode === 0) {
+            if (this.mode === houseModelMode.PAINT_WALL) {
               wallPaintSide3.setAttribute('color', this.wallColor);
-            } else if (this.mode === 1) {
+            } else if (this.mode === houseModelMode.WALL_TEXTURE) {
               const {image, rx, ry} = this.houseModelService.getWallTexture();
               wallPaintSide3.setAttribute(
                 'material',
@@ -102,9 +154,9 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
             }
           });
           wallPaintSide4.addEventListener('click', () => {
-            if (this.mode === 0) {
+            if (this.mode === houseModelMode.PAINT_WALL) {
               wallPaintSide4.setAttribute('color', this.wallColor);
-            } else if (this.mode === 1) {
+            } else if (this.mode === houseModelMode.WALL_TEXTURE) {
               const {image, rx, ry} = this.houseModelService.getWallTexture();
               wallPaintSide4.setAttribute(
                 'material',
@@ -127,7 +179,7 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.generateWalls();
     this.floor.nativeElement.addEventListener('click', (event: any) => {
-      if (this.mode !== 3) {
+      if (this.mode !== houseModelMode.FLOOR_OBJECTS) {
         return;
       }
 
@@ -137,28 +189,31 @@ export class HouseModelViewerComponent implements OnInit, AfterViewInit {
       // offset for invisible floor above camera
       clickedPoint.y += 0.2;
       const object = document.createElement('a-entity');
-      const model = this.houseModelService.getObjectModel();
+      const model = this.houseModelService.getFloorObjectModel();
       object.setAttribute('gltf-model', model.src);
       object.setAttribute('scale', model.scale);
       object.setAttribute('position', clickedPoint);
       object.setAttribute('rotation', rotation);
       object.addEventListener('click', () => {
-        if (this.mode === 4) {
+        if (this.mode === houseModelMode.REMOVE_OBJECTS) {
           object.remove();
         }
       });
-      // object.addEventListener('mousemove', (clickEvent: any) => {
-      //   const newClickedPoint = clickEvent.detail.intersection.point;
-      //   newClickedPoint.y = 0;
-      //   const newRotation: any = this.player.nativeElement.getAttribute('rotation');
-      //   rotation.x = 0;
-      //   object.setAttribute('position', newClickedPoint);
-      //   object.setAttribute('rotation', newRotation);
-      // });
       this.aScene.nativeElement.appendChild(object);
     });
   }
 
   constructor(public houseModelService: HouseModelService) {
+  }
+
+  private roundAngle(angle: number): number {
+    // rounds angle to nearest right angle
+    const angles = [0, 90, 180, 270, 360, -90, -180, -270];
+    const angleScores = angles.map(a => {
+      return {score: Math.abs(angle - a), angle: a};
+    });
+    angleScores.sort((a, b) => a.score - b.score);
+    // calculates score and gives the least difference
+    return angleScores[0].angle % 360;
   }
 }

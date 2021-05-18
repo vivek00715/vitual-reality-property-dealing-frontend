@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center flex-column align-items-center my-4">
-  <div class="my-2">
-    <button class="btn btn-primary mr-1" (click)="drawMode = !drawMode">Switch to {{drawMode ? "Erase" : "Draw"}}</button>
-    <button class="btn btn-primary ml-1" (click)="emitVrData()">View in VR</button>
+<div class="p-d-flex p-justify-center p-flex-column p-align-center my-4">
+  <div class="p-my-2">
+    <button pButton (click)="drawMode = !drawMode">Switch to {{drawMode ? "Erase" : "Draw"}}</button>
+    <button pButton label="View in VR" (click)="emitVrData()" class="p-ml-1"></button>
   </div>
   <canvas
     #canvas
