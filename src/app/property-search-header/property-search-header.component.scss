@@ -164,3 +164,34 @@ button:hover{
   border-style:solid ;
   border-color:black ;
 }
+
+
+@media screen and (max-width:850px) {
+
+  .header{
+    display: none;
+  }
+  .headerrespo{
+    display:block;
+  }
+
+}
+
+@media screen and (min-width:850px) {
+
+  .header{
+    display: block;
+  }
+  .headerrespo{
+    display:none;
+  }
+
+}
+
+@media screen and (max-width:600px) {
+
+  .btn{
+    margin-left: -10%;
+  }
+
+}

@@ -12,6 +12,7 @@ export interface User {
   name: string;
   token: string;
   profileImage: string;
+  isAdministrator:boolean;
 }
 
 @Injectable({

@@ -23,7 +23,7 @@ export class LandingPageComponent implements OnInit {
      this.router.navigate(['/property/',this.state],{
       queryParams: {
         state: this.state,
-        forr:null,
+        for:'All',
         type:null,
         city:null,
         minPrice:null,

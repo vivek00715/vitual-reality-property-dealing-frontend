@@ -109,7 +109,7 @@ div {
       select {
         outline-color: white;
         border-style: solid;
-        border-color: whitesmoke;
+        border-color: white;
         height: 7vh;
         transform-style: preserve-3d;
         border-radius: 30px;
@@ -229,4 +229,28 @@ div {
       }
     }
   }
+}
+
+@media screen and (max-width: 576px)
+{.p-sm-12 {
+    width: 100%;
+}
+}
+
+@media screen and (max-width:750px) {
+
+  div{
+    div{
+      div{
+        .searchbar{
+          .input{
+               border-right-color: white;
+          }
+        }
+      }
+    }
+  }
+
+
+
 }

@@ -204,7 +204,7 @@
         </select>
         <select
           style="cursor: pointer"
-          class="p-col-3"
+          class="p-lg-3 p-md-3 p-sm-5"
           (click)="toggleSlider($event)"
           (mousedown)="$event.preventDefault()"
         >
@@ -222,9 +222,7 @@
 
         <ngx-slider
           *ngIf="activeSlider"
-          class="slider"
-          style="margin-top: 10%"
-          class="col-12"
+          style="margin-top: 10%; "
           [(value)]="minPrice"
           [(highValue)]="maxPrice"
           [options]="options"

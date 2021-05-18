@@ -1,22 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { StateCityService } from '../state-city.service';
-import { UxService } from '../ux.service';
 
-import { MenubarModule } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api';
-
-import { DropdownModule } from 'primeng/dropdown';
-
-interface Buy {
-  name: string;
-}
-
-interface Rent {
-  name: string;
-}
 
 @Component({
   selector: 'app-landing-header',

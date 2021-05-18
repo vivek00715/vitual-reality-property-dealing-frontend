@@ -66,6 +66,8 @@ import { AuthInterceptor } from './auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { DialogModule } from 'primeng/dialog';
 import { PaginatorModule } from 'primeng/paginator';
+import { AdminComponent } from './admin/admin.component';
+import { AdminCardComponent } from './admin-card/admin-card.component';
 import { EmailVerifyComponent } from './email-verify/email-verify.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 
@@ -106,6 +108,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     PropertyCreateInformationComponent,
     PropertyCreateImagesComponent,
     LoginComponent,
+    AdminComponent,
+    AdminCardComponent,
     EmailVerifyComponent,
     PasswordResetComponent,
   ],
@@ -140,6 +144,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     ProgressSpinnerModule,
     ToastrModule.forRoot(),
     DialogModule,
+    PaginatorModule,
   ],
   providers: [
     PropertySearchService,
