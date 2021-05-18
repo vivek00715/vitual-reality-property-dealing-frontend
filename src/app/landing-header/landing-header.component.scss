@@ -166,6 +166,36 @@ button:hover {
   border-color: #234e70;
 }
 
+
+@media screen and (max-width:850px) {
+
+  .header{
+    display: none;
+  }
+  .headerrespo{
+    display:block;
+  }
+
+}
+
+@media screen and (min-width:850px) {
+
+  .header{
+    display: block;
+  }
+  .headerrespo{
+    display:none;
+  }
+
+}
+
+@media screen and (max-width:600px) {
+
+  .btn{
+    margin-left: -10%;
+  }
+}
+
 .no-hover:hover {
   background-color: unset !important;
   color: unset !important;

@@ -3,11 +3,11 @@ import {Injectable} from '@angular/core';
 import {BaseUrlService} from './base-url.service';
 import {Observable} from 'rxjs';
 
-export interface PaginatedProperty {
-  currentPage: number;
-  totalPage: number;
-  totalResults: number;
-  data: PropertyShort[];
+export interface PaginatedProperty{
+  "currentPage": number;
+  "totalPage": number;
+  "totalResults": number;
+  data:PropertyShort[]
 }
 
 export interface Property {
@@ -27,18 +27,19 @@ export interface Property {
   purpose: string;
   state: string;
   type: string;
-  images: {
-    publicId: string;
-    url: string;
+  images:{
+    publicId:string;
+    url:string;
   }[];
+  virtualTourURL:string;
 }
 
-export interface PropertyShort {
-  address: string;
-  area: number;
-  bathrooms: number;
-  bedrooms: number;
-  purpose: string;
+export interface PropertyShort{
+  address:string;
+  area:number;
+  bathrooms:number;
+  bedrooms:number;
+  purpose:string;
   bhk: number;
   city: string;
   floors: number;
@@ -47,8 +48,11 @@ export interface PropertyShort {
   price: number;
   propertyId: number;
   state: string;
-  built_year: number;
-  type: string;
+  built_year:number;
+  type:string;
+  ownerEmail:string;
+  virtualTourURL:string;
+  virtualTour:boolean;
 }
 
 @Injectable()
@@ -68,8 +72,8 @@ export class PropertySearchService {
     type: string,
     minPrice: any,
     maxPrice: any,
-    purpose: any,
-    page = 1,
+    purpose:any,
+    page=1,
   ) {
     console.log(purpose);
     return this.http.get<PaginatedProperty>(this.url + '/property', {
@@ -81,7 +85,7 @@ export class PropertySearchService {
         minPrice: minPrice,
         maxPrice: maxPrice,
         purpose: purpose,
-        page: page + '',
+        page:page+'',
       },
     });
   }
@@ -89,4 +93,18 @@ export class PropertySearchService {
   public getPropertyById(id: number): Observable<Property> {
     return this.http.get<Property>(`${this.url}/property/${id}`);
   }
+
+  public getPropertyHavinVirtualTour(page=1)
+  {
+    return this.http.get<PaginatedProperty>(this.url+'/property/virtualTour');
+  }
+
+  public setPropertyVirtualTourURL(id:number,virtualTourURL:string)
+  {
+    console.log("hit");
+     return this.http.patch<Property>(this.url+'/property/virtualTourURL/'+id,virtualTourURL).subscribe((response)=>{
+          console.log(response);
+     });
+  }
+
 }

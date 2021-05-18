@@ -1,0 +1,65 @@
+<p-paginator *ngIf="totalResults>10" (onPageChange)="paginate($event)" [rows]="10" [totalRecords]="totalResults"></p-paginator>
+
+<div class="p-grid">
+
+
+      <h1 class="p-col-12"*ngIf="list.length===0" style="text-align: center; margin-bottom: 10%;">No Property is listed for virtual tour</h1>
+
+
+    <div  class="p-lg-5 p-md-11 p-sm-8 card" *ngFor="let property of list; let i = index">
+      <div (click)="setVirtualTourURL(i)" *ngIf="list[0].propertyId!=0" class="p-grid">
+         <div  class="p-col-12" style="text-align: left;">
+            <p><b>Price: {{property.price | currency: "INR"}}</b><br><br>
+               <b>Address: {{property.address}}</b><br><br>
+               <b>City: {{property.city}}</b><br><br>
+               <b>State: {{property.state}}</b><br><br>
+               <b>PinCode: {{property.pinCode}}</b><br><br>
+               <b>Owner Email: {{property.ownerEmail}}</b><br><br>
+               <b>Type: {{property.type}}</b></p><br>
+            <div style="text-align: right; font-size: 1rem; padding-top: 0.5%;">
+              <b>Built: {{property.built_year}}</b>
+            </div>
+         </div>
+       </div>
+
+     </div>
+
+</div>
+
+<p-dialog
+  header="Set Virtual Tour URL"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <br />
+  <form [formGroup]="virtualTourURL" (ngSubmit)="onSubmit()">
+
+    <h3>Property Id: {{id}}</h3>
+
+    <span class="p-float-label">
+      <input
+        id="float-input"
+        type="text"
+        pInputText
+        formControlName="url"
+        style="width: 100%"
+      />
+      <label for="float-input">URL</label>
+    </span>
+    <br />
+    <br />
+
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="onSubmit()"
+      label="Submit"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>
