@@ -1,11 +1,22 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'app-house-map-generator',
   templateUrl: './house-map-generator.component.html',
   styleUrls: ['./house-map-generator.component.scss']
 })
-export class HouseMapGeneratorComponent implements OnInit, AfterViewInit {
+export class HouseMapGeneratorComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() length!: number;
   @Input() breadth!: number;
   @Output() vrView = new EventEmitter<number[][]>();
@@ -128,5 +139,12 @@ export class HouseMapGeneratorComponent implements OnInit, AfterViewInit {
 
   emitVrData(): void {
     this.vrView.emit(this.getNumberMap());
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.breadth?.firstChange || !changes.length?.firstChange) {
+      this.initStuff();
+      setTimeout(() => this.draw(), 100);
+    }
   }
 }

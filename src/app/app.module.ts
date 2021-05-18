@@ -71,6 +71,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminCardComponent } from './admin-card/admin-card.component';
 import { EmailVerifyComponent } from './email-verify/email-verify.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import {ColorPickerModule} from 'primeng/colorpicker';
 
 @NgModule({
   declarations: [
@@ -146,6 +147,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     ProgressSpinnerModule,
     ToastrModule.forRoot(),
     DialogModule,
+    ColorPickerModule
   ],
   providers: [
     PropertySearchService,

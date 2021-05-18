@@ -13,6 +13,14 @@ interface ObjectModel {
   scale: string;
 }
 
+interface WallModel {
+  src: string;
+  image: string;
+  scale: string;
+  offsetX: number;
+  offsetY: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,9 +28,11 @@ export class HouseModelService {
   wallTextures: Texture[] = [];
   floorTextures: Texture[] = [];
   objectModels: ObjectModel[] = [];
+  wallModels: WallModel[] = [];
   selectedWallIndex = 0;
-  selectedFloorTexture = 0;
+  selectedFloorTexture = 2;
   selectedObjectModel = 0;
+  selectedWallModel = 0;
 
   constructor() {
     this.wallTextures = [
@@ -90,6 +100,24 @@ export class HouseModelService {
         image: '/assets/models/chair/chair-3/thumb.png',
         scale: '2 2 2'
       },
+
+    ];
+
+    this.wallModels = [
+      {
+        src: 'url(/assets/models/wall/television/model.gltf)',
+        image: '/assets/models/wall/television/thumb.png',
+        scale: '0.8 0.8 0.8',
+        offsetX: 0,
+        offsetY: -1.5
+      },
+      {
+        src: 'url(/assets/models/wall/window/model.gltf)',
+        image: '/assets/models/wall/window/thumb.png',
+        scale: '1 1 1',
+        offsetX: 0,
+        offsetY: -1.2
+      }
     ];
   }
 
@@ -101,7 +129,11 @@ export class HouseModelService {
     return this.floorTextures[this.selectedFloorTexture];
   }
 
-  getObjectModel(): ObjectModel {
+  getFloorObjectModel(): ObjectModel {
     return this.objectModels[this.selectedObjectModel];
+  }
+
+  getWallObjectModel(): WallModel {
+    return this.wallModels[this.selectedWallModel];
   }
 }
