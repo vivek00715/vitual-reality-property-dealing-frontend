@@ -222,7 +222,7 @@
 
         <ngx-slider
           *ngIf="activeSlider"
-          style="margin-top: 10%; "
+          style="margin-top: 10%"
           [(value)]="minPrice"
           [(highValue)]="maxPrice"
           [options]="options"
@@ -245,8 +245,8 @@
 <div class="p-grid" style="padding: 2%; padding-top: 0%">
   <div
     *ngIf="list.length == 0"
-    class="p-col-12 card"
-    style="height: 25vh; text-align: center"
+    class="p-col-11 card"
+    style="height: 25vh; text-align: center; box-shadow: none"
   >
     <h1 style="text-align: center">No Property is listed in this Area</h1>
   </div>

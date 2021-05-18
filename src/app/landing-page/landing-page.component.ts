@@ -4,34 +4,25 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit {
+  state: string = 'Delhi';
 
-  state:string="Delhi";
+  constructor(private router: Router) {}
 
-  constructor(private router:Router) {
+  ngOnInit(): void {}
 
-  }
-
-  ngOnInit(): void {
-  }
-
-
-  search()
-  {
-     this.router.navigate(['/property/',this.state],{
+  search() {
+    this.router.navigate(['/property/', this.state], {
       queryParams: {
         state: this.state,
-        for:'All',
-        type:null,
-        city:null,
-        minPrice:null,
-        maxPrice:null,
-
-      }
-     }
-    );
+        for: 'All',
+        type: null,
+        city: null,
+        minPrice: null,
+        maxPrice: null,
+      },
+    });
   }
-
 }

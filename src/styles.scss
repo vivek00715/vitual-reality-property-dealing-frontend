@@ -18,3 +18,9 @@ button {
   color: #fbf8be !important;
   border-color: #234e70 !important ;
 }
+
+#toast-container > .toast-success {
+  // background-image: none;
+  background-color: #234e70;
+  color: #fbf8be;
+}

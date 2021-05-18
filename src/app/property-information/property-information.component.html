@@ -73,40 +73,55 @@
       ></app-property-information-nearby-cards>
     </div>
   </div>
-</div>
--->
+</div> -->
 
+<!-- <div style="display: flex; width: 100%; border: 1px solid; height: 300px">
+  <div style="width: 70%">image</div>
+  <div style="border: 1px solid">
+    <div style="display: flex">
+      <div style="border: 1px solid; width: 150px; height: 150px">image</div>
+      <div style="border: 1px solid; width: 150px; height: 150px">image</div>
+    </div>
+    <div style="display: flex">
+      <div style="border: 1px solid; width: 150px; height: 150px">image</div>
+      <div style="border: 1px solid; width: 150px; height: 150px">image</div>
+    </div>
+  </div>
+</div> -->
 
 <app-landing-header></app-landing-header>
 
 <div class="card" *ngIf="property">
-  <p-tabView styleClass="tabview-custom" [(activeIndex)]=activeIndex>
-      <p-tabPanel header="Header III">
-        <ng-template pTemplate = "header">
-            <a (click)="onBack()"><i class="pi pi-chevron-left"></i>
-             <span>&ensp;Back</span></a>
-        </ng-template>
+  <p-tabView styleClass="tabview-custom" [(activeIndex)]="activeIndex">
+    <p-tabPanel header="Header III">
+      <ng-template pTemplate="header">
+        <a (click)="onBack()"
+          ><i class="pi pi-chevron-left"></i> <span>&ensp;Back</span></a
+        >
+      </ng-template>
     </p-tabPanel>
-      <p-tabPanel>
-          <ng-template pTemplate = "header">
-              <i class="pi pi-images"></i>
-              <span>&ensp;Images</span>
-          </ng-template>
-         <app-property-information-images
-          [images]="property.images"></app-property-information-images>
-      </p-tabPanel>
-      <p-tabPanel header="Header II">
-          <ng-template pTemplate = "header">
-              <i class="pi pi-eye"></i>
-              <span>&ensp;VR</span>
-          </ng-template>
-          <app-property-information-virtual-view></app-property-information-virtual-view>
-      </p-tabPanel>
+    <p-tabPanel>
+      <ng-template pTemplate="header">
+        <i class="pi pi-images"></i>
+        <span>&ensp;Images</span>
+      </ng-template>
+      <app-property-information-images
+        [images]="property.images"
+      ></app-property-information-images>
+    </p-tabPanel>
+    <p-tabPanel header="Header II">
+      <ng-template pTemplate="header">
+        <i class="pi pi-eye"></i>
+        <span>&ensp;VR</span>
+      </ng-template>
+      <app-property-information-virtual-view></app-property-information-virtual-view>
+    </p-tabPanel>
   </p-tabView>
 </div>
 
-<app-property-information-details *ngIf="property"
-  [data]="property"></app-property-information-details>
+<app-property-information-details
+  *ngIf="property"
+  [data]="property"
+></app-property-information-details>
 
-  <app-landing-footer></app-landing-footer>
-
+<app-landing-footer></app-landing-footer>

@@ -4,6 +4,7 @@ import { UxService } from '../ux.service';
 import { PropertyService } from '../property.service';
 import { User, UserServiceService } from '../user-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-property',
@@ -20,7 +21,8 @@ export class MyPropertyComponent implements OnInit {
     public authService: AuthService,
     public uxService: UxService,
     public property: PropertyService,
-    public userService: UserServiceService
+    public userService: UserServiceService,
+    public router: Router
   ) {
     this.editForm = new FormGroup({
       name: new FormControl(''),
@@ -72,5 +74,27 @@ export class MyPropertyComponent implements OnInit {
         this.uxService.hideSpinner();
       }
     );
+  }
+
+  onUploadImage(event: any) {
+    console.log(event);
+    this.userService
+      .uploadProfile(event.files[0])
+      .subscribe((Response: any) => {
+        console.log(Response);
+        this.uxService.hideSpinner();
+        this.user = Response;
+        this.uxService.showToast(
+          'Success',
+          'Profile photo Update Successfully'
+        );
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/my-profile']);
+      });
+  }
+
+  getUserImage() {
+    return this.user.userImage || '/assets/images/user.jpg';
   }
 }

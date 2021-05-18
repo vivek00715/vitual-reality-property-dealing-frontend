@@ -178,7 +178,18 @@
 <br />
 <div class="my-profile-detail">
   <div>
-    <img class="profile-img" src="../../assets/images/profile-photo-1.jpeg" />
+    <img class="profile-img" [src]="getUserImage()" />
+    <p-fileUpload
+      #fubauto
+      mode="basic"
+      accept="image/*"
+      name="demo[]"
+      [customUpload]="true"
+      [maxFileSize]="2000000"
+      (uploadHandler)="onUploadImage($event)"
+      [auto]="true"
+      chooseLabel="Change Profile "
+    ></p-fileUpload>
   </div>
 
   <div style="display: flex">

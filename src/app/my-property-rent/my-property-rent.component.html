@@ -59,17 +59,19 @@
   (onPageChange)="paginate($event)"
   [rows]="10"
   [totalRecords]="totalResults"
+  *ngIf="totalResults > 10"
 ></p-paginator>
+<br />
 <div class="p-grid" style="padding: 2%; padding-top: 0%">
   <div
     *ngIf="list.length == 0"
     class="p-col-12 card"
-    style="height: 25vh; text-align: center"
+    style="height: 25vh; text-align: center; box-shadow: none"
   >
     <h1 style="text-align: center">No Property is listed in this Area</h1>
   </div>
   <div
-    class="p-lg-5 p-md-12 p-sm-12 card"
+    class="p-lg-5 p-md-11 p-sm-12 card"
     *ngFor="let property of list; let i = index"
   >
     <div
