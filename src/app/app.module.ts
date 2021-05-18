@@ -1,3 +1,4 @@
+import {TabViewModule} from 'primeng/tabview';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -71,6 +72,7 @@ import { AdminCardComponent } from './admin-card/admin-card.component';
 import { EmailVerifyComponent } from './email-verify/email-verify.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +116,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     PasswordResetComponent,
   ],
   imports: [
+    TabViewModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
