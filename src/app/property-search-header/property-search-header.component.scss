@@ -130,39 +130,83 @@
 //   }
 // }
 
+// header{
+//   font-family: 'Work Sans', sans-serif;
+//   letter-spacing: 0.5px;
+//   div{
+//     cursor: pointer;
+//     div{
+//       border-radius: 5px;
+//       font-size: medium;
+//       :hover{
+//         background-color: black;
+//         color: white;
+//       }
+//       div{
+//         border-style: solid;
+//         border-color: white;
+//          margin-top: 20%;
+//          text-align:center;
+//       }
+//       p-dropdown{
+//         margin-top: 20%;
+//          text-align:center
+//       }
+//     }
+//   }
+// }
+// button{
+//   color: white;
+// }
+// button:hover{
+//   color: white;
+//   border-style:solid ;
+//   border-color:black ;
+// }
 
-header{
-  font-family: 'Work Sans', sans-serif;
+header {
+  font-family: "Work Sans", sans-serif;
   letter-spacing: 0.5px;
-  div{
+  div {
     cursor: pointer;
-    div{
+    div {
       border-radius: 5px;
       font-size: medium;
-      :hover{
-        background-color: black;
-        color: white;
+      :hover {
+        background-color: #234e70;
+        color: #fbf8be;
+        height: 3rem;
+        padding-top: 0.8rem;
+        border-radius: 5px;
       }
-      div{
+      div {
         border-style: solid;
         border-color: white;
-         margin-top: 20%;
-         text-align:center;
-      }
-      p-dropdown{
         margin-top: 20%;
-         text-align:center
+        text-align: center;
+      }
+      p-dropdown {
+        margin-top: 20%;
+        text-align: center;
       }
     }
   }
 }
-button{
+button {
   color: white;
 }
-button:hover{
+button:hover {
   color: white;
-  border-style:solid ;
-  border-color:black ;
+  border-style: solid;
+  border-color: #234e70;
+}
+
+.no-hover:hover {
+  background-color: unset !important;
+  color: unset !important;
+  height: 100px !important;
+  padding-top: unset !important;
+  border-radius: unset !important;
 }
 
 

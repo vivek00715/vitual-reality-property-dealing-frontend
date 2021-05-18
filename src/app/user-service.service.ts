@@ -35,4 +35,13 @@ export class UserServiceService {
       { headers: { Authorization: this.authService.user?.token + '' } }
     );
   }
+
+  uploadProfile(image: File) {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post(
+      this.baseUrlService.getBaseUrl() + '/user/image',
+      formData
+    );
+  }
 }

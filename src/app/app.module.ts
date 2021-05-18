@@ -1,4 +1,4 @@
-import {TabViewModule} from 'primeng/tabview';
+import { TabViewModule } from 'primeng/tabview';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -71,7 +71,6 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminCardComponent } from './admin-card/admin-card.component';
 import { EmailVerifyComponent } from './email-verify/email-verify.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
-
 
 @NgModule({
   declarations: [
@@ -147,7 +146,6 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     ProgressSpinnerModule,
     ToastrModule.forRoot(),
     DialogModule,
-    PaginatorModule,
   ],
   providers: [
     PropertySearchService,

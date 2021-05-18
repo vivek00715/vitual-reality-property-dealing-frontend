@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
-
 @Component({
   selector: 'app-landing-header',
   templateUrl: './landing-header.component.html',

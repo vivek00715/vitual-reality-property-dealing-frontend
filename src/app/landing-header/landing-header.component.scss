@@ -137,11 +137,13 @@ header {
     div {
       border-radius: 5px;
       font-size: medium;
+      margin-top: 1.1%;
       :hover {
         background-color: #234e70;
         color: #fbf8be;
-        height: 3rem;
-        padding-top: 0.8rem;
+        height: 2.7rem;
+        padding-top: 0.6rem;
+        margin-top: 0.6rem !important;
         border-radius: 5px;
       }
       div {
@@ -160,38 +162,34 @@ header {
 button {
   color: white;
 }
-button:hover {
+.button:hover {
   color: white;
   border-style: solid;
+  // background-color: red !important;
   border-color: #234e70;
+  margin-top: 0 !important;
 }
 
-
-@media screen and (max-width:850px) {
-
-  .header{
+@media screen and (max-width: 850px) {
+  .header {
     display: none;
   }
-  .headerrespo{
-    display:block;
-  }
-
-}
-
-@media screen and (min-width:850px) {
-
-  .header{
+  .headerrespo {
     display: block;
   }
-  .headerrespo{
-    display:none;
-  }
-
 }
 
-@media screen and (max-width:600px) {
+@media screen and (min-width: 850px) {
+  .header {
+    display: block;
+  }
+  .headerrespo {
+    display: none;
+  }
+}
 
-  .btn{
+@media screen and (max-width: 600px) {
+  .btn {
     margin-left: -10%;
   }
 }
