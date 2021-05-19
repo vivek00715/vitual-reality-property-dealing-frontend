@@ -133,64 +133,86 @@
 
 <header class="header">
   <div class="p-grid" style="padding: 0 1% 0 2%">
+    <div class="p-col-2">
     <img
       (click)="home()"
       src="/assets/new%20logo.png"
       style="width: 150px !important"
-      class="p-col-2"
-      height="100px"
+
+      height="80px"
     />
-    <div class="p-col-4"></div>
-    <div class="p-col-2">
+    </div>
+    <div *ngIf="authService.loggedIn" class="p-col-6"></div>
+    <div *ngIf="!authService.loggedIn" class="p-col-7"></div>
+    <!-- <div class="p-col-2">
       <div>Why HashHomes ?</div>
-    </div>
-    <div class="p-col-1" style="margin-top: 1.6%">
-      <div (click)="home()">Home</div>
-    </div>
-    <div class="p-col-1" style="margin-top: 1.6%">
-      <div (click)="design()">Design</div>
-    </div>
-    <div class="p-col-1" style="margin-top: 1.6%">
-      <div routerLink="/my-profile">Profile</div>
-    </div>
-    <div
-      *ngIf="!authService.loggedIn"
-      class="p-col-1 btn"
-      style="border-color: black; margin-top: 2%"
-      [routerLink]="['/log-in']"
-    >
+    </div> -->
       <button
         pButton
         type="button"
-        class="p-button-secondary p-button-text p-button-raised"
-        style="border: 0; border-radius: 0px"
+        class="p-button-secondary p-button-text p-col-1 btn"
+        style="border: 0; border-radius: 0px; margin-top:2%"
+        (click)="home()"
+      >Home</button>
+
+      <button
+        pButton
+        type="button"
+        class="p-button-secondary p-button-text  p-col-1 btn"
+        style="border: 0; border-radius: 0px ;margin-top:2%"
+        (click)="design()"
+      >Design</button>
+
+
+     <button
+        *ngIf="authService.loggedIn && !authService.user?.isAdministrator"
+        style="margin-top: 2%; border: 0; border-radius: 0px;margin-left: -1%;"
+        pButton
+        type="button"
+        class="p-button-secondary p-button-text p-col-1 btn"
+        routerLink="/my-profile"
+      >Profile</button>
+
+    <button
+    *ngIf="authService.loggedIn && authService.user?.isAdministrator" style="margin-top: 2%; border: 0; border-radius: 0px;margin-left: -1%;"
+    pButton
+    type="button"
+    class="p-button-secondary p-button-text p-col-1 btn"
+    routerLink="/admin"
+     >Listings</button>
+
+
+      <button
+       *ngIf="!authService.loggedIn"
+       style="border-color: black; margin-top: 2%;border: 0; border-radius: 0px ;margin-left: -1%; padding-left: 2%;"
+        [routerLink]="['/log-in']"
+        pButton
+        type="button"
+        class="p-button-secondary p-button-text p-button-raised p-col-1 button"
       >
         Login
       </button>
-    </div>
-    <div
-      *ngIf="authService.loggedIn"
-      class="p-col-1 btn"
-      style="border-color: black; margin-top: 2%"
-      (click)="authService.logout()"
-    >
+
+
       <button
+       *ngIf="authService.loggedIn"
+       style="border-color: black;;border: 0; border-radius: 0px;margin-top: 2%; margin-left: 1%; padding-left: 2%;"
+       (click)="authService.logout()"
         pButton
         type="button"
-        class="p-button-secondary p-button-text p-button-raised"
-        style="border: 0; border-radius: 0px"
+        class="p-button-secondary p-button-text p-button-raised p-col-1 button"
       >
         Logout
       </button>
+
     </div>
-  </div>
 </header>
 
 <header class="headerrespo">
   <div class="p-grid">
     <img
       (click)="home()"
-      src="../../assets/images/logo.png"
+      src="../../assets/new logo.png"
       style="height: 5rem"
       class="p-col-3"
     />

@@ -48,7 +48,6 @@ export class PropertyInformationDetailsComponent implements OnInit {
 
   deleteProperty() {
     this.uxService.showSpinner();
-    console.log(this.data.propertyId);
     this.propertyService.deleteProperty(this.data.propertyId).subscribe(
       (response) => {
         this.uxService.hideSpinner();

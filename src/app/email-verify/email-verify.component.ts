@@ -30,7 +30,6 @@ export class EmailVerifyComponent implements OnInit {
     this.http.get(`${baseUrl}/verify/${this.token}`, {
       responseType: 'text'
     }).subscribe((res) => {
-      console.log(res);
       this.uxService.showToast('Email Verified', 'Email was verified successfully');
       this.router.navigate(['/']);
     }, (err) => {

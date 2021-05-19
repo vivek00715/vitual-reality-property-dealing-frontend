@@ -45,8 +45,6 @@ export class MyPropertyRentComponent implements OnInit {
         }
         this.list = this.list_dummy;
         // this.list_copy = this.list;
-        console.log(this.list);
-        console.log(this.list.length);
       });
   }
 

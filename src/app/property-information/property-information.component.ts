@@ -51,6 +51,7 @@ export class PropertyInformationComponent implements OnInit {
       queryParams: {
         city: this.property?.city,
         state: this.property?.state,
+        for:this.property?.purpose==''?'All':this.property?.purpose,
         // type: this.searchForm.value.type,
         minPrice: 0,
         maxPrice: 100000000,

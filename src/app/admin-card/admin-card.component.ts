@@ -40,7 +40,6 @@ export class AdminCardComponent implements OnInit {
        this.list=response.data;
        this.currentPage = response.currentPage;
        this.totalResults = response.totalResults;
-       console.log(this.list);
     });
   }
 
@@ -52,7 +51,6 @@ export class AdminCardComponent implements OnInit {
 
     let id=this.list[index].propertyId;
     this.id=id;
-    console.log(id);
     this.displayModal=true;
 
   }
@@ -60,7 +58,6 @@ export class AdminCardComponent implements OnInit {
   onSubmit() {
 
     let virtualTourURL:string=this.virtualTourURL.value.url;
-    console.log(virtualTourURL);
     this.propertyService.setPropertyVirtualTourURL(this.id,virtualTourURL);
     this.displayModal=false;
     this.router.navigate(['/property/id',this.id], {queryParams: {id: this.id}});

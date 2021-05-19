@@ -40,7 +40,7 @@
 </ul> -->
 
 <iframe
-  *ngIf="src.length > 0"
+  *ngIf="src!=null && src.length > 0"
    width="100%"
    height="600"
    [src]="src | safe"
@@ -50,5 +50,5 @@
    allowfullscreen="yes">
 </iframe>
 
-<h2 *ngIf="src.length === 0" class="p-text-center p-my-5 p-py-5">Virtual View not available for the property</h2>
+<h2 *ngIf="src===null || src.length === 0" class="p-text-center p-my-5 p-py-5">Virtual View not available for the property</h2>
 

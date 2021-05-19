@@ -230,3 +230,27 @@ div {
     }
   }
 }
+
+@media screen and (max-width: 576px)
+{.p-sm-12 {
+    width: 100%;
+}
+}
+
+@media screen and (max-width:750px) {
+
+  div{
+    div{
+      div{
+        .searchbar{
+          .input{
+               border-right-color: white;
+          }
+        }
+      }
+    }
+  }
+
+
+
+}

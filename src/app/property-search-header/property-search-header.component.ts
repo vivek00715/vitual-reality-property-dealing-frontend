@@ -50,7 +50,7 @@ export class PropertySearchHeaderComponent implements OnInit {
       budget: new FormControl(''),
     });
     this.activatedRoute.queryParamMap.subscribe((query: any) => {
-      console.log(query);
+
       this.searchProperty.patchValue(query.params);
     });
   }
@@ -94,7 +94,6 @@ export class PropertySearchHeaderComponent implements OnInit {
 
   handleSearchProperty() {
     const data = this.searchProperty.value;
-    console.log(data.city);
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     const { street, city, type, budget, state } = data;

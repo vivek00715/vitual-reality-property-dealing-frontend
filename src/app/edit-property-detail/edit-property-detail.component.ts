@@ -106,8 +106,6 @@ export class EditPropertyDetailComponent implements OnInit {
       return;
     }
     this.uxService.showSpinner();
-    // console.log(this.createForm.value.pincode);
-    // this.createForm.value.owneremail = this.authService.user?.email;
     this.propertyService
       .editProperty(this.createForm.value, this.propertyid)
       .subscribe(

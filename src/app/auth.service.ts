@@ -86,7 +86,6 @@ export class AuthService {
   };
 
   private handleError = (err: any) => {
-    console.log(err);
     this.ux.hideSpinner();
     let errorMessage = err.error;
     if (typeof errorMessage != 'string') {
