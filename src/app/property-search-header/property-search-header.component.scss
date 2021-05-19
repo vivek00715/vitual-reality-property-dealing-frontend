@@ -170,43 +170,68 @@ header {
   div {
     cursor: pointer;
     div {
-      border-radius: 5px;
-      font-size: medium;
-      :hover {
-        background-color: #234e70;
-        color: #fbf8be;
-        height: 3rem;
-        padding-top: 0.8rem;
-        border-radius: 5px;
-      }
+      // border-radius: 5px;
+      // font-size: medium;
       div {
         border-style: solid;
         border-color: white;
-        margin-top: 20%;
-        text-align: center;
-      }
-      p-dropdown {
-        margin-top: 20%;
+        // margin-top: 20%;
         text-align: center;
       }
     }
   }
 }
-button {
-  color: white;
-}
-button:hover {
-  color: white;
-  border-style: solid;
-  border-color: #234e70;
+.btn {
+  color: #234e70 !important;
+  text-align: center !important;
+  background-color: white !important;
+  height: 5% !important;
+  padding-left: 2%;
+
+  // margin-top: 3% !important;
+  // margin-left: 2% !important;
 }
 
-.no-hover:hover {
-  background-color: unset !important;
-  color: unset !important;
-  height: 100px !important;
-  padding-top: unset !important;
-  border-radius: unset !important;
+.button{
+
+  text-align: center !important;
+  background-color: #234e70 !important;
+  height: 5% !important;
+}
+
+.btn:hover{
+  color: #fbf8be !important;
+  background-color: #234e70 !important;
+  border-style: solid;
+  border-color: black ;
+}
+
+.button:hover {
+  background-color:  #fbf8be !important;
+  color: #234e70 !important;
+}
+
+
+@media screen and (max-width:850px) {
+
+  .header{
+    display: none;
+  }
+  .headerrespo{
+    display:block;
+  }
+
+}
+
+@media screen and (min-width:850px) {
+
+  .header{
+    display: block;
+  }
+  .headerrespo{
+    display:none;
+  }
+
 }
 
 

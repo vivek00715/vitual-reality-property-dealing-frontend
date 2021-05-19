@@ -51,7 +51,6 @@ export class PropertyService {
   }
 
   deleteProperty(id: number) {
-    console.log(id);
     return this.http.delete(`${this.baseUrl}/property/` + id);
   }
 

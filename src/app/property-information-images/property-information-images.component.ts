@@ -32,7 +32,7 @@ export class PropertyInformationImagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.images[0].url)
+
   }
 
 }

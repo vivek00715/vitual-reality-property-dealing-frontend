@@ -71,7 +71,7 @@ export class PropertySearchComponent implements OnInit {
     });
 
     this.activatedRoute.queryParamMap.subscribe((query: any) => {
-      console.log(query);
+
       this.searchProperty.patchValue(query.params);
     });
 
@@ -81,7 +81,7 @@ export class PropertySearchComponent implements OnInit {
     this.cityService = cityService;
 
     this.activatedRoute.queryParamMap.subscribe((query: any) => {
-      console.log(query);
+
       this.street = query.params.street == null ? '' : query.params.street;
       this.city = query.params.city == null ? '' : query.params.city;
       this.state = query.params.state == null ? '' : query.params.state;
@@ -91,7 +91,6 @@ export class PropertySearchComponent implements OnInit {
       this.maxPrice = query.params.maxPrice == null ? '50000000' : query.params.maxPrice;
     });
 
-    console.log(this.minPrice + ' ' + this.maxPrice);
 
     if (this.street != null) {
       this.mapSrc = this.Api + this.street + this.city + this.state;
@@ -100,26 +99,6 @@ export class PropertySearchComponent implements OnInit {
     } else {
       this.mapSrc = this.Api + this.state;
     }
-    // this.propertyService.getPropertyByAddress(this.street,this.city,this.state,this.propertyType,this.minPrice,this.maxPrice).subscribe((response)=>{
-    //   this.list=response.data;
-    //   this.list_copy=this.list;
-    //   console.log(this.list)
-
-    //   if(this.searchProperty.value.for=="All")
-    //   {
-    //     this.showAll();
-    //   }
-    //   else if(this.searchProperty.value.for=="Buy")
-    //   {
-    //     this.showBuy();
-    //   }
-    //   else if(this.searchProperty.value.for=="Rent"){
-    //     this.showRent();
-    //   }
-
-    // })
-
-    // console.log(this.searchProperty.value.for);
 
     this.getProperty();
     const detail: string = (this.city == null) ? this.state : this.city;
@@ -171,7 +150,6 @@ export class PropertySearchComponent implements OnInit {
       this.list_copy = this.list;
       this.currentPage = response.currentPage;
       this.totalResults = response.totalResults;
-      console.log(this.list);
 
       if (this.searchProperty.value.for == 'All') {
         this.showAll();
@@ -183,7 +161,6 @@ export class PropertySearchComponent implements OnInit {
 
     });
 
-    console.log(this.searchProperty.value.for);
   }
 
 
@@ -194,12 +171,10 @@ export class PropertySearchComponent implements OnInit {
         ? (this.activeSlider = true)
         : (this.activeSlider = false);
 
-    console.log(this.minPrice + ' ' + this.maxPrice);
   }
 
   handleSearchProperty() {
     const data = this.searchProperty.value;
-    console.log(data);
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     const {street, city, type, state} = data;
@@ -252,8 +227,6 @@ export class PropertySearchComponent implements OnInit {
     this.deleteAll(this.list_dummy);
     this.list = this.list_copy;
     this.myChoice = 'all';
-    console.log(this.list);
-    console.log(this.myChoice);
   }
 
   showBuy() {
@@ -265,8 +238,7 @@ export class PropertySearchComponent implements OnInit {
       }
     }
     this.list = this.list_dummy;
-    console.log(this.list);
-    console.log(this.myChoice);
+
   }
 
   showRent() {
@@ -278,7 +250,7 @@ export class PropertySearchComponent implements OnInit {
       }
     }
     this.list = this.list_dummy;
-    console.log(this.list);
+
   }
 
   searchState(event: any): void {

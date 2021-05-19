@@ -12,7 +12,7 @@ export class BaseUrlService {
       return 'http://localhost:8080';
     } else {
       // running in production, use the new url
-      return 'https://vrpd-backend-dot-hu18-groupa-angular.et.r.appspot.com';
+      return 'https://vrpd-backend1-dot-hu18-groupa-angular.et.r.appspot.com';
     }
   }
 

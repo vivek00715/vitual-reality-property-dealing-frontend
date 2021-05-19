@@ -76,7 +76,6 @@ export class PropertySearchService {
     purpose:any,
     page=1,
   ) {
-    console.log(purpose);
     return this.http.get<PaginatedProperty>(this.url + '/property', {
       params: {
         street: street,
@@ -102,9 +101,8 @@ export class PropertySearchService {
 
   public setPropertyVirtualTourURL(id:number,virtualTourURL:string)
   {
-    console.log("hit");
      return this.http.patch<Property>(this.url+'/property/virtualTourURL/'+id,virtualTourURL).subscribe((response)=>{
-          console.log(response);
+
      });
   }
 

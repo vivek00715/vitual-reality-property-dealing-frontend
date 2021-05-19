@@ -129,75 +129,106 @@
 //   display: none;
 // }
 
+
 header {
   font-family: "Work Sans", sans-serif;
   letter-spacing: 0.5px;
   div {
     cursor: pointer;
     div {
-      border-radius: 5px;
-      font-size: medium;
-      margin-top: 1.1%;
-      :hover {
-        background-color: #234e70;
-        color: #fbf8be;
-        height: 2.7rem;
-        padding-top: 0.6rem;
-        margin-top: 0.6rem !important;
-        border-radius: 5px;
-      }
+      // border-radius: 5px;
+      // font-size: medium;
       div {
         border-style: solid;
         border-color: white;
-        margin-top: 20%;
-        text-align: center;
-      }
-      p-dropdown {
-        margin-top: 20%;
+        // margin-top: 20%;
         text-align: center;
       }
     }
   }
 }
-button {
-  color: white;
+.btn {
+  color: #234e70 !important;
+  text-align: center !important;
+  background-color: white !important;
+  height: 5% !important;
+  padding-left: 2%;
+
+  // margin-top: 3% !important;
+  // margin-left: 2% !important;
 }
-.button:hover {
-  color: white;
+
+.button{
+
+  text-align: center !important;
+  background-color: #234e70 !important;
+  height: 5% !important;
+}
+
+.btn:hover{
+  color: #fbf8be !important;
+  background-color: #234e70 !important;
   border-style: solid;
-  // background-color: red !important;
-  border-color: #234e70;
-  margin-top: 0 !important;
+  border-color: #234e70 ;
 }
 
-@media screen and (max-width: 850px) {
-  .header {
+.button:hover {
+  background-color:  #fbf8be !important;
+  color: #234e70 !important;
+}
+
+
+@media screen and (max-width:850px) {
+
+  .header{
     display: none;
   }
-  .headerrespo {
-    display: block;
+  .headerrespo{
+    display:block;
   }
+
 }
 
-@media screen and (min-width: 850px) {
-  .header {
+@media screen and (min-width:850px) {
+
+  .header{
     display: block;
   }
-  .headerrespo {
-    display: none;
+  .headerrespo{
+    display:none;
   }
+
 }
 
-@media screen and (max-width: 600px) {
-  .btn {
+@media screen and (max-width:600px) {
+
+  .btn{
     margin-left: -10%;
   }
+
 }
 
-.no-hover:hover {
-  background-color: unset !important;
-  color: unset !important;
-  height: 100px !important;
-  padding-top: unset !important;
-  border-radius: unset !important;
+
+@media screen and (max-width:850px) {
+
+  .header{
+    display: none;
+  }
+  .headerrespo{
+    display:block;
+  }
+
 }
+
+@media screen and (min-width:850px) {
+
+  .header{
+    display: block;
+  }
+  .headerrespo{
+    display:none;
+  }
+
+}
+
+

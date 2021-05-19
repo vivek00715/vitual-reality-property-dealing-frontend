@@ -66,12 +66,13 @@
 <!--  </div>-->
 <!--</div>-->
 
-<div class="p-mt-4 p-px-3" data-angular="address">
+<div class="p-mt-4 p-px-3 p-grid" data-angular="address">
+  <div class="p-col-11">
   <h2>Address</h2>
   {{ data.address }}, {{ data.city }}, {{ data.state }}
   {{ data.pinCode }}
-  <br>
-  <div *ngIf="getPropertyEmail() === authService.user?.email || authService.user?.isAdministrator">
+  </div>
+  <div class="p-col-1" *ngIf="getPropertyEmail() === authService.user?.email || authService.user?.isAdministrator">
     <p-button label="Delete" (onClick)="deleteProperty()"></p-button>
   </div>
 </div>
@@ -80,7 +81,7 @@
   <div class="p-grid p-mt-4">
     <div class="p-col-10">
       <div class="p-grid ">
-        <div class="p-col-2 p-offset-2">
+        <div class="p-col-3 ">
           <p-card>
             <img src="../../assets/icons/rupee.png" alt="" style="width: 20px">
             <br>
@@ -88,21 +89,21 @@
           </p-card>
 
         </div>
-        <div class="p-col-2">
+        <div class="p-col-3">
           <p-card>
             <img src="../../assets/icons/bed.png" alt="" style="width: 20px">
             <br>
             <b>Beds: </b>{{ data.bedrooms }}
           </p-card>
         </div>
-        <div class="p-col-2">
+        <div class="p-col-3">
           <p-card>
             <img src="../../assets/icons/bath.png" alt="" style="width: 20px">
             <br>
             <b>Baths: </b>{{ data.bathrooms }}
           </p-card>
         </div>
-        <div class="p-col-2">
+        <div class="p-col-3">
           <p-card>
             <img src="../../assets/icons/areasize.png" alt="" style="width: 20px">
             <br>
@@ -144,9 +145,9 @@
   <div class="p-grid">
     <div class="p-col">
       <p-card>
-        <i class="pi pi-dollar"></i>
+        <img src="../../assets/icons/rupee.png" alt="" style="width: 15px">
         <br>
-        <b>price/area</b>: {{ data.price / data.area | currency: "INR" }}
+        <b>Price/sq.ft</b>: {{ data.price / data.area | currency: "INR" }}
       </p-card>
     </div>
     <div class="p-col">

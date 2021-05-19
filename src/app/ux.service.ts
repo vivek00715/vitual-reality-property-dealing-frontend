@@ -35,7 +35,7 @@ export class UxService {
   }
 
   handleError = (err: any) => {
-    console.log(err);
+
     this.hideSpinner();
     let errorMessage = err.error;
     if (typeof errorMessage !== 'string') {

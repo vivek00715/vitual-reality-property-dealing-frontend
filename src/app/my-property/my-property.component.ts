@@ -52,7 +52,6 @@ export class MyPropertyComponent implements OnInit {
       .subscribe((Response) => {
         this.user = Response;
         const { name, address, mobile } = Response;
-        console.log(this.user);
         // this.editForm.value.name = this.user.name;
         this.editForm.setValue({ name, address, mobile });
       });
@@ -62,7 +61,6 @@ export class MyPropertyComponent implements OnInit {
     this.uxService.showSpinner();
     this.userService.updateUserById(this.editForm.value).subscribe(
       (Response) => {
-        console.log(Response);
         this.uxService.hideSpinner();
         this.user = Response;
         this.uxService.showToast('Success', 'Update Successfully');
@@ -77,11 +75,9 @@ export class MyPropertyComponent implements OnInit {
   }
 
   onUploadImage(event: any) {
-    console.log(event);
     this.userService
       .uploadProfile(event.files[0])
       .subscribe((Response: any) => {
-        console.log(Response);
         this.uxService.hideSpinner();
         this.user = Response;
         this.uxService.showToast(

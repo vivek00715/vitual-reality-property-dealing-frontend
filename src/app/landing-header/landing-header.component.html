@@ -163,84 +163,98 @@
    search bar container ends
 </header> -->
 
+
+
 <header class="header">
   <div class="p-grid" style="padding: 0 1% 0 2%">
-    <div class="p-col">
-      <img
-        src="/assets/new%20logo.png"
-        height="100px"
-        style="width: 150px !important"
-        routerLink="/"
-        class="no-hover"
-      />
-    </div>
+    <div class="p-col-2">
+    <img
+      [routerLink]="['/']"
+      src="/assets/new%20logo.png"
+      style="width: 150px !important"
 
-    <div *ngIf="authService.loggedIn" class="p-col-3"></div>
-    <div *ngIf="!authService.loggedIn" class="p-col-4"></div>
-    <!-- <div class="p-col-2" style="margin-top: -0.54%">
+      height="80px"
+    />
+    </div>
+    <div *ngIf="authService.loggedIn" class="p-col-5"></div>
+    <div *ngIf="!authService.loggedIn" class="p-col-6"></div>
+    <!-- <div class="p-col-2">
       <div>Why HashHomes ?</div>
     </div> -->
-    <div (click)="Buy()" class="p-col-1">
-      <div>Buy</div>
-    </div>
-    <div (click)="Rent()" class="p-col-1">
-      <div>Rent</div>
-    </div>
-    <div (click)="Sell()" class="p-col-1">
-      <div>Sell</div>
-    </div>
-    <div
-      *ngIf="authService.loggedIn && !authService.user?.isAdministrator"
-      class="p-col-1"
-      style="margin-top: 1.1%"
-    >
-      <div routerLink="/my-profile">Profile</div>
-    </div>
-    <div
-      *ngIf="authService.loggedIn && authService.user?.isAdministrator"
-      class="p-col-1"
-      style="margin-top: 1.1%"
-    >
-      <div routerLink="/admin">Listings</div>
-    </div>
-    <div
-      *ngIf="!authService.loggedIn"
-      class="p-col-1"
-      style="border-color: black; margin-top: 2%"
-    >
       <button
         pButton
         type="button"
-        class="p-button-secondary p-button-text p-button-raised"
-        style="border: 0; border-radius: 0px"
+        class="p-button-secondary p-button-text p-col-1 btn"
+        style="border: 0; border-radius: 0px; margin-top:2%"
+        (click)="Buy()"
+      >Buy</button>
+
+      <button
+        pButton
+        type="button"
+        class="p-button-secondary p-button-text  p-col-1 btn"
+        style="border: 0; border-radius: 0px ;margin-top:2%"
+        (click)="Rent()"
+      >Rent</button>
+
+      <button
+      pButton
+      type="button"
+      class="p-button-secondary p-button-text  p-col-1 btn"
+      style="border: 0; border-radius: 0px ;margin-top:2%"
+      (click)="Sell()"
+    >Sell</button>
+
+
+     <button
+        *ngIf="authService.loggedIn && !authService.user?.isAdministrator"
+        style="margin-top: 2%; border: 0; border-radius: 0px;margin-left: -1%;"
+        pButton
+        type="button"
+        class="p-button-secondary p-button-text p-col-1 btn"
+        routerLink="/my-profile"
+      >Profile</button>
+
+    <button
+    *ngIf="authService.loggedIn && authService.user?.isAdministrator" style="margin-top: 2%; border: 0; border-radius: 0px; margin-left: -1%;"
+    pButton
+    type="button"
+    class="p-button-secondary p-button-text p-col-1 btn"
+    routerLink="/admin"
+     >Listings</button>
+
+
+      <button
+       *ngIf="!authService.loggedIn"
+       style="border-color: black; margin-top: 2%;border: 0; border-radius: 0px;margin-left: -1%;padding-left: 2%;"
         [routerLink]="['/log-in']"
+        pButton
+        type="button"
+        class="p-button-secondary p-button-text p-button-raised p-col-1 button"
       >
         Login
       </button>
-    </div>
-    <div
-      *ngIf="authService.loggedIn"
-      class="p-col-1"
-      style="border-color: black; margin-top: 2%"
-    >
+
+
       <button
+       *ngIf="authService.loggedIn"
+       style="border-color: black;;border: 0; border-radius: 0px;margin-top: 2%; padding-left: 2%;margin-left: 1%;"
+       (click)="authService.logout()"
         pButton
         type="button"
-        class="p-button-secondary p-button-text p-button-raised"
-        style="border: 0; border-radius: 0px"
-        (click)="authService.logout()"
+        class="p-button-secondary p-button-text p-button-raised p-col-1 button"
       >
         Logout
       </button>
+
     </div>
-  </div>
 </header>
 
 <header class="headerrespo">
   <div class="p-grid">
     <img
-      routerLink="/"
-      src="../../assets/images/logo.png"
+      [routerLink]="['/']"
+      src="../../assets/new logo.png"
       style="height: 5rem"
       class="p-col-3"
     />
