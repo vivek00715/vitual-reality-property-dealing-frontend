@@ -31,7 +31,8 @@ export interface Property {
     publicId:string;
     url:string;
   }[];
-  virtualTourURL:string;
+  virtualTour: boolean;
+  virtualTourUrl: string;
 }
 
 export interface PropertyShort{

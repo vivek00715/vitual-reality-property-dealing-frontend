@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { Property } from '../property-search.service';
-import { PropertyService } from '../property.service';
-import { UxService } from '../ux.service';
-import { ViewChild, ElementRef } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth.service';
+import {Property} from '../property-search.service';
+import {PropertyService} from '../property.service';
+import {UxService} from '../ux.service';
+import {User, UserServiceService} from '../user-service.service';
 
 @Component({
   selector: 'app-property-information-details',
@@ -14,14 +14,33 @@ import { ViewChild, ElementRef } from '@angular/core';
 export class PropertyInformationDetailsComponent implements OnInit {
   @Input() data!: Property;
   @ViewChild('closeModel') closeModel!: ElementRef;
+  user: User | null = null;
+
   constructor(
     public authService: AuthService,
     private propertyService: PropertyService,
     private uxService: UxService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private userService: UserServiceService
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  fetchOwner(): void {
+    if (!this.authService.loggedIn) {
+      return;
+    }
+    this.uxService.showSpinner();
+    this.userService.getUserById(this.getPropertyEmail()).subscribe(user => {
+      this.user = user;
+      this.uxService.hideSpinner();
+      this.uxService.showToast('Success', 'User details are sent to your email');
+    }, err => {
+      this.uxService.handleError(err);
+    });
+  }
 
   getPropertyEmail() {
     return this.data.ownerEmail;
@@ -34,8 +53,6 @@ export class PropertyInformationDetailsComponent implements OnInit {
       (response) => {
         this.uxService.hideSpinner();
         this.uxService.showToast('Success', 'Property deleted successfully');
-        console.log(response);
-        this.closeModel.nativeElement.click();
         this.router.navigate(['/my-profile']);
       },
       (err) => {

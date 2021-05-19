@@ -8,5 +8,9 @@
   [maxFractionDigits]="0"
 ></p-inputNumber>
 
+<div>
+  <h3>Require Virtual Tour</h3>
+  <p-inputSwitch [(ngModel)]="propertyData.virtualTour"></p-inputSwitch>
+</div>
 <h3>Tell us about your property</h3>
 <textarea pInputTextarea [rows]="4" [(ngModel)]="propertyData.description"></textarea>

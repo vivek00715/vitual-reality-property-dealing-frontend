@@ -114,13 +114,13 @@
         <i class="pi pi-eye"></i>
         <span>&ensp;VR</span>
       </ng-template>
-      <app-property-information-virtual-view></app-property-information-virtual-view>
+      <app-property-information-virtual-view [virtualTourUrl]="property.virtualTourUrl"></app-property-information-virtual-view>
     </p-tabPanel>
   </p-tabView>
 </div>
 
 <app-property-information-details
-  *ngIf="property"
+  *ngIf="property && activeIndex !== 2"
   [data]="property"
 ></app-property-information-details>
 

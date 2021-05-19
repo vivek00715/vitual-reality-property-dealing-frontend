@@ -30,7 +30,7 @@ export class PropertyInformationComponent implements OnInit {
         },
         (err) => {
           uxService.handleError(err);
-          this.error = true;
+          this.router.navigate(['/']);
         }
       );
     });

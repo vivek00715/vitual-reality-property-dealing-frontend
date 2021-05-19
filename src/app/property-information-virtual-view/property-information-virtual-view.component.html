@@ -40,8 +40,9 @@
 </ul> -->
 
 <iframe
+  *ngIf="src.length > 0"
    width="100%"
-   height="450"
+   height="600"
    [src]="src | safe"
    frameborder="0"
    allow="xr-spatial-tracking; accelerometer; magnetometer; gyroscope"
@@ -49,5 +50,5 @@
    allowfullscreen="yes">
 </iframe>
 
-
+<h2 *ngIf="src.length === 0" class="p-text-center p-my-5 p-py-5">Virtual View not available for the property</h2>
 
