@@ -28,6 +28,8 @@ export class PropertyCreationDataService {
   propertyId = 0;
   currentPhotoIndex = 0;
 
+  virtualTour = false;
+
   constructor(private stateCityService: StateCityService, private propertyService: PropertyService, private router: Router) {
   }
 
@@ -125,7 +127,8 @@ export class PropertyCreationDataService {
       price: this.price,
       description: this.description,
       state: this.state,
-      type: this.type
+      type: this.type,
+      virtualTour: this.virtualTour
     };
   }
 }

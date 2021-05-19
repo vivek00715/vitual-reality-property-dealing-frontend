@@ -1,237 +1,182 @@
 <!-- DON'T REMOVE data-angular from html, it is for testing -->
-<br/>
-<br/>
-<br/>
-<div *ngIf="this.authService.user?.email === getPropertyEmail()">
-  <a
-    type="button"
-    class="edit-button btn btn-danger mr-2"
-    [routerLink]="'/property/edit/' + data.propertyId"
-  >
-    <img class="edit-img" src="../../assets/icons/edit_black_24dp.svg" />
-    Edit
-  </a>
-  &nbsp;
-  <button
-    type="button"
-    class="delete-button btn btn-danger mr-2"
-    data-toggle="modal"
-    data-target="#exampleModal"
-  >
-    <img class="edit-img" src="../../assets/icons/delete_white_24dp.svg" />
-    Delete
-  </button>
+<!--<div *ngIf="this.authService.user?.email === getPropertyEmail()">-->
+<!--  <a-->
+<!--    type="button"-->
+<!--    class="edit-button btn btn-danger mr-2"-->
+<!--    [routerLink]="'/property/edit/' + data.propertyId"-->
+<!--  >-->
+<!--    <img class="edit-img" src="../../assets/icons/edit_black_24dp.svg"/>-->
+<!--    Edit-->
+<!--  </a>-->
+<!--  &nbsp;-->
+<!--  <button-->
+<!--    type="button"-->
+<!--    class="delete-button btn btn-danger mr-2"-->
+<!--    data-toggle="modal"-->
+<!--    data-target="#exampleModal"-->
+<!--  >-->
+<!--    <img class="edit-img" src="../../assets/icons/delete_white_24dp.svg"/>-->
+<!--    Delete-->
+<!--  </button>-->
 
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete Property</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Do you really want to delete this property ?
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-dismiss="modal"
-            #closeModel
-          >
-            No
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="deleteProperty()"
-          >
-            Yes
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<hr>
-<div class="mt-4" data-angular="address">
-  <h4>ADDRESS</h4>
+<!--  &lt;!&ndash; Modal &ndash;&gt;-->
+<!--  <div-->
+<!--    class="modal fade"-->
+<!--    id="exampleModal"-->
+<!--    tabindex="-1"-->
+<!--    role="dialog"-->
+<!--    aria-labelledby="exampleModalLabel"-->
+<!--    aria-hidden="true"-->
+<!--  >-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="exampleModalLabel">Delete Property</h5>-->
+<!--          <button-->
+<!--            type="button"-->
+<!--            class="close"-->
+<!--            data-dismiss="modal"-->
+<!--            aria-label="Close"-->
+<!--          >-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          Do you really want to delete this property ?-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button-->
+<!--            type="button"-->
+<!--            class="btn btn-secondary"-->
+<!--            data-dismiss="modal"-->
+<!--            #closeModel-->
+<!--          >-->
+<!--            No-->
+<!--          </button>-->
+<!--          <button-->
+<!--            type="button"-->
+<!--            class="btn btn-primary"-->
+<!--            (click)="deleteProperty()"-->
+<!--          >-->
+<!--            Yes-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="p-mt-4 p-px-3" data-angular="address">
+  <h2>Address</h2>
   {{ data.address }}, {{ data.city }}, {{ data.state }}
   {{ data.pinCode }}
-</div>
-<hr>
-<!--<div class="p-d-flex p-flex-column p-flex-md-row" data-angular="property-details">
-  <div class="p-mb-2 p-mr-2 p-shadow-4">
-    <b class="big-text">{{ data.price | currency: "INR" }}</b>
-  </div>
-  <div class="p-mb-2 p-mr-2 p-shadow-4">
-    <b class="big-text">{{ data.bedrooms }}</b>
-  </div>
-  <div class="p-mb-2 p-mr-2 p-shadow-4">
-    <b class="big-text">{{ data.bathrooms }}</b>
-  </div>
-  <div class="p-mb-2 p-mr-2- p-shadow-4">
-    <b class="big-text">{{ data.area }}</b>
+  <br>
+  <div *ngIf="getPropertyEmail() === authService.user?.email || authService.user?.isAdministrator">
+    <p-button label="Delete" (onClick)="deleteProperty()"></p-button>
   </div>
 </div>
-<div class="p-d-flex p-flex-column p-flex-md-row">
-  <div class="p-mb-2 p-mr-2 p-shadow-4">Price</div>
-  <div class="p-mb-2 p-mr-2 p-shadow-4">Beds</div>
-  <div class="p-mb-2 p-mr-2 p-shadow-4">Baths</div>
-  <div class="p-mb-2 p-mr-2 p-shadow-4">Area SqFt</div>
-</div>
 
+<div class="p-mx-3">
+  <div class="p-grid p-mt-4">
+    <div class="p-col-10">
+      <div class="p-grid ">
+        <div class="p-col-2 p-offset-2">
+          <p-card>
+            <img src="../../assets/icons/rupee.png" alt="" style="width: 20px">
+            <br>
+            <b>Price: </b>{{ data.price | currency: "INR" }}
+          </p-card>
 
-<hr />
-<p class="my-4">{{ data.description }}</p>
-<hr />
-<div class="row" data-angular="home-facts">
-  <div class="col-3 col-lg-1 pr-0">
-    <img
-      src="https://ssl.cdn-redfin.com/system_files/images/13580/150x150/gen120x120/1_49.jpg"
-      alt="User image"
-      class="img-fluid img-thumbnail"
-    />
-  </div>
-  <div class="col-8 col-lg-11 d-flex flex-column justify-content-center">
-    Listed by {{ data.ownerEmail }}
-  </div>
-  <div class="col-12 my-3 text-center text-lg-left">
-    <b>Price Insights</b>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-6">List Price:</div>
-    <div class="col-6 text-right p-0">{{ data.price | currency: "INR" }}</div>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-6">Price/Sq.Ft:</div>
-    <div class="col-6 text-right p-0">
-      {{ data.price / data.area | currency: "INR" }}
-    </div>
-  </div>
-  <div class="col-12 my-3 text-center text-lg-left">
-    <b>Home Facts</b>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-4">Purpose:</div>
-    <div class="col-8 text-right p-0">{{ data.purpose }}</div>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-4">Type:</div>
-    <div class="col-8 text-right p-0">{{ data.type }}</div>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-6">Year Built:</div>
-    <div class="col-6 text-right p-0">{{ data.builtYear }}</div>
-  </div>
-  <div class="col-12 col-lg-6 row font-large">
-    <div class="col-6">Floors:</div>
-    <div class="col-6 text-right p-0">{{ data.floors }}</div>
-  </div>
-</div>-->
-
-<div class="deets">
-  <div class="row-1">
-    <div class="col-1">
-      <div class="details">
-        <div class="details-box p-shadow-3">
-          <img src="../../assets/icons/rupee.png" alt="" width="17rem">
-          <br>
-          <b>Price: </b>{{ data.price | currency: "INR" }}
         </div>
-        <div class="details-box p-shadow-3">
-          <img src="../../assets/icons/bed.png" alt="" width="17rem">
-          <br>
-          <b>Beds: </b>{{ data.bedrooms }}
+        <div class="p-col-2">
+          <p-card>
+            <img src="../../assets/icons/bed.png" alt="" style="width: 20px">
+            <br>
+            <b>Beds: </b>{{ data.bedrooms }}
+          </p-card>
         </div>
-        <div class="details-box p-shadow-3">
-          <img src="../../assets/icons/bath.png" alt="" width="17rem">
-          <br>
-          <b>Baths: </b>{{ data.bathrooms }}
+        <div class="p-col-2">
+          <p-card>
+            <img src="../../assets/icons/bath.png" alt="" style="width: 20px">
+            <br>
+            <b>Baths: </b>{{ data.bathrooms }}
+          </p-card>
         </div>
-        <div class="details-box p-shadow-3">
-          <img src="../../assets/icons/areasize.png" alt="" width="17rem">
-          <br>
-          <b>Area: </b>{{ data.area }}
+        <div class="p-col-2">
+          <p-card>
+            <img src="../../assets/icons/areasize.png" alt="" style="width: 20px">
+            <br>
+            <b>Area: </b>{{ data.area }}
+          </p-card>
         </div>
       </div>
       <div class="desc">
-        <h3>Description</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium cupiditate aut, eius ut consequatur quis. Consequatur quibusdam ipsa eveniet beatae. Quam repellat architecto ut optio, aliquam velit debitis minus veritatis!
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, placeat nulla ex vero sed nam beatae illo, unde velit consectetur cumque magni obcaecati. Aspernatur necessitatibus doloribus laudantium modi architecto maxime.
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta saepe neque harum officiis perspiciatis assumenda soluta beatae autem minus repellendus. Obcaecati, reprehenderit est? Est impedit doloremque optio ipsa eum beatae.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt maxime obcaecati vel eum aut cum voluptatum necessitatibus ut id est, quaerat, quibusdam odio delectus blanditiis molestiae nostrum aspernatur quis voluptatibus!
-        </p>
+        <h2>Description</h2>
+        <p>{{data.description}}</p>
       </div>
     </div>
-    <div class="col-2 p-shadow-3">
-      <h3>
-        Posted by
-      </h3>
-      <div>
-        <img
-      src="https://ssl.cdn-redfin.com/system_files/images/13580/150x150/gen120x120/1_49.jpg"
-      alt="User image"
-      class="circle"
-        />
-      </div>
-      <div>
-        {{ data.ownerEmail }}
-      </div>
+    <div class="p-col-2 p-text-center">
+      <p-card header="Posted By">
+        <div class="p-mb-2">
+          <img
+            [src]=" user?.userImage || 'https://ssl.cdn-redfin.com/system_files/images/13580/150x150/gen120x120/1_49.jpg'"
+            alt="User image"
+            style="border-radius: 50%"
+            [ngClass]="{blur: !authService.loggedIn || !user}"
+          />
+        </div>
+        <div *ngIf="authService.loggedIn && user === null">
+          <p-button (onClick)="fetchOwner()">See Owner Details</p-button>
+        </div>
+        <div *ngIf="authService.loggedIn && user !== null">
+          <div>{{user.name}}</div>
+          <div>{{user.email}}</div>
+          <div>{{user.mobile}}</div>
+        </div>
+        <div *ngIf="!authService.loggedIn">
+          <p-button routerLink="/log-in">Login for Details</p-button>
+        </div>
+      </p-card>
     </div>
   </div>
   <br>
   <br>
-  <div class="row-2">
-    <div class="row-2-box p-shadow-3">
-      <i class="pi pi-dollar"></i>
-      <br>
-      <b>price/area</b>: {{ data.price / data.area | currency: "INR" }}
+  <div class="p-grid">
+    <div class="p-col">
+      <p-card>
+        <i class="pi pi-dollar"></i>
+        <br>
+        <b>price/area</b>: {{ data.price / data.area | currency: "INR" }}
+      </p-card>
     </div>
-    <div class="row-2-box p-shadow-3">
-      <i class="pi pi-tag"></i>
-      <br>
-      <b>Purpose</b>: {{ data.purpose }}
+    <div class="p-col">
+      <p-card>
+        <i class="pi pi-tag"></i>
+        <br>
+        <b>Purpose</b>: {{ data.purpose }}
+      </p-card>
     </div>
-    <div class="row-2-box p-shadow-3">
-      <i class="pi pi-home"></i>
-      <br>
-      <b>Type</b>: {{ data.type }}
+    <div class="p-col">
+      <p-card>
+        <i class="pi pi-home"></i>
+        <br>
+        <b>Type</b>: {{ data.type }}
+      </p-card>
     </div>
-    <div class="row-2-box p-shadow-3">
-      <i class="pi pi-calendar"></i>
-      <br>
-      <b>Year built</b>: {{ data.builtYear }}
+    <div class="p-col">
+      <p-card>
+        <i class="pi pi-calendar"></i>
+        <br>
+        <b>Year built</b>: {{ data.builtYear }}
+      </p-card>
     </div>
-    <div class="row-2-box p-shadow-3">
-      <img src="../../assets/icons/floor.png" alt="" width="17rem">
-      <br>
-      <b>Floors</b>: {{ data.floors }}
+    <div class="p-col">
+      <p-card>
+        <img src="../../assets/icons/floor.png" alt="" width="20px">
+        <br>
+        <b>Floors</b>: {{ data.floors }}
+      </p-card>
     </div>
   </div>
 </div>
 <br>
-<hr>
-
-<!--<div class="p-d-flex" style="height: 150px;">
-  <div class="p-mr-2 p-as-start">
-  </div>
-  <div class="p-mr-2 p-as-center">Center</div>
-  <div class="p-mr-2 p-as-end">End</div>
-  <div class="p-mr-2 p-as-stretch">Stretch</div>
-</div>-->

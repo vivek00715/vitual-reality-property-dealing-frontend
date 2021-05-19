@@ -20,6 +20,7 @@ export interface PropertyRequestBody {
   purpose: string;
   state: string;
   type: string;
+  virtualTour: boolean;
 }
 
 @Injectable({
@@ -51,7 +52,7 @@ export class PropertyService {
 
   deleteProperty(id: number) {
     console.log(id);
-    return this.http.delete(`${this.baseUrl}/delete/` + id);
+    return this.http.delete(`${this.baseUrl}/property/` + id);
   }
 
   uploadImage(image: File, propertyId: number): Observable<Property> {

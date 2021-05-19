@@ -29,54 +29,8 @@ p {
   background: #f37820;
   width: 7rem;
 }
-.deets{
-  display: flex;
-  flex-direction: column;
+
+.blur {
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
 }
-  .row-1{
-    display: flex;
-    justify-content: space-between;
-  }
-    .col-1{
-      display: flex;
-      flex-direction: column;
-      flex-grow: 2;
-    }
-      .details{
-        display: flex;
-        justify-content: space-around;
-      }
-        .details-box{
-          padding: 1.2rem;
-          border: none;
-          border-radius: 5px;
-        }
-      .desc{
-        padding: 1rem;
-        padding-left: 3rem;
-      }
-    .col-2{
-      display: flex;
-      flex-direction: column;
-      border-radius: 5px;
-      align-items: center;
-      justify-content: center;
-      padding: 1.2rem;
-      padding-top: 0.4rem;
-    }
-      .circle{
-        border-radius: 50%;
-      }
-
-
-  .row-2{
-    display: flex;
-    justify-content: space-around;
-  }
-    .row-2-box{
-      padding: 1.2rem;
-      border: none;
-      border-radius: 5px;
-    }
-
-

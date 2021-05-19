@@ -60,7 +60,7 @@
 
   <button
     pButton
-    class="p-button-sm"
+    class="p-button-sm p-mr-3"
     [ngClass]="{'outline': mode !== 4}"
     (click)="mode = 4"
   >Wall Objects
@@ -121,7 +121,7 @@
 </div>
 
 <!--Wall Model-->
-<div *ngIf="mode === 4" class="p-d-flex p-justify-around">
+<div *ngIf="mode === 4" class="p-d-flex p-justify-center">
   <img
     [src]="model.image"
     alt="Model"

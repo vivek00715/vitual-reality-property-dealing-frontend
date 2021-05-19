@@ -36,6 +36,9 @@
   </ng-template>
 </p-galleria>-->
 
+<div *ngIf="images.length === 0">
+  <h2 class="p-text-center">No images available</h2>
+</div>
 <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'width': '100%'}" [numVisible]="7"
     [circular]="true" [showItemNavigators]="true">
     <ng-template pTemplate="item" let-item>
